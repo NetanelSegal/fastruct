@@ -1,59 +1,62 @@
-'use client';
+"use client";
 
-import { ReactNode, useEffect, useState } from 'react';
-import LogoStrokeFillAnimated from './LogoStrokeFillAnimated';
-import { motion, Variants } from 'motion/react';
+import { Fragment, ReactNode, useEffect, useState } from "react";
+import LogoStrokeFillAnimated from "./LogoStrokeFillAnimated";
+import { AnimatePresence, motion, Variants } from "motion/react";
 
 interface IWebsiteLoaderProps {
   children: ReactNode;
 }
 
-const LOGO_ANIMATION_DURATION = 2;
+const LOGO_ANIMATION_DURATION = 3; // seconds
+const FRAME_ANIMATION_DURATION = 1.2; // seconds
 
 const WebsiteLoader = ({ children }: IWebsiteLoaderProps) => {
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLoader(false);
-    }, LOGO_ANIMATION_DURATION * 1000);
+    const timer = setTimeout(
+      () => {
+        setShowLoader(false);
+      },
+      (LOGO_ANIMATION_DURATION + FRAME_ANIMATION_DURATION) * 1000
+    );
     return () => clearTimeout(timer);
   }, []);
 
   const loaderVariants: Variants = {
     hidden: {
-      opacity: 0,
-      y: 0,
+      y: "-120vh",
     },
     visible: {
-      opacity: 1,
-      y: 0,
+      y: "0vh",
     },
   };
 
   return (
-    <>
-      {/* <AnimatePresence> */}
+    <AnimatePresence>
       {showLoader ? (
         <motion.div
-          key='website-loader'
+          key="website-loader"
           variants={loaderVariants}
-          initial='hidden'
-          animate='visible'
-          exit={{ y: '-120vh' }}
-          transition={{ duration: 1.2, ease: 'backIn' }}
-          className='bg-dark fixed top-[-10vh] z-50 flex h-[120vh] w-full items-center justify-center'
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{
+            duration: FRAME_ANIMATION_DURATION,
+            ease: "easeInOut",
+          }}
+          className="bg-dark fixed top-[-10vh] h-[120vh] z-50 flex w-full items-center justify-center"
         >
           <LogoStrokeFillAnimated
-            delay={1.2}
+            delay={FRAME_ANIMATION_DURATION - LOGO_ANIMATION_DURATION * 0.25}
             duration={LOGO_ANIMATION_DURATION}
           />
         </motion.div>
       ) : (
-        children
+        <Fragment key="website-content">{children}</Fragment>
       )}
-      {/* </AnimatePresence> */}
-    </>
+    </AnimatePresence>
   );
 };
 

@@ -54,7 +54,7 @@ const HomePage = () => {
   const featuredModules = getModules();
 
   return (
-    <div className={`bg-dark text-cream `}>
+    <div className={`bg-dark text-cream relative`}>
       {/* Hero Section */}
       <HeroSection />
 
