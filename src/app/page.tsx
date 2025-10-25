@@ -1,65 +1,96 @@
-import Image from "next/image";
+import { getModules } from '@/lib/modules';
+import { Section } from '@/components/Section';
+import TestimonialsSection from '@/sections/home/TestimonialsSection';
+import HeroSection from '@/sections/home/HeroSection';
+import IntroSection from '@/sections/home/IntroSection';
+import {
+  FeatureCarousel,
+  PlaceholderIcon,
+  type Feature,
+} from '@/sections/home/FeatureCarousel';
+import CTASection from '@/sections/home/CTASection';
+import ExploreHomesSection from '@/sections/home/ExploreHomesSection';
+import WhyModularPanelizedSection from '@/sections/home/WhyModularPanelizedSection';
+import OurProcessSection from '@/sections/home/OurProcessSection';
+import FAQSection from '@/sections/home/FAQSection';
+import ContactFormSection from '@/sections/home/ContactFormSection';
 
-export default function Home() {
+const features: Feature[] = [
+  {
+    icon: <PlaceholderIcon />,
+    title: 'Unmatched Speed',
+    subtitle:
+      'Our factory-built process dramatically reduces construction time, getting you into your new home faster than ever.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2000',
+  },
+  {
+    icon: <PlaceholderIcon />,
+    title: 'Precision Engineering',
+    subtitle:
+      'Every component is crafted in a climate-controlled environment, ensuring superior quality and structural integrity.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000',
+  },
+  {
+    icon: <PlaceholderIcon />,
+    title: 'Sustainable by Design',
+    subtitle:
+      'Minimized waste and optimized material usage make our homes a smarter, more sustainable choice for the future.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2000',
+  },
+  {
+    icon: <PlaceholderIcon />,
+    title: 'Built to Last',
+    subtitle:
+      'Using high-quality materials and robust engineering, our homes are designed for longevity and peace of mind.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=2000',
+  },
+];
+
+const HomePage = () => {
+  const featuredModules = getModules();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className='bg-dark text-cream'>
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* Intro Section */}
+      <IntroSection />
+
+      {/* Feature Carousel Section */}
+      <FeatureCarousel features={features} />
+
+      {/* CTA Section */}
+      <CTASection />
+
+      {/* Explore Homes Section */}
+      <ExploreHomesSection featuredModules={featuredModules} />
+
+      {/* Why Modular & Panelized Section */}
+      <WhyModularPanelizedSection />
+
+      {/* Our Process Section */}
+      <OurProcessSection />
+
+      {/* Testimonial Section */}
+      <Section bgColor='accent'>
+        <TestimonialsSection
+          quote='Fast Struct crafted our forever home with unrivaled care. Every detail felt luxurious and personal.'
+          author='A. & T. Jameson'
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </Section>
+
+      {/* FAQ Section */}
+      <FAQSection />
+
+      {/* Contact Form Section */}
+      <ContactFormSection />
     </div>
   );
-}
+};
+
+export default HomePage;
