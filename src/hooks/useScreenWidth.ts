@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
 import {
   TailwindBreakpoints,
   TailwindBreakpointsUnion,
-} from "@/lib/css-constants";
-import { useState, useEffect } from "react";
+} from '@/lib/css-constants';
+import { useState, useEffect } from 'react';
 
 interface IuseScreenWidthReturn {
   screenWidth: number;
@@ -13,15 +13,15 @@ interface IuseScreenWidthReturn {
 
 export const useScreenWidth = (): IuseScreenWidthReturn => {
   const [screenWidth, setScreenWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
+    typeof window !== 'undefined' ? window.innerWidth : 0
   );
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       const listener = () => setScreenWidth(window.innerWidth);
 
-      window.addEventListener("resize", listener);
-      return () => window.removeEventListener("resize", listener);
+      window.addEventListener('resize', listener);
+      return () => window.removeEventListener('resize', listener);
     }
   }, []);
 
@@ -31,7 +31,7 @@ export const useScreenWidth = (): IuseScreenWidthReturn => {
   const breakpoint = keysArray.findLast(
     (key) => TailwindBreakpoints[key] < screenWidth
   );
-  console.log("breakpoint", breakpoint);
+  console.log('breakpoint', breakpoint);
 
   return {
     screenWidth,

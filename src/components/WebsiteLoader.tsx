@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Fragment, ReactNode, useEffect, useState } from "react";
-import LogoStrokeFillAnimated from "./LogoStrokeFillAnimated";
-import { AnimatePresence, motion, Variants } from "motion/react";
+import { Fragment, ReactNode, useEffect, useState } from 'react';
+import LogoStrokeFillAnimated from './LogoStrokeFillAnimated';
+import { AnimatePresence, motion, Variants } from 'motion/react';
 
 interface IWebsiteLoaderProps {
   children: ReactNode;
@@ -26,10 +26,10 @@ const WebsiteLoader = ({ children }: IWebsiteLoaderProps) => {
 
   const loaderVariants: Variants = {
     hidden: {
-      y: "-120vh",
+      y: '-120vh',
     },
     visible: {
-      y: "0vh",
+      y: '0vh',
     },
   };
 
@@ -37,16 +37,16 @@ const WebsiteLoader = ({ children }: IWebsiteLoaderProps) => {
     <AnimatePresence>
       {showLoader ? (
         <motion.div
-          key="website-loader"
+          key='website-loader'
           variants={loaderVariants}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
+          initial='hidden'
+          animate='visible'
+          exit='hidden'
           transition={{
             duration: FRAME_ANIMATION_DURATION,
-            ease: "easeInOut",
+            ease: 'easeInOut',
           }}
-          className="bg-dark fixed top-[-10vh] h-[120vh] z-50 flex w-full items-center justify-center"
+          className='bg-dark fixed top-[-10vh] z-50 flex h-[120vh] w-full items-center justify-center'
         >
           <LogoStrokeFillAnimated
             delay={FRAME_ANIMATION_DURATION - LOGO_ANIMATION_DURATION * 0.25}
@@ -54,7 +54,7 @@ const WebsiteLoader = ({ children }: IWebsiteLoaderProps) => {
           />
         </motion.div>
       ) : (
-        <Fragment key="website-content">{children}</Fragment>
+        <Fragment key='website-content'>{children}</Fragment>
       )}
     </AnimatePresence>
   );

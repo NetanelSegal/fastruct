@@ -306,9 +306,10 @@ export default function Home() {
           </h3>
           <div className='bg-light border-accent rounded-lg border-l-4 p-8'>
             <p className='font-poppins text-dark tracking-tightish mb-4 text-lg italic'>
-                            &quot;The team delivered our commercial project 3 months ahead of
-                            schedule without compromising quality. Their modular approach was
-                            a game-changer for our business.&quot;             </p>
+              &quot;The team delivered our commercial project 3 months ahead of
+              schedule without compromising quality. Their modular approach was
+              a game-changer for our business.&quot;{' '}
+            </p>
             <div>
               <p className='text-h5 font-bebas text-dark tracking-tightish'>
                 Sarah Mitchell

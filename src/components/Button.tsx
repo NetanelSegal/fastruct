@@ -31,7 +31,7 @@ export const Button = ({
       'btn-hover-lift': hoverTransition === 'lift',
       'btn-hover-scale': hoverTransition === 'scale',
     },
-    className,
+    className
   );
 
   return (

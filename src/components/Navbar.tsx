@@ -1,10 +1,10 @@
-"use client";
-import Link from "next/link";
-import FastructLogo from "./FastructLogo";
-import { Button } from "./Button";
-import NavLink from "./NavLink";
-import { motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+'use client';
+import Link from 'next/link';
+import FastructLogo from './FastructLogo';
+import { Button } from './Button';
+import NavLink from './NavLink';
+import { motion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Navbar() {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -17,42 +17,42 @@ export default function Navbar() {
       previousScrollY.current = window.scrollY;
       setShowNavbar(!directionDown);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const variants = {
     hidden: {
-      y: "-100%",
+      y: '-100%',
     },
     visible: {
-      y: "0%",
+      y: '0%',
     },
   };
 
   return (
     <motion.header
-      className="container-padding bg-dark flex items-center justify-between gap-4 border-b py-4 sticky top-0 z-50"
+      className='container-padding bg-dark sticky top-0 z-50 flex items-center justify-between gap-4 border-b py-4'
       variants={variants}
-      initial="visible"
-      animate={showNavbar ? "visible" : "hidden"}
-      exit="hidden"
+      initial='visible'
+      animate={showNavbar ? 'visible' : 'hidden'}
+      exit='hidden'
       transition={{
         duration: 0.5,
-        ease: "easeInOut",
+        ease: 'easeInOut',
       }}
     >
-      <Link href="/">
-        <FastructLogo color="light" height="40" />
+      <Link href='/'>
+        <FastructLogo color='light' height='40' />
       </Link>
-      <nav className="flex items-center gap-6">
-        <NavLink href="/">Home</NavLink>
-        <NavLink href="/about">About</NavLink>
-        <NavLink href="/technical">Technical</NavLink>
-        <Link href="/contact">
-          <Button variant="primary" size="md" hoverTransition="lift">
+      <nav className='flex items-center gap-6'>
+        <NavLink href='/'>Home</NavLink>
+        <NavLink href='/about'>About</NavLink>
+        <NavLink href='/technical'>Technical</NavLink>
+        <Link href='/contact'>
+          <Button variant='primary' size='md' hoverTransition='lift'>
             Call us
           </Button>
         </Link>

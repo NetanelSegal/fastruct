@@ -1,6 +1,6 @@
 'use client';
 
-import React, { cloneElement, ReactElement, useRef } from 'react';
+import { cloneElement, ReactElement, useRef } from 'react';
 import {
   motion,
   MotionStyle,
@@ -16,8 +16,7 @@ const PlaceholderIcon = ({ className }: { className?: string }) => (
     className={className}
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
-    fill='currentColor'
-  >
+    fill='currentColor'>
     <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-2h2v2h-2zm0-4h2V7h-2v6z' />
   </svg>
 );
@@ -55,7 +54,7 @@ const FeatureSlide = ({
     x: useTransform(
       progress,
       [totalPercentage * (index - 1), totalPercentage * index],
-      [`${100 - (total - index) * SLIDES_GAP}vw`, `${index * SLIDES_GAP}vw`],
+      [`${100 - (total - index) * SLIDES_GAP}vw`, `${index * SLIDES_GAP}vw`]
     ),
   };
 
@@ -80,15 +79,14 @@ const FeatureSlide = ({
   return (
     <motion.div
       style={style}
-      className='border-accent absolute inset-0 h-full w-[90vw] border-l-2 shadow-[0px_0px_15px_10px_#00000035]'
-    >
+      className='border-accent absolute inset-0 h-full w-[90vw] border-l-2 shadow-[0px_0px_15px_10px_#00000035]'>
       {/* Background Image */}
       <div
         className='absolute inset-0 bg-cover bg-center'
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
       {/* Gradient Overlay */}
-      <div className='from-dark/80 via-dark/40 absolute inset-0 bg-gradient-to-t to-transparent' />
+      <div className='from-dark/80 via-dark/40 absolute inset-0 bg-linear-to-t to-transparent' />
 
       {/* Content */}
       <motion.div
@@ -96,8 +94,7 @@ const FeatureSlide = ({
         variants={contentVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ once: true, amount: 0.5 }}
-      >
+        viewport={{ once: true, amount: 0.5 }}>
         <motion.div variants={itemVariants} className='text-accent mb-4'>
           {cloneElement(icon, {
             className: 'h-12 w-12',
@@ -105,14 +102,12 @@ const FeatureSlide = ({
         </motion.div>
         <motion.h3
           variants={itemVariants}
-          className='text-h3 font-bebas text-light'
-        >
+          className='text-h3 font-bebas text-light'>
           {title}
         </motion.h3>
         <motion.p
           variants={itemVariants}
-          className='font-poppins text-h6 text-light/80 mt-2 max-w-md'
-        >
+          className='font-poppins text-h6 text-light/80 mt-2 max-w-md'>
           {subtitle}
         </motion.p>
       </motion.div>

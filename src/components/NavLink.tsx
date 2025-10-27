@@ -15,7 +15,7 @@ const NavLink = ({ href, children }: INavLinkProps) => {
 
   const classes = clsx(
     'hover:opacity-80 transition-all',
-    isActive ? 'text-accent underline' : 'text-light',
+    isActive ? 'text-accent underline' : 'text-light'
   );
 
   return (

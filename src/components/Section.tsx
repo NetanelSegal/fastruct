@@ -19,7 +19,7 @@ export const Section = ({
     'section-padding',
     `bg-${bgColor}`,
     `text-${textColor}`,
-    className,
+    className
   );
 
   return (

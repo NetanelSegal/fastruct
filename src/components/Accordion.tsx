@@ -7,7 +7,7 @@ import { clsx } from 'clsx';
 const Accordion = AccordionPrimitive.Root;
 
 const AccordionItem = (
-  props: React.ComponentPropsWithRef<typeof AccordionPrimitive.Item>,
+  props: React.ComponentPropsWithRef<typeof AccordionPrimitive.Item>
 ) => (
   <AccordionPrimitive.Item
     className={clsx('border-light/20 border-b', props.className)}
@@ -24,7 +24,7 @@ const AccordionTrigger = ({
     <AccordionPrimitive.Trigger
       className={clsx(
         'font-poppins text-light flex flex-1 items-center justify-between py-4 text-lg transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
-        className,
+        className
       )}
       {...props}
     >
@@ -42,7 +42,7 @@ const AccordionContent = ({
   <AccordionPrimitive.Content
     className={clsx(
       'text-light/80 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-base transition-all',
-      className,
+      className
     )}
     {...props}
   >

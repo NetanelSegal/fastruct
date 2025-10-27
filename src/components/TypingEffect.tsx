@@ -55,7 +55,20 @@ const TypingEffect = ({
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [charIndex, isDeleting, speed, delay, strings, stringIndex, deleteChar, isAtFirstChar, isAtLastChar, nextString, typeChar, typingSpeed]);
+  }, [
+    charIndex,
+    isDeleting,
+    speed,
+    delay,
+    strings,
+    stringIndex,
+    deleteChar,
+    isAtFirstChar,
+    isAtLastChar,
+    nextString,
+    typeChar,
+    typingSpeed,
+  ]);
 
   return (
     <span className={className}>

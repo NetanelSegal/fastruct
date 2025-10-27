@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Custom Colors */
@@ -42,8 +42,8 @@
   html {
     scroll-behavior: smooth;
   }
-  input[type="text"],
-  input[type="email"],
+  input[type='text'],
+  input[type='email'],
   textarea {
     @apply border-accent/50 bg-light/10 text-accent placeholder-accent/70 focus:border-accent focus:ring-accent/50 block w-full rounded-lg p-3 transition-all duration-200 ease-in-out focus:ring-2;
   }
