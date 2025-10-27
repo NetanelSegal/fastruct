@@ -1,35 +1,44 @@
-import React from 'react';
-import Image from 'next/image';
-import Parallax from '@/components/Parallax';
-import TypingEffect from '@/components/TypingEffect';
+"use client";
+
+import Image from "next/image";
+import TypingEffect from "@/components/TypingEffect";
+import { useRef } from "react";
+import Parallax from "@/components/Parallax";
+import { UseScrollOptions } from "motion/react";
 
 const HeroSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const offset: UseScrollOptions["offset"] = ["center center", "end start"];
+  const unitType = "vh";
+
   return (
-    <div className='bg-light pt-28'>
-      <Parallax startRange={-50} endRange={50} className='z-10'>
-        <div className='flex flex-col flex-wrap justify-end px-[12%] lg:justify-between xl:flex-row xl:items-end'>
-          <h1 className='text-h1 font-bebas text-dark whitespace-nowrap uppercase'>
-            Build{' '}
+    <div ref={ref} className="bg-light relative pt-[30vh]">
+      {/* text container */}
+      <Parallax endRange={15} ref={ref} offset={offset} unitType={unitType}>
+        <div className="flex flex-col flex-wrap justify-end px-[12%] lg:justify-between xl:flex-row xl:items-end">
+          <h1 className="text-h1 font-bebas text-dark whitespace-nowrap uppercase">
+            Build{" "}
             <TypingEffect
-              strings={['Faster', 'Smarter', 'For Life']}
-              className='text-accent'
+              strings={["Faster", "Smarter", "For Life"]}
+              className="text-accent"
             />
           </h1>
-          <p className='text-h6 font-poppins text-dark max-w-xl'>
+          <p className="text-h6 font-poppins text-dark max-w-xl">
             Fastruct delivers modular and panelized buildings designed to fit
             your needs - from consultation to completion.
           </p>
         </div>
       </Parallax>
 
-      <Parallax startRange={50} endRange={-50} className='z-10'>
-        <div className='relative h-[40vw] overflow-hidden'>
+      {/* image container */}
+      <Parallax endRange={-15} ref={ref} offset={offset} unitType={unitType}>
+        <div className="relative overflow-hidden aspect-[3/1]">
           <Image
             priority
             fill
-            src='/assets/hero-image.png'
-            alt='Modern modular home'
-            className='object-cover object-top'
+            src="/assets/hero-image.png"
+            alt="Modern modular home"
+            className="object-top object-cover "
           />
         </div>
       </Parallax>

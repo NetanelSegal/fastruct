@@ -1,13 +1,20 @@
-'use client';
+"use client";
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import {
+  motion,
+  useScroll,
+  UseScrollOptions,
+  useTransform,
+} from "motion/react";
 
 interface ParallaxProps {
   children: React.ReactNode;
   className?: string;
   startRange?: number;
   endRange?: number;
+  unitType?: "vh" | "px" | "%";
+  offset?: UseScrollOptions["offset"];
+  ref?: UseScrollOptions["target"];
 }
 
 const Parallax = ({
@@ -15,11 +22,13 @@ const Parallax = ({
   className,
   startRange = 0,
   endRange = 0,
+  unitType = "%",
+  offset = ["start end", "end start"],
+  ref,
 }: ParallaxProps) => {
-  const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start'],
+    offset,
   });
 
   const start = 0;
@@ -28,13 +37,13 @@ const Parallax = ({
   const y = useTransform(
     scrollYProgress,
     [start, end],
-    [`${startRange}%`, `${endRange}%`],
+    [`${startRange}${unitType}`, `${endRange}${unitType}`]
   );
 
   return (
-    <div ref={ref} className={className}>
-      <motion.div style={{ y }}>{children}</motion.div>
-    </div>
+    <motion.div className={className} style={{ y }}>
+      {children}
+    </motion.div>
   );
 };
 
