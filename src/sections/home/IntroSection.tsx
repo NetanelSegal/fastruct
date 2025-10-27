@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { Section } from '@/components/Section';
 import AnimatedText from '@/components/AnimatedText';
 import Parallax from '@/components/Parallax';
+import IntroSectionImage from './IntroSectionImage';
 
 const IntroSection = () => {
   return (
@@ -16,15 +16,9 @@ const IntroSection = () => {
             <AnimatedText text='Fastruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish.' />
           </p>
         </div>
-        <Parallax startRange={10} endRange={-10} unitType='vh' className='z-10'>
+        <Parallax startRange={10} endRange={-10} unitType='vh'>
           <div className='relative aspect-video translate-x-[10%] -translate-y-[30%] scale-125 overflow-hidden rounded-lg'>
-            <Image
-              fill
-              sizes='100%'
-              src='https://picsum.photos/800/600'
-              alt='Construction site'
-              className='object-cover'
-            />
+            <IntroSectionImage />
           </div>
         </Parallax>
       </div>

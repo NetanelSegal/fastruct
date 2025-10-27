@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import WebsiteLoader from '@/components/WebsiteLoader';
+// import WebsiteLoader from '@/components/WebsiteLoader';
 import { Poppins, Bebas_Neue } from 'next/font/google';
+import './globals.css';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],
@@ -30,11 +30,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${fontPoppins.variable} ${fontBebasNeue.variable}`}>
-        <WebsiteLoader>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </WebsiteLoader>
+        {/* <WebsiteLoader> */}
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        {/* </WebsiteLoader> */}
       </body>
     </html>
   );
