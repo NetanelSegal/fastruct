@@ -5,7 +5,10 @@ import IntroSectionImage from './IntroSectionImage';
 
 const IntroSection = () => {
   return (
-    <Section bgColor='dark' textColor='light' className='z-20'>
+    <Section
+      bgColor='dark'
+      textColor='light'
+      className='relative overflow-hidden'>
       <div className='grid items-center gap-12 md:grid-cols-2'>
         <div className='relative z-10 flex flex-col md:-mr-24'>
           <AnimatedText

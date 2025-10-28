@@ -5,10 +5,16 @@ import TypingEffect from '@/components/TypingEffect';
 import { useRef } from 'react';
 import Parallax from '@/components/Parallax';
 import { UseScrollOptions } from 'motion/react';
+import { useScreenWidth } from '@/hooks/useScreenWidth';
+import { TailwindBreakpoints } from '@/lib/css-constants';
 
 const HeroSection = () => {
+  const { screenWidth } = useScreenWidth();
   const ref = useRef<HTMLDivElement>(null);
-  const offset: UseScrollOptions['offset'] = ['center center', 'end start'];
+  const offset: UseScrollOptions['offset'] = [
+    screenWidth > TailwindBreakpoints.md ? 'center center' : '50% 30%',
+    'end start',
+  ];
   const unitType = 'vh';
 
   return (

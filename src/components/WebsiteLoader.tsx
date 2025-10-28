@@ -36,23 +36,25 @@ const WebsiteLoader = ({ children }: IWebsiteLoaderProps) => {
   return (
     <AnimatePresence>
       {showLoader ? (
-        <motion.div
-          key='website-loader'
-          variants={loaderVariants}
-          initial='hidden'
-          animate='visible'
-          exit='hidden'
-          transition={{
-            duration: FRAME_ANIMATION_DURATION,
-            ease: 'easeInOut',
-          }}
-          className='bg-dark fixed top-[-10vh] z-50 flex h-[120vh] w-full items-center justify-center'
-        >
-          <LogoStrokeFillAnimated
-            delay={FRAME_ANIMATION_DURATION - LOGO_ANIMATION_DURATION * 0.25}
-            duration={LOGO_ANIMATION_DURATION}
-          />
-        </motion.div>
+        <>
+          <motion.div
+            key='website-loader'
+            variants={loaderVariants}
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
+            transition={{
+              duration: FRAME_ANIMATION_DURATION,
+              ease: [0.68, -0.2, 0.32, 1.2],
+            }}
+            className='bg-dark fixed top-[-10vh] z-50 flex h-[120vh] w-full items-center justify-center'>
+            <LogoStrokeFillAnimated
+              delay={FRAME_ANIMATION_DURATION - LOGO_ANIMATION_DURATION * 0.25}
+              duration={LOGO_ANIMATION_DURATION}
+            />
+          </motion.div>
+          <div className='h-[120vh] w-full bg-dark'></div>
+        </>
       ) : (
         <Fragment key='website-content'>{children}</Fragment>
       )}

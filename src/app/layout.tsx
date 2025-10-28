@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-// import WebsiteLoader from '@/components/WebsiteLoader';
+import WebsiteLoader from '@/components/WebsiteLoader';
 import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
+import Script from 'next/script';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],
@@ -30,11 +31,15 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${fontPoppins.variable} ${fontBebasNeue.variable}`}>
-        {/* <WebsiteLoader> */}
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        {/* </WebsiteLoader> */}
+        <Script
+          src='https://kit.fontawesome.com/42dfb7600e.js'
+          crossOrigin='anonymous'
+        />
+        <WebsiteLoader>
+          <Navbar />
+          <main className='relative z-0'>{children}</main>
+          <Footer />
+        </WebsiteLoader>
       </body>
     </html>
   );
