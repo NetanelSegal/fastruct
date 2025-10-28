@@ -31,7 +31,6 @@ export const useScreenWidth = (): IuseScreenWidthReturn => {
   const breakpoint = keysArray.findLast(
     (key) => TailwindBreakpoints[key] < screenWidth
   );
-  console.log('breakpoint', breakpoint);
 
   return {
     screenWidth,

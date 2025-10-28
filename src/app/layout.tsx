@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer';
-import WebsiteLoader from '@/components/WebsiteLoader';
+// import WebsiteLoader from '@/components/WebsiteLoader';
 import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
@@ -35,11 +35,11 @@ export default function RootLayout({
           src='https://kit.fontawesome.com/42dfb7600e.js'
           crossOrigin='anonymous'
         />
-        <WebsiteLoader>
-          <Navbar />
-          <main className='relative z-0'>{children}</main>
-          <Footer />
-        </WebsiteLoader>
+        {/* <WebsiteLoader> */}
+        <Navbar />
+        <main className='relative z-0'>{children}</main>
+        <Footer />
+        {/* </WebsiteLoader> */}
       </body>
     </html>
   );

@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Button } from './Button';
-import NavLink from './NavLink';
+import { Button } from '../Button';
+import NavLink from '../NavLink';
 import { motion, Variants } from 'motion/react';
 import { RefObject } from 'react';
 import { ROUTES } from '@/lib/routes';
@@ -52,13 +52,8 @@ export const HamburgerButton = ({
 
 export const MobileMenu = ({ ref }: IMobileMenuProps) => {
   return (
-    <motion.div
-      initial={{ x: '-100%' }}
-      animate={{ x: 0 }}
-      exit={{ x: '-100%' }}
-      transition={{ duration: 0.3 }}
-      className='bg-dark/95 fixed top-0 bottom-1/2 left-0 z-10 flex h-screen w-full items-center justify-center p-8 backdrop-blur-sm'>
-      <nav
+    <div className='bg-dark/95 fixed top-0 bottom-1/2 left-0 z-10 flex h-screen w-full items-center justify-center p-8 backdrop-blur-sm'>
+      {/* <nav
         ref={ref}
         className='flex flex-col items-center justify-center gap-2'>
         {ROUTES.map((route) =>
@@ -74,7 +69,7 @@ export const MobileMenu = ({ ref }: IMobileMenuProps) => {
             </NavLink>
           )
         )}
-      </nav>
-    </motion.div>
+      </nav> */}
+    </div>
   );
 };

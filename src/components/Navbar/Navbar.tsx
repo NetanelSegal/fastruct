@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import FastructLogo from './FastructLogo';
-import { Button } from './Button';
-import NavLink from './NavLink';
+import FastructLogo from '../FastructLogo';
+import { Button } from '../Button';
+import NavLink from '../NavLink';
 import { AnimatePresence, motion, Variants } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
@@ -15,11 +15,11 @@ import { useToggle } from '@/hooks/useToggle';
 const NAVBAR_SWAP_BREAKPOINT = TailwindBreakpoints.lg;
 
 export default function Navbar() {
-  // mobile navbar state
+  // // mobile navbar state
   const [isMobileMenuOpen, toggleIsMobileMenuOpen] = useToggle(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // desktop navbar state
+  // // desktop navbar state
   const [showNavbar, setShowNavbar] = useState(true);
   const { screenWidth } = useScreenWidth();
   const previousScrollY = useRef(0);
@@ -50,7 +50,7 @@ export default function Navbar() {
 
   return (
     <div className='relative'>
-      <motion.header
+      {/* <motion.header
         className='bg-dark container-padding fixed top-0 z-20 flex w-full items-center justify-between gap-4 border-b py-4'
         variants={variants}
         initial='visible'
@@ -86,9 +86,10 @@ export default function Navbar() {
           />
         )}
       </motion.header>
-      <AnimatePresence>
-        {isMobileMenuOpen && <MobileMenu ref={menuRef} />}
-      </AnimatePresence>
+ */}
+      {/* <AnimatePresence> */}
+      {/* {isMobileMenuOpen && <MobileMenu ref={menuRef} />} */}
+      {/* </AnimatePresence> */}
     </div>
   );
 }
