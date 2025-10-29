@@ -24,7 +24,7 @@ export const Section = ({
 
   return (
     <section className={classes} {...props}>
-      <div className='mx-auto'>{children}</div>
+      {children}
     </section>
   );
 };

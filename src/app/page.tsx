@@ -3,11 +3,7 @@ import { Section } from '@/components/Section';
 import TestimonialsSection from '@/sections/home/TestimonialsSection';
 import HeroSection from '@/sections/home/HeroSection';
 import IntroSection from '@/sections/home/IntroSection';
-import {
-  FeatureCarousel,
-  PlaceholderIcon,
-  type Feature,
-} from '@/sections/home/FeatureCarousel';
+import { FeatureCarousel, type Feature } from '@/sections/home/FeatureCarousel';
 import CTASection from '@/sections/home/CTASection';
 import ExploreHomesSection from '@/sections/home/ExploreHomesSection';
 import WhyModularPanelizedSection from '@/sections/home/WhyModularPanelizedSection';
@@ -17,36 +13,28 @@ import ContactFormSection from '@/sections/home/ContactFormSection';
 
 const features: Feature[] = [
   {
-    icon: <PlaceholderIcon />,
-    title: 'Unmatched Speed',
-    subtitle:
-      'Our factory-built process dramatically reduces construction time, getting you into your new home faster than ever.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2000',
+    icon: <i className='fas fa-bolt text-[2rem]' />,
+    title: 'Speed',
+    subtitle: 'Your project ready in months, not years.',
+    imageUrl: '/assets/features-image-1.jpg',
   },
   {
-    icon: <PlaceholderIcon />,
-    title: 'Precision Engineering',
-    subtitle:
-      'Every component is crafted in a climate-controlled environment, ensuring superior quality and structural integrity.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000',
+    icon: <i className='fas fa-award text-[2rem]' />,
+    title: 'Quality',
+    subtitle: 'Premium materials, rigorous inspections.',
+    imageUrl: '/assets/features-image-2.jpg',
   },
   {
-    icon: <PlaceholderIcon />,
-    title: 'Sustainable by Design',
-    subtitle:
-      'Minimized waste and optimized material usage make our homes a smarter, more sustainable choice for the future.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2000',
+    icon: <i className='fas fa-infinity text-[2rem]' />,
+    title: 'End to end',
+    subtitle: 'Permits, design, construction, and handover.',
+    imageUrl: '/assets/features-image-3.jpg',
   },
   {
-    icon: <PlaceholderIcon />,
-    title: 'Built to Last',
-    subtitle:
-      'Using high-quality materials and robust engineering, our homes are designed for longevity and peace of mind.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=2000',
+    icon: <i className='fas fa-palette text-[2rem]' />,
+    title: 'Customization',
+    subtitle: 'Tailored to your lifestyle, taste, and budget..',
+    imageUrl: '/assets/features-image-4.jpg',
   },
 ];
 
@@ -54,7 +42,7 @@ const HomePage = () => {
   const featuredModules = getModules();
 
   return (
-    <div className={`bg-dark text-cream relative`}>
+    <div className={`bg-dark text-cream snap-y snap-mandatory`}>
       {/* Hero Section */}
       <HeroSection />
 

@@ -1,6 +1,5 @@
 import { Section } from '@/components/Section';
 import AnimatedText from '@/components/AnimatedText';
-import Parallax from '@/components/Parallax';
 import IntroSectionImage from './IntroSectionImage';
 
 const IntroSection = () => {
@@ -8,22 +7,18 @@ const IntroSection = () => {
     <Section
       bgColor='dark'
       textColor='light'
-      className='relative overflow-hidden'>
-      <div className='grid items-center gap-12 md:grid-cols-2'>
-        <div className='relative z-10 flex flex-col md:-mr-24'>
+      className='relative overflow-x-hidden'>
+      <div className='flex flex-col items-center justify-between gap-8 lg:flex-row-reverse'>
+        <IntroSectionImage />
+        <div className='relative z-10 flex basis-1/2 flex-col gap-4'>
           <AnimatedText
             text='More Than Just Construction'
-            className='text-h2 font-bebas'
+            className='text-h2 font-bebas text-light'
           />
-          <p className='text-h6'>
+          <p className='text-h6 text-light max-w-lg'>
             <AnimatedText text='Fastruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish.' />
           </p>
         </div>
-        <Parallax startRange={10} endRange={-10} unitType='vh'>
-          <div className='relative aspect-video translate-x-[10%] -translate-y-[30%] scale-125 overflow-hidden rounded-lg'>
-            <IntroSectionImage />
-          </div>
-        </Parallax>
       </div>
     </Section>
   );

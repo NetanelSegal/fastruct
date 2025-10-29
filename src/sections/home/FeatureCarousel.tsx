@@ -1,6 +1,6 @@
 'use client';
 
-import { cloneElement, ReactElement, useRef } from 'react';
+import { ReactElement, useRef } from 'react';
 import {
   motion,
   MotionStyle,
@@ -10,19 +10,8 @@ import {
   Variants,
 } from 'motion/react';
 
-// A simple placeholder icon. In a real app, you'd use an icon library or SVG files.
-const PlaceholderIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 24 24'
-    fill='currentColor'>
-    <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-2h2v2h-2zm0-4h2V7h-2v6z' />
-  </svg>
-);
-
 interface Feature {
-  icon: ReactElement<{ className?: string }>;
+  icon: ReactElement;
   title: string;
   subtitle: string;
   imageUrl: string;
@@ -96,9 +85,7 @@ const FeatureSlide = ({
         whileInView='visible'
         viewport={{ once: true, amount: 0.5 }}>
         <motion.div variants={itemVariants} className='text-accent mb-4'>
-          {cloneElement(icon, {
-            className: 'h-12 w-12',
-          })}
+          {icon}
         </motion.div>
         <motion.h3
           variants={itemVariants}
@@ -141,5 +128,5 @@ const FeatureCarousel = ({ features }: FeatureCarouselProps) => {
   );
 };
 
-export { FeatureCarousel, PlaceholderIcon };
+export { FeatureCarousel };
 export type { Feature };

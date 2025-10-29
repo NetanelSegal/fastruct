@@ -15,12 +15,12 @@ const HeroSection = () => {
     screenWidth > TailwindBreakpoints.md ? 'center center' : '50% 30%',
     'end start',
   ];
-  const unitType = 'vh';
+  const unitType = 'px';
 
   return (
-    <div ref={ref} className='bg-light relative pt-[30vh]'>
+    <div ref={ref} className={`bg-light psnap-center pt-[30vh]`}>
       {/* text container */}
-      <Parallax endRange={15} ref={ref} offset={offset} unitType={unitType}>
+      <Parallax endRange={100} ref={ref} offset={offset} unitType={unitType}>
         <div className='flex flex-col flex-wrap justify-end px-[12%] lg:justify-between xl:flex-row xl:items-end'>
           <h1 className='text-h1 font-bebas text-dark whitespace-nowrap uppercase'>
             Build{' '}
@@ -37,17 +37,15 @@ const HeroSection = () => {
       </Parallax>
 
       {/* image container */}
-      <Parallax endRange={-15} ref={ref} offset={offset} unitType={unitType}>
-        <div className='relative aspect-[3/1] overflow-hidden'>
-          <Image
-            priority
-            fill
-            src='/assets/hero-image.png'
-            alt='Modern modular home'
-            className='object-cover object-top'
-          />
-        </div>
-      </Parallax>
+      <div className='relative aspect-[3/1] overflow-hidden'>
+        <Image
+          priority
+          fill
+          src='/assets/hero-image.png'
+          alt='Modern modular home'
+          className='object-cover object-top'
+        />
+      </div>
     </div>
   );
 };

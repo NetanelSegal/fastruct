@@ -45,14 +45,12 @@ const AnimatedText = ({
       className={clsx('inline-block', className)}
       variants={containerVariants}
       initial='hidden'
-      animate={isInView ? 'visible' : 'hidden'}
-    >
+      animate={isInView ? 'visible' : 'hidden'}>
       {text.split('').map((letter, index) => (
         <motion.span
           key={`letter-${text}-${index}-${letter}`}
           variants={letterVariants}
-          className='inline-block'
-        >
+          className='inline-block'>
           {letter === ' ' ? '\u00A0' : letter}
         </motion.span>
       ))}
