@@ -9,10 +9,16 @@ interface IValuePropCardProps {
 export const ValuePropCard = ({ title, description }: IValuePropCardProps) => {
   return (
     <div className='flex flex-col gap-2'>
-      <AnimatedText text={title} className='text-h4 font-bebas text-accent' />
-      <p className='text-h6 font-poppins text-light/80 max-w-prose'>
-        <AnimatedText text={description} />
-      </p>
+      <AnimatedText
+        text={title}
+        className='text-h4 font-bebas text-accent'
+        revealColor='dark'
+      />
+      <AnimatedText
+        className='text-h6 font-poppins text-light/80 max-w-prose'
+        text={description}
+        revealColor='dark'
+      />
     </div>
   );
 };

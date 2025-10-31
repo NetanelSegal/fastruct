@@ -17,6 +17,7 @@ export const Section = ({
 }: SectionProps) => {
   const classes = clsx(
     'section-padding',
+    'snap-start',
     `bg-${bgColor}`,
     `text-${textColor}`,
     className

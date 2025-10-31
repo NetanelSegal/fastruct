@@ -1,13 +1,13 @@
 'use client';
 
-import { ReactElement, useRef } from 'react';
+import { ReactElement, RefObject, useRef } from 'react';
 import {
   motion,
-  MotionStyle,
-  MotionValue,
   useScroll,
   useTransform,
-  Variants,
+  MotionValue,
+  useMotionTemplate,
+  useMotionValueEvent,
 } from 'motion/react';
 
 interface Feature {
@@ -24,8 +24,8 @@ interface FeatureCarouselProps {
 interface FeatureSlideProps {
   feature: Feature;
   index: number;
-  total: number;
   progress: MotionValue<number>;
+  featuresCount: number;
 }
 
 const SLIDES_GAP = 5;
@@ -33,98 +33,83 @@ const SLIDES_GAP = 5;
 const FeatureSlide = ({
   feature,
   index,
-  total,
   progress,
+  featuresCount,
 }: FeatureSlideProps) => {
   const { icon, title, subtitle, imageUrl } = feature;
-  const totalPercentage = 100 / total;
 
-  const style: MotionStyle = {
-    x: useTransform(
-      progress,
-      [totalPercentage * (index - 1), totalPercentage * index],
-      [`${100 - (total - index) * SLIDES_GAP}vw`, `${index * SLIDES_GAP}vw`]
-    ),
-  };
+  const x = useTransform(progress, (p) => {
+    const currentSlideProgress = index == 0 ? 1 : p - index;
+    const currentSlideX = currentSlideProgress * 100;
+    const currentSlideRightGap = SLIDES_GAP * (featuresCount - index);
+    const currentSlideMinX = SLIDES_GAP * index;
+    return Math.max(
+      Math.min(100 - currentSlideX, 100 - currentSlideRightGap),
+      currentSlideMinX
+    );
+  });
 
-  const contentVariants: Variants = {
-    hidden: { opacity: 0, x: 40 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-  };
+  const translate = useMotionTemplate`translateX(${x}vw)`;
 
   return (
     <motion.div
-      style={style}
-      className='border-accent absolute inset-0 h-full w-[90vw] border-l-2 shadow-[0px_0px_15px_10px_#00000035]'>
-      {/* Background Image */}
+      style={{ transform: translate, zIndex: index }}
+      className={`border-accent absolute box-border h-full w-full border-l-2 shadow-[0px_0px_15px_10px_#00000035]`}>
       <div
-        className='absolute inset-0 bg-cover bg-center'
+        className='absolute inset-0 z-0 bg-cover bg-center'
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
-      {/* Gradient Overlay */}
-      <div className='from-dark/80 via-dark/40 absolute inset-0 bg-linear-to-t to-transparent' />
+      <div className='from-dark/80 via-dark/40 absolute inset-0 bg-gradient-to-t to-transparent' />
 
-      {/* Content */}
-      <motion.div
-        className='relative flex h-full flex-col justify-end p-8 md:p-16'
-        variants={contentVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true, amount: 0.5 }}>
-        <motion.div variants={itemVariants} className='text-accent mb-4'>
-          {icon}
-        </motion.div>
-        <motion.h3
-          variants={itemVariants}
-          className='text-h3 font-bebas text-light'>
-          {title}
-        </motion.h3>
-        <motion.p
-          variants={itemVariants}
-          className='font-poppins text-h6 text-light/80 mt-2 max-w-md'>
+      <div className='relative flex h-full flex-col justify-end p-8 md:p-16'>
+        <div className='text-accent mb-4'>{icon}</div>
+        <h3 className='text-h3 font-bebas text-light'>{title}</h3>
+        <p className='font-poppins text-h6 text-light/80 mt-2 max-w-md pr-16'>
           {subtitle}
-        </motion.p>
-      </motion.div>
+        </p>
+      </div>
     </motion.div>
   );
 };
 
 const FeatureCarousel = ({ features }: FeatureCarouselProps) => {
-  const carouselRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
-    target: carouselRef,
+
+    target: sectionRef,
     offset: ['start start', 'end end'],
   });
 
-  const progress = useTransform(scrollYProgress, (v) => v * 100);
-
+  const numSlides = features.length;
+  const slideIndex = useTransform(scrollYProgress, [0, 1], [0, numSlides]);
+  useMotionValueEvent(slideIndex, 'change', (value) => {
+    console.log(value);
+  });
   return (
-    <div ref={carouselRef} className='h-[400vh] w-full'>
-      <div className='sticky top-0 h-screen w-full overflow-hidden'>
+    <section
+      ref={sectionRef}
+      className='relative h-[500vh] w-full snap-y snap-mandatory snap-always'>
+      {/* Sticky container overlays on top during scroll */}
+      <div className='sticky top-0 right-0 left-0 h-screen overflow-hidden'>
         {features.map((feature, index) => (
           <FeatureSlide
             key={`feature-${index}`}
             feature={feature}
             index={index}
-            total={features.length}
-            progress={progress}
+            progress={slideIndex}
+            featuresCount={features.length}
           />
         ))}
       </div>
-    </div>
+      {/* Invisible scroll sections drive the scroll */}
+      {features.map((_, index) => (
+        <div
+          key={`feature-invisible-${index}`}
+          className='h-screen snap-start border-2 border-pink-500'
+        />
+      ))}
+    </section>
   );
 };
 

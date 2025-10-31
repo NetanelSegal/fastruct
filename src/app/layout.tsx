@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
+import WebsiteLoader from '@/components/WebsiteLoader';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],
@@ -29,17 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='en' className='snap-y snap-proximity'>
       <body className={`${fontPoppins.variable} ${fontBebasNeue.variable}`}>
         <Script
           src='https://kit.fontawesome.com/42dfb7600e.js'
           crossOrigin='anonymous'
         />
-        {/* <WebsiteLoader> */}
-        <Navbar />
-        <main className='relative z-0'>{children}</main>
-        <Footer />
-        {/* </WebsiteLoader> */}
+        <WebsiteLoader>
+          <Navbar />
+          <main className='relative z-0'>{children}</main>
+          <Footer />
+        </WebsiteLoader>
       </body>
     </html>
   );

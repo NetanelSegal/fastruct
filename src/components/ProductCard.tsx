@@ -4,25 +4,36 @@ import AnimatedText from './AnimatedText';
 interface IProductCardProps {
   imageUrl: string;
   title: string;
-  specs: string;
+  specs: string[];
 }
 
 export const ProductCard = ({ imageUrl, title, specs }: IProductCardProps) => {
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='bg-light flex flex-col gap-4 rounded-lg shadow-md'>
       <div className='relative aspect-[4/3] w-full'>
         <Image
           fill
           src={imageUrl}
           alt={title}
-          className='rounded-lg object-cover'
+          className='rounded-t-lg object-cover'
         />
+        <div className='absolute top-4 left-4 flex flex-wrap gap-2'>
+          {specs.map((spec) => (
+            <div
+              key={spec}
+              className='bg-accent rounded-full px-3 py-1 text-sm font-bold text-white uppercase'>
+              {spec}
+            </div>
+          ))}
+        </div>
       </div>
-      <div>
-        <AnimatedText text={title} className='text-h5 font-bebas text-light' />
-        <p className='text-h6 font-poppins text-light/80'>
-          <AnimatedText text={specs} />
-        </p>
+      <div className='flex items-center justify-between p-4'>
+        <AnimatedText
+          text={title}
+          className='text-h5 font-bebas text-dark font-bold uppercase'
+          revealColor='light'
+        />
+        <span className='text-dark text-2xl'>→</span>
       </div>
     </div>
   );

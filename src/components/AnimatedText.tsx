@@ -1,60 +1,38 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useInView, Variants } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
 import clsx from 'clsx';
+import { ColorsUnion } from '@/lib/css-constants';
 
 interface AnimatedTextProps {
   text: string;
   className?: string;
-  stagger?: number;
+  revealColor?: ColorsUnion;
 }
 
 const AnimatedText = ({
   text,
   className,
-  stagger = 0.03,
+  revealColor = 'dark',
 }: AnimatedTextProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5 });
 
-  const containerVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: stagger,
-      },
-    },
-  };
-
-  const letterVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.77, 0, 0.175, 1],
-      },
-    },
-  };
-
   return (
-    <motion.span
-      ref={ref}
-      className={clsx('inline-block', className)}
-      variants={containerVariants}
-      initial='hidden'
-      animate={isInView ? 'visible' : 'hidden'}>
-      {text.split('').map((letter, index) => (
-        <motion.span
-          key={`letter-${text}-${index}-${letter}`}
-          variants={letterVariants}
-          className='inline-block'>
-          {letter === ' ' ? '\u00A0' : letter}
-        </motion.span>
-      ))}
-    </motion.span>
+    <div ref={ref} className={clsx('relative inline-block', className)}>
+      <motion.div
+        initial={{ scaleX: 1 }}
+        animate={{ scaleX: isInView ? 0 : 1 }}
+        transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
+        className={clsx(
+          'absolute inset-0 z-10 origin-right',
+          `bg-${revealColor}`
+        )}>
+        <div className='bg-accent absolute top-0 bottom-0 left-0 w-1 rounded-full'></div>
+      </motion.div>
+      <span>{text}</span>
+    </div>
   );
 };
 

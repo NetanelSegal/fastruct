@@ -18,18 +18,25 @@ const ExploreHomesSection = ({
           <AnimatedText
             text='Explore Our Homes'
             className='text-h2 font-bebas text-light'
+            revealColor='dark'
           />
-          <p className='text-h6 text-light/80 mx-auto max-w-2xl'>
-            <AnimatedText text='Explore our range of models, each designed for flexibility and comfort' />
-          </p>
+          <AnimatedText
+            className='text-h6 text-light/80 mx-auto max-w-2xl'
+            text='Explore our range of models, each designed for flexibility and comfort'
+            revealColor='dark'
+          />
         </div>
         <div className='grid gap-8 md:grid-cols-3'>
-          {featuredModules.map((module) => (
+          {featuredModules.slice(0, 4).map((module) => (
             <ProductCard
               key={module.slug}
               imageUrl='https://picsum.photos/400/300'
               title={module.title}
-              specs={`${module.specs.areaSqm} sqft | ${module.specs.bedrooms} Bedroom | ${module.specs.bathrooms} Bathroom`}
+              specs={[
+                `${module.specs.areaSqm} sqft`,
+                `${module.specs.bedrooms} Bedroom`,
+                `${module.specs.bathrooms} Bathroom`,
+              ]}
             />
           ))}
         </div>

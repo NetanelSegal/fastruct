@@ -14,10 +14,13 @@ const IntroSection = () => {
           <AnimatedText
             text='More Than Just Construction'
             className='text-h2 font-bebas text-light'
+            revealColor='dark'
           />
-          <p className='text-h6 text-light max-w-lg'>
-            <AnimatedText text='Fastruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish.' />
-          </p>
+          <AnimatedText
+            className='text-h6 text-light max-w-lg'
+            text='Fastruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish.'
+            revealColor='dark'
+          />
         </div>
       </div>
     </Section>

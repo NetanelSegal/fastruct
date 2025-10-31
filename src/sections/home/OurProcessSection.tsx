@@ -9,6 +9,7 @@ const OurProcessSection = () => {
         <AnimatedText
           text='Our Process'
           className='text-h2 font-bebas text-light'
+          revealColor='dark'
         />
       </div>
       <div className='grid gap-8 md:grid-cols-3'>
@@ -17,30 +18,39 @@ const OurProcessSection = () => {
           <AnimatedText
             text='Consultation'
             className='text-h4 font-bebas text-light'
+            revealColor='dark'
           />
-          <p className='text-h6 text-light/80'>
-            <AnimatedText text='We start with a conversation to understand your vision, needs, and budget.' />
-          </p>
+          <AnimatedText
+            className='text-h6 text-light/80'
+            text='We start with a conversation to understand your vision, needs, and budget.'
+            revealColor='dark'
+          />
         </div>
         <div className='flex flex-col items-center gap-4 text-center'>
           <div className='text-h1 font-bebas text-accent'>2</div>
           <AnimatedText
             text='Proposal & Agreement'
             className='text-h4 font-bebas text-light'
+            revealColor='dark'
           />
-          <p className='text-h6 text-light/80'>
-            <AnimatedText text='You receive a transparent scope of work, timeline, and cost breakdown.' />
-          </p>
+          <AnimatedText
+            className='text-h6 text-light/80'
+            text='You receive a transparent scope of work, timeline, and cost breakdown.'
+            revealColor='dark'
+          />
         </div>
         <div className='flex flex-col items-center gap-4 text-center'>
           <div className='text-h1 font-bebas text-accent'>3</div>
           <AnimatedText
             text='Design & Permits'
             className='text-h4 font-bebas text-light'
+            revealColor='dark'
           />
-          <p className='text-h6 text-light/80'>
-            <AnimatedText text='Our team prepares drawings, selects materials, and manages permits.' />
-          </p>
+          <AnimatedText
+            className='text-h6 text-light/80'
+            text='Our team prepares drawings, selects materials, and manages permits.'
+            revealColor='dark'
+          />
         </div>
       </div>
     </Section>

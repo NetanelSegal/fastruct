@@ -11,10 +11,13 @@ const ContactFormSection = () => {
         <AnimatedText
           text="Let's build together"
           className='text-h2 font-bebas text-light'
+          revealColor='dark'
         />
-        <p className='text-h6 text-light/80 max-w-prose'>
-          <AnimatedText text="Have a project in mind? Let's talk about how we can bring it to life." />
-        </p>
+        <AnimatedText
+          className='text-h6 text-light/80 max-w-prose'
+          text="Have a project in mind? Let's talk about how we can bring it to life."
+          revealColor='dark'
+        />
         <Link href='/contact'>
           <Button variant='primary' size='lg' hoverTransition='lift'>
             Get in Touch

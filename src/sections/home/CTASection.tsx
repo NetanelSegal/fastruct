@@ -11,6 +11,7 @@ const CTASection = () => {
         <AnimatedText
           text='Want to build with us?'
           className='text-h2 font-bebas text-light'
+          revealColor='dark'
         />
         <Link href='/contact'>
           <Button variant='primary' size='lg' hoverTransition='lift'>

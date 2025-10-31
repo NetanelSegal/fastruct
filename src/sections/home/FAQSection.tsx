@@ -15,6 +15,7 @@ const FAQSection = () => {
         <AnimatedText
           text='Frequently Asked Questions'
           className='text-h2 font-bebas text-light mb-8 text-center'
+          revealColor='dark'
         />
         <Accordion type='single' collapsible>
           <AccordionItem value='item-1'>

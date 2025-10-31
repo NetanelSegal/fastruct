@@ -1,3 +1,5 @@
+'use client';
+
 import { getModules } from '@/lib/modules';
 import { Section } from '@/components/Section';
 import TestimonialsSection from '@/sections/home/TestimonialsSection';
@@ -10,6 +12,7 @@ import WhyModularPanelizedSection from '@/sections/home/WhyModularPanelizedSecti
 import OurProcessSection from '@/sections/home/OurProcessSection';
 import FAQSection from '@/sections/home/FAQSection';
 import ContactFormSection from '@/sections/home/ContactFormSection';
+import { useRef } from 'react';
 
 const features: Feature[] = [
   {
@@ -42,7 +45,7 @@ const HomePage = () => {
   const featuredModules = getModules();
 
   return (
-    <div className={`bg-dark text-cream snap-y snap-mandatory`}>
+    <div className={`bg-dark text-cream`}>
       {/* Hero Section */}
       <HeroSection />
 
