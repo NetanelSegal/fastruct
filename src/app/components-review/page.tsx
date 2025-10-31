@@ -59,7 +59,7 @@ const ComponentsReviewPage = () => {
             <ProductCard
               imageUrl='/file.svg' // Using a placeholder from your public folder
               title='SMART COMPACT LIVING'
-              specs='480 sqft | 1 Bedroom | 1 Bathroom | 2 modules'
+              specs={['480 sqft', '1 Bedroom', '1 Bathroom', '2 modules']}
             />
           </div>
         </section>

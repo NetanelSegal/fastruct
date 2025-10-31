@@ -10,7 +10,7 @@ const WhyModularPanelizedSection = () => {
         <AnimatedText
           text='Why Modular & Panelized Construction'
           className='text-h2 font-bebas text-light'
-          revealColor='bg-dark'
+          revealColor='dark'
         />
       </div>
       <div className='grid gap-8 md:grid-cols-3'>
