@@ -17,7 +17,7 @@ const AnimatedHeading = ({
   revealColor = 'dark',
 }: AnimatedHeadingProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.5 });
+  const isInView = useInView(ref, { amount: 0.5, once: true });
 
   return (
     <div ref={ref} className={clsx('relative inline-block', className)}>

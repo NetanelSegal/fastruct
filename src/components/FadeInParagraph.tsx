@@ -10,7 +10,7 @@ interface FadeInParagraphProps {
 
 const FadeInParagraph = ({ children, className }: FadeInParagraphProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.5 });
+  const isInView = useInView(ref, { amount: 0.5, once: true });
 
   return (
     <motion.p
