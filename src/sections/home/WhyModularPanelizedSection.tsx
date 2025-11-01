@@ -1,13 +1,19 @@
 import React from 'react';
 import { Section } from '@/components/Section';
 import { ValuePropCard } from '@/components/ValuePropCard';
-import AnimatedText from '@/components/AnimatedText';
+import AnimatedHeading from '@/components/AnimatedHeading';
 
-const WhyModularPanelizedSection = () => {
+import { IWhyModularPanelized } from '@/types/content';
+
+const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
+  modular,
+  panelized,
+  combinedApproach,
+}) => {
   return (
     <Section>
       <div className='mb-8 text-center'>
-        <AnimatedText
+        <AnimatedHeading
           text='Why Modular & Panelized Construction'
           className='text-h2 font-bebas text-light'
           revealColor='dark'
@@ -15,16 +21,16 @@ const WhyModularPanelizedSection = () => {
       </div>
       <div className='grid gap-8 md:grid-cols-3'>
         <ValuePropCard
-          title='Modular'
-          description='Factory-built precision modules. Faster timelines (up to 50% quicker). Consistent quality control in a controlled environment. Minimal disruption on-site.'
+          title={modular.title}
+          description={modular.items.join('. ')}
         />
         <ValuePropCard
-          title='Panelized'
-          description='Pre-engineered wall and roof panels. Flexible for complex or hard-to-reach sites. Easier permitting in many regions. Scalable for a variety of project sizes.'
+          title={panelized.title}
+          description={panelized.items.join('. ')}
         />
         <ValuePropCard
-          title='Combined Approach'
-          description='Best of both worlds. Tailored to project needs and client vision. Maximum flexibility and efficiency.'
+          title={combinedApproach.title}
+          description={combinedApproach.items.join('. ')}
         />
       </div>
     </Section>

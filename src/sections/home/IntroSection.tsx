@@ -1,8 +1,12 @@
 import { Section } from '@/components/Section';
-import AnimatedText from '@/components/AnimatedText';
+import AnimatedHeading from '@/components/AnimatedHeading';
 import IntroSectionImage from './IntroSectionImage';
 
-const IntroSection = () => {
+import { IIntro } from '@/types/content';
+
+import FadeInParagraph from '@/components/FadeInParagraph';
+
+const IntroSection: React.FC<IIntro> = ({ text }) => {
   return (
     <Section
       bgColor='dark'
@@ -11,16 +15,14 @@ const IntroSection = () => {
       <div className='flex flex-col items-center justify-between gap-8 lg:flex-row-reverse'>
         <IntroSectionImage />
         <div className='relative z-10 flex basis-1/2 flex-col gap-4'>
-          <AnimatedText
+          <AnimatedHeading
             text='More Than Just Construction'
             className='text-h2 font-bebas text-light'
             revealColor='dark'
           />
-          <AnimatedText
-            className='text-h6 text-light max-w-lg'
-            text='Fastruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish.'
-            revealColor='dark'
-          />
+          <FadeInParagraph className='text-h6 text-light max-w-lg'>
+            {text}
+          </FadeInParagraph>
         </div>
       </div>
     </Section>

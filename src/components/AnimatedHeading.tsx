@@ -5,17 +5,17 @@ import { motion, useInView } from 'motion/react';
 import clsx from 'clsx';
 import { ColorsUnion } from '@/lib/css-constants';
 
-interface AnimatedTextProps {
+interface AnimatedHeadingProps {
   text: string;
   className?: string;
   revealColor?: ColorsUnion;
 }
 
-const AnimatedText = ({
+const AnimatedHeading = ({
   text,
   className,
   revealColor = 'dark',
-}: AnimatedTextProps) => {
+}: AnimatedHeadingProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5 });
 
@@ -36,4 +36,4 @@ const AnimatedText = ({
   );
 };
 
-export default AnimatedText;
+export default AnimatedHeading;

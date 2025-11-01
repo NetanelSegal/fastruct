@@ -1,0 +1,134 @@
+{
+  "heroSection": {
+    "title": "BUILD",
+    "animatedWords": ["Faster", "Smarter", "For Life"],
+    "subtitle": "FastStruct delivers modular and panelized buildings designed to fit your needs — from consultation to completion."
+  },
+  "intro": {
+    "text": "FastStruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish."
+  },
+  "features": [
+    {
+      "iconClass": "fas fa-bolt",
+      "title": "Speed",
+      "text": "Your project ready in months, not years.",
+      "imageUrl": "/assets/features-image-1.jpg"
+    },
+    {
+      "iconClass": "fas fa-award",
+      "title": "Quality",
+      "text": "Premium materials, rigorous inspections.",
+      "imageUrl": "/assets/features-image-2.jpg"
+    },
+    {
+      "iconClass": "fas fa-infinity",
+      "title": "End-to-End",
+      "text": "Permits, design, construction, and handover.",
+      "imageUrl": "/assets/features-image-3.jpg"
+    },
+    {
+      "iconClass": "fas fa-palette",
+      "title": "Customization",
+      "text": "Tailored to your lifestyle, taste, and budget.",
+      "imageUrl": "/assets/features-image-4.jpg"
+    }
+  ],
+  "experienceMetrics": [
+    {
+      "title": "14+ Years",
+      "text": "Over a decade of proven results in modular and panelized construction."
+    },
+    {
+      "title": "500+ Projects",
+      "text": "Across California — from guest units to full-scale residential and commercial builds."
+    },
+    {
+      "title": "3-5 Months",
+      "text": "Most projects are designed, built, and delivered in under half a year."
+    }
+  ],
+  "whyModularPanelized": {
+    "modular": {
+      "title": "Modular",
+      "items": [
+        "Factory-built precision modules",
+        "Faster timelines (up to 50% quicker)",
+        "Consistent quality control in a controlled environment",
+        "Minimal disruption on-site"
+      ]
+    },
+    "panelized": {
+      "title": "Panelized",
+      "items": [
+        "Pre-engineered wall and roof panels",
+        "Flexible for complex or hard-to-reach sites",
+        "Easier permitting in many regions",
+        "Scalable for a variety of project sizes"
+      ]
+    },
+    "combinedApproach": {
+      "title": "Combined Approach",
+      "items": [
+        "Best of both worlds",
+        "Tailored to project needs and client vision",
+        "Maximum flexibility and efficiency"
+      ]
+    }
+  },
+  "process": {
+    "title": "Our Process",
+    "steps": [
+      {
+        "title": "Consultation",
+        "text": "We start with a conversation to understand your vision, needs, and budget."
+      },
+      {
+        "title": "Proposal & Agreement",
+        "text": "You receive a transparent scope of work, timeline, and cost breakdown."
+      },
+      {
+        "title": "Design & Permits",
+        "text": "Our team prepares drawings, selects materials, and manages permits."
+      },
+      {
+        "title": "Construction",
+        "text": "Modules or panels are delivered and assembled, with full project management and regular updates."
+      },
+      {
+        "title": "Completion & Handover",
+        "text": "Final inspections, walkthrough, and delivery — your new home or space is ready."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Want to build with us?"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Is modular or panelized construction more expensive than traditional building?",
+        "answer": "Not necessarily. Faster timelines and efficient processes often lower overall costs with complete transparency from the start."
+      },
+      {
+        "question": "Will my home look like a “prefab box”?",
+        "answer": "No — every project is fully customizable in layout and finishes."
+      },
+      {
+        "question": "How long does it take to build?",
+        "answer": "Typically 3–5 months from permit approval to completion."
+      },
+      {
+        "question": "Do you handle permits and approvals?",
+        "answer": "Yes — our team manages the entire process."
+      },
+      {
+        "question": "Is modular/panelized construction durable?",
+        "answer": "Absolutely — built with light-gauge steel and high-performance materials for strength and longevity."
+      }
+    ]
+  },
+  "testimonial": {
+    "quote": "FastStruct crafted our forever home with unrivaled care. Every detail felt luxurious and personal."
+  }
+}

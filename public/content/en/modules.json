@@ -1,0 +1,139 @@
+[
+  {
+    "slug": "smart-compact-living",
+    "title": "Smart Compact Living",
+    "summary": "A compact and elegant unit ideal for guest homes, ADUs, or urban lots.",
+    "specs": {
+      "areaSqft": 480,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "modulesCount": 2
+    },
+    "mainImage": "/images/models/smart-compact-living/hero.jpg",
+    "images": [
+      "/images/models/smart-compact-living/exterior-01.jpg",
+      "/images/models/smart-compact-living/exterior-02.jpg",
+      "/images/models/smart-compact-living/interior-living.jpg",
+      "/images/models/smart-compact-living/interior-kitchen.jpg",
+      "/images/models/smart-compact-living/interior-bedroom.jpg",
+      "/images/models/smart-compact-living/interior-bathroom.jpg"
+    ],
+    "sketchPlans": [
+      "/images/models/smart-compact-living/plans/top-view.png",
+      "/images/models/smart-compact-living/plans/annotated.png"
+    ],
+    "tags": ["ADU", "Guest", "Compact"],
+    "highlights": [
+      "Energy-efficient windows and doors",
+      "Light Gauge Steel (LGS) structure",
+      "Fast on-site installation",
+      "Low-maintenance exterior finishes"
+    ],
+    "cta": {
+      "primaryLabel": "View Details",
+      "secondaryLabel": "Get Floor Plan"
+    }
+  },
+  {
+    "slug": "family-smart-unit",
+    "title": "Family Smart Unit",
+    "summary": "A balanced modular home designed for young families and flexible use.",
+    "specs": {
+      "areaSqft": 720,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "modulesCount": 3
+    },
+    "mainImage": "/images/models/family-smart-unit/hero.jpg",
+    "images": [
+      "/images/models/family-smart-unit/exterior-01.jpg",
+      "/images/models/family-smart-unit/living-dining.jpg",
+      "/images/models/family-smart-unit/kitchen.jpg",
+      "/images/models/family-smart-unit/primary-bedroom.jpg",
+      "/images/models/family-smart-unit/secondary-room.jpg"
+    ],
+    "sketchPlans": [
+      "/images/models/family-smart-unit/plans/floorplan.png",
+      "/images/models/family-smart-unit/plans/furniture-layout.png"
+    ],
+    "tags": ["Family", "2BR", "Flexible"],
+    "highlights": [
+      "Open-plan living for family life",
+      "Optimized storage solutions",
+      "High-performance insulation",
+      "Future-ready smart home options"
+    ],
+    "cta": {
+      "primaryLabel": "View Details",
+      "secondaryLabel": "Request Brochure"
+    }
+  },
+  {
+    "slug": "live-and-work-hybrid",
+    "title": "Live & Work Hybrid",
+    "summary": "Blends residential comfort with workspace functionality — perfect for professionals or home-based studios.",
+    "specs": {
+      "areaSqft": 900,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "modulesCount": 4
+    },
+    "mainImage": "/images/models/live-and-work-hybrid/hero.jpg",
+    "images": [
+      "/images/models/live-and-work-hybrid/exterior-01.jpg",
+      "/images/models/live-and-work-hybrid/workspace.jpg",
+      "/images/models/live-and-work-hybrid/living.jpg",
+      "/images/models/live-and-work-hybrid/kitchen.jpg",
+      "/images/models/live-and-work-hybrid/bedroom.jpg",
+      "/images/models/live-and-work-hybrid/bathroom.jpg"
+    ],
+    "sketchPlans": [
+      "/images/models/live-and-work-hybrid/plans/floorplan-work-zone.png"
+    ],
+    "tags": ["Studio", "Hybrid", "Workspace"],
+    "highlights": [
+      "Dedicated work/studio area",
+      "Acoustic considerations for focus",
+      "Separate guest/secondary bath",
+      "Flexible layout options"
+    ],
+    "cta": {
+      "primaryLabel": "See Interior Layout",
+      "secondaryLabel": "Get Floor Plan"
+    }
+  },
+  {
+    "slug": "executive-comfort",
+    "title": "Executive Comfort",
+    "summary": "A luxury modular home designed for premium comfort and entertaining.",
+    "specs": {
+      "areaSqft": 1200,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "modulesCount": 5
+    },
+    "mainImage": "/images/models/executive-comfort/hero.jpg",
+    "images": [
+      "/images/models/executive-comfort/exterior-hero.jpg",
+      "/images/models/executive-comfort/open-plan-living.jpg",
+      "/images/models/executive-comfort/premium-kitchen.jpg",
+      "/images/models/executive-comfort/primary-suite.jpg",
+      "/images/models/executive-comfort/outdoor-deck.jpg"
+    ],
+    "sketchPlans": [
+      "/images/models/executive-comfort/plans/floorplan.png",
+      "/images/models/executive-comfort/plans/alt-layout.png"
+    ],
+    "tags": ["Luxury", "3BR", "Entertaining"],
+    "highlights": [
+      "Spacious open-plan living",
+      "Premium finishes and fixtures",
+      "Primary suite with ensuite",
+      "Indoor–outdoor living focus"
+    ],
+    "cta": {
+      "primaryLabel": "Discover Full Specs",
+      "secondaryLabel": "Schedule a Consultation"
+    }
+  }
+]

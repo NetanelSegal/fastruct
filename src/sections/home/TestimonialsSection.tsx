@@ -1,22 +1,18 @@
 import React from 'react';
-import AnimatedText from '@/components/AnimatedText';
 
-interface ITestimonialsSectionProps {
-  quote: string;
-  author: string;
-}
+import { ITestimonial } from '@/types/content';
 
-const TestimonialsSection = ({ quote, author }: ITestimonialsSectionProps) => {
+import FadeInParagraph from '@/components/FadeInParagraph';
+
+const TestimonialsSection: React.FC<ITestimonial> = ({ quote, author }) => {
   return (
     <blockquote className='text-center'>
-      <AnimatedText
-        className='text-h4 font-poppins text-light italic'
-        text={`"${quote}"`}
-        revealColor='dark'
-      />
-      <cite className='font-bebas text-accent mt-4 block text-base tracking-wider not-italic'>
-        <AnimatedText text={`- ${author}`} revealColor='dark' />
-      </cite>
+      <FadeInParagraph className='text-h4 font-poppins text-light italic'>
+        {`"${quote}"`}
+      </FadeInParagraph>
+      <FadeInParagraph className='text-h6 font-poppins text-light/80 italic'>
+        {author}
+      </FadeInParagraph>
     </blockquote>
   );
 };

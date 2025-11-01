@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import AnimatedText from './AnimatedText';
 
 interface IProductCardProps {
   imageUrl: string;
@@ -28,11 +27,9 @@ export const ProductCard = ({ imageUrl, title, specs }: IProductCardProps) => {
         </div>
       </div>
       <div className='flex items-center justify-between p-4'>
-        <AnimatedText
-          text={title}
-          className='text-h5 font-bebas text-dark font-bold uppercase'
-          revealColor='light'
-        />
+        <h5 className='text-h5 font-bebas text-dark font-bold uppercase'>
+          {title}
+        </h5>
         <span className='text-dark text-2xl'>→</span>
       </div>
     </div>

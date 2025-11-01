@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className='snap-y snap-proximity'>
+    <html lang='en'>
       <body className={`${fontPoppins.variable} ${fontBebasNeue.variable}`}>
         <Script
           src='https://kit.fontawesome.com/42dfb7600e.js'

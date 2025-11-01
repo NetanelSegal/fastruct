@@ -1,82 +1,54 @@
-'use client';
-
-import { getModules } from '@/lib/modules';
 import { Section } from '@/components/Section';
 import TestimonialsSection from '@/sections/home/TestimonialsSection';
 import HeroSection from '@/sections/home/HeroSection';
 import IntroSection from '@/sections/home/IntroSection';
-import { FeatureCarousel, type Feature } from '@/sections/home/FeatureCarousel';
+import { FeatureCarousel } from '@/sections/home/FeatureCarousel';
 import CTASection from '@/sections/home/CTASection';
 import ExploreHomesSection from '@/sections/home/ExploreHomesSection';
 import WhyModularPanelizedSection from '@/sections/home/WhyModularPanelizedSection';
 import OurProcessSection from '@/sections/home/OurProcessSection';
 import FAQSection from '@/sections/home/FAQSection';
 import ContactFormSection from '@/sections/home/ContactFormSection';
-import { useRef } from 'react';
+import ExperienceSection from '@/sections/home/ExperienceSection';
+import { getContent, getModules } from '@/lib/content';
 
-const features: Feature[] = [
-  {
-    icon: <i className='fas fa-bolt text-[2rem]' />,
-    title: 'Speed',
-    subtitle: 'Your project ready in months, not years.',
-    imageUrl: '/assets/features-image-1.jpg',
-  },
-  {
-    icon: <i className='fas fa-award text-[2rem]' />,
-    title: 'Quality',
-    subtitle: 'Premium materials, rigorous inspections.',
-    imageUrl: '/assets/features-image-2.jpg',
-  },
-  {
-    icon: <i className='fas fa-infinity text-[2rem]' />,
-    title: 'End to end',
-    subtitle: 'Permits, design, construction, and handover.',
-    imageUrl: '/assets/features-image-3.jpg',
-  },
-  {
-    icon: <i className='fas fa-palette text-[2rem]' />,
-    title: 'Customization',
-    subtitle: 'Tailored to your lifestyle, taste, and budget..',
-    imageUrl: '/assets/features-image-4.jpg',
-  },
-];
-
-const HomePage = () => {
-  const featuredModules = getModules();
+const HomePage = async () => {
+  const content = await getContent('home', 'en');
+  const modulesData = await getModules();
 
   return (
     <div className={`bg-dark text-cream`}>
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection {...content.heroSection} />
 
       {/* Intro Section */}
-      <IntroSection />
+      <IntroSection {...content.intro} />
 
       {/* Feature Carousel Section */}
-      <FeatureCarousel features={features} />
+      <FeatureCarousel features={content.features} />
+
+      {/* Experience Section */}
+      <ExperienceSection experienceData={content.experienceMetrics} />
 
       {/* CTA Section */}
-      <CTASection />
+      <CTASection title={content.cta.title} />
 
       {/* Explore Homes Section */}
-      <ExploreHomesSection featuredModules={featuredModules} />
+      <ExploreHomesSection featuredModules={modulesData} />
 
       {/* Why Modular & Panelized Section */}
-      <WhyModularPanelizedSection />
+      <WhyModularPanelizedSection {...content.whyModularPanelized} />
 
       {/* Our Process Section */}
-      <OurProcessSection />
+      <OurProcessSection {...content.process} />
 
       {/* Testimonial Section */}
       <Section bgColor='accent'>
-        <TestimonialsSection
-          quote='Fast Struct crafted our forever home with unrivaled care. Every detail felt luxurious and personal.'
-          author='A. & T. Jameson'
-        />
+        <TestimonialsSection {...content.testimonial} />
       </Section>
 
       {/* FAQ Section */}
-      <FAQSection />
+      <FAQSection {...content.faq} />
 
       {/* Contact Form Section */}
       <ContactFormSection />
