@@ -49,9 +49,6 @@ const HomePage = async () => {
 
       {/* FAQ Section */}
       <FAQSection {...content.faq} />
-
-      {/* Contact Form Section */}
-      <ContactFormSection />
     </div>
   );
 };
