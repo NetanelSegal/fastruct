@@ -11,22 +11,22 @@ import { IFAQ } from '@/types/content';
 
 const FAQSection: React.FC<IFAQ> = ({ title, items }) => {
   return (
-    <Section>
-      <div className='mx-auto max-w-3xl'>
-        <AnimatedHeading
-          text={title}
-          className='text-h2 font-bebas text-light mb-8 text-center'
-          revealColor='dark'
-        />
-        <Accordion type='single' collapsible>
-          {items.map((item, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger>{item.question}</AccordionTrigger>
-              <AccordionContent>{item.answer}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
+    <Section bgColor='dark'>
+      <AnimatedHeading
+        text={title}
+        className='text-h2 font-bebas text-light mb-8 w-full text-center'
+        revealColor='dark'
+      />
+      <Accordion type='single' collapsible className='mx-auto max-w-xl'>
+        {items.map((item, index) => (
+          <AccordionItem key={index} value={`item-${index}`}>
+            <AccordionTrigger className='text-left'>
+              {item.question}
+            </AccordionTrigger>
+            <AccordionContent>{item.answer}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </Section>
   );
 };

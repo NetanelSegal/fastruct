@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import {
   motion,
   useScroll,
@@ -33,9 +33,15 @@ const FeatureSlide = ({
   featuresCount,
 }: FeatureSlideProps) => {
   const { iconClass, title, text, imageUrl } = feature;
+  const [runTextAnimation, setRunTextAnimation] = useState(false);
 
   const x = useTransform(progress, (p) => {
     const currentSlideProgress = p - index;
+
+    if (!runTextAnimation && currentSlideProgress > 0.5) {
+      setRunTextAnimation(true);
+    }
+
     const currentSlideX = currentSlideProgress * 100;
     const currentSlideRightGap = SLIDES_GAP * (featuresCount - index);
     const currentSlideMinX = SLIDES_GAP * index;
@@ -64,6 +70,7 @@ const FeatureSlide = ({
         <AnimatedHeading
           text={title}
           className='text-h3 font-bebas text-light w-fit'
+          runAnimation={runTextAnimation}
         />
         <FadeInParagraph className='font-poppins text-h6 text-light/80 mt-2 max-w-md pr-16'>
           {text}

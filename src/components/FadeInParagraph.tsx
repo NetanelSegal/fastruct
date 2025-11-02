@@ -9,18 +9,22 @@ interface FadeInParagraphProps {
 }
 
 const FadeInParagraph = ({ children, className }: FadeInParagraphProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.5, once: true });
+  const anchorRef = useRef(null);
+  const isInView = useInView(anchorRef, {
+    amount: 0.5,
+    once: true,
+  });
 
   return (
-    <motion.p
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: isInView ? 1 : 0, y: isInView ? '0%' : '100%' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={className}>
-      {children}
-    </motion.p>
+    <div ref={anchorRef}>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className={`${className} relative`}>
+        {children}
+      </motion.p>
+    </div>
   );
 };
 

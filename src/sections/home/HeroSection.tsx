@@ -12,7 +12,11 @@ import { IHeroSection } from '@/types/content';
 
 import FadeInParagraph from '@/components/FadeInParagraph';
 
-const HeroSection: React.FC<IHeroSection> = ({ title, animatedWords, subtitle }) => {
+const HeroSection: React.FC<IHeroSection> = ({
+  title,
+  animatedWords,
+  subtitle,
+}) => {
   const { screenWidth } = useScreenWidth();
   const ref = useRef<HTMLDivElement>(null);
   const offset: UseScrollOptions['offset'] = [
@@ -22,16 +26,13 @@ const HeroSection: React.FC<IHeroSection> = ({ title, animatedWords, subtitle })
   const unitType = 'px';
 
   return (
-    <div ref={ref} className={`bg-light pt-[30vh]`}>
+    <div ref={ref} className={`bg-white pt-[30vh]`}>
       {/* text container */}
       <Parallax endRange={100} ref={ref} offset={offset} unitType={unitType}>
         <div className='flex flex-col flex-wrap justify-end px-[12%] lg:justify-between xl:flex-row xl:items-end'>
           <h1 className='text-h1 font-bebas text-dark whitespace-nowrap uppercase'>
             {title}{' '}
-            <TypingEffect
-              strings={animatedWords}
-              className='text-accent'
-            />
+            <TypingEffect strings={animatedWords} className='text-accent' />
           </h1>
           <FadeInParagraph className='text-h6 font-poppins text-dark max-w-xl'>
             {subtitle}

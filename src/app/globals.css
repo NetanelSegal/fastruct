@@ -52,12 +52,15 @@
 
 @layer utilities {
   /* Responsive Padding Utilities */
+  .section-padding-top {
+    @apply pt-18 md:pt-26 lg:pt-34;
+  }
   .section-padding {
     @apply px-4 py-18 md:px-8 md:py-26 lg:px-16 lg:py-34;
   }
 
   .container-padding {
-    @apply px-4 md:px-8 lg:px-12;
+    @apply px-4 md:px-8 lg:px-16;
   }
 
   .content-spacing {

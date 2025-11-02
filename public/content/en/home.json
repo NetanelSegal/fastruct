@@ -129,6 +129,7 @@
     ]
   },
   "testimonial": {
-    "quote": "FastStruct crafted our forever home with unrivaled care. Every detail felt luxurious and personal."
+    "quote": "FastStruct crafted our forever home with unrivaled care. Every detail felt luxurious and personal.",
+    "author": "John Doe"
   }
 }
