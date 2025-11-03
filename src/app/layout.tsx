@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Navbar } from '@/components/navbar';
+import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/Footer';
 import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
