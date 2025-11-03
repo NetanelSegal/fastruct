@@ -7,6 +7,8 @@ import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { IExperienceMetric } from '@/types/home';
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
+const HEADING_TOP = 112; // px
+
 const ExperienceSection: React.FC<{ experienceData: IExperienceMetric[] }> = ({
   experienceData,
 }) => {
@@ -36,7 +38,8 @@ const ExperienceSection: React.FC<{ experienceData: IExperienceMetric[] }> = ({
   return (
     <Section bgColor='white' textColor='dark'>
       {/* Sticky heading */}
-      <div className='sticky top-28 bg-white pb-6 text-center'>
+      <div
+        className={`sticky top-[${HEADING_TOP}px] bg-white pb-6 text-center`}>
         <AnimatedHeading
           text='Our Experience'
           className='text-h2 font-bebas text-dark'
@@ -45,7 +48,7 @@ const ExperienceSection: React.FC<{ experienceData: IExperienceMetric[] }> = ({
       </div>
 
       {/* transparent placeholder for sticky heading */}
-      <div ref={headingRef} className='top-28 opacity-0'>
+      <div ref={headingRef} className={`top-[${HEADING_TOP}px] opacity-0`}>
         <h2 className='text-h2 font-bebas text-dark'>x</h2>
       </div>
 
@@ -54,6 +57,7 @@ const ExperienceSection: React.FC<{ experienceData: IExperienceMetric[] }> = ({
         <Fragment key={`ExperienceCard-${index}`}>
           <ExperienceCard
             top={
+              HEADING_TOP +
               headingHeight +
               cardsHeights.slice(0, index).reduce((a, b) => a + b, 0)
             }
