@@ -1,8 +1,5 @@
-import React from 'react';
-
-import { ITestimonial } from '@/types/content';
-
-import FadeInParagraph from '@/components/FadeInParagraph';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
+import { ITestimonial } from '@/types/home';
 
 const TestimonialsSection: React.FC<ITestimonial> = ({ quote, author }) => {
   return (

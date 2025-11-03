@@ -1,9 +1,9 @@
 import React from 'react';
 import { Section } from '@/components/Section';
 import { ValuePropCard } from '@/components/ValuePropCard';
-import AnimatedHeading from '@/components/AnimatedHeading';
+import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 
-import { IWhyModularPanelized } from '@/types/content';
+import { IWhyModularPanelized } from '@/types/home';
 
 const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
   modular,

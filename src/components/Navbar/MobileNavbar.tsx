@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import NavLink from '../NavLink';
+import NavLink from './NavLink';
 import { Button } from '../Button';
 import { ROUTES } from '@/lib/routes';
 import { RefObject } from 'react';

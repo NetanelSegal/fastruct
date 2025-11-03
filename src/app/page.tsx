@@ -8,7 +8,6 @@ import ExploreHomesSection from '@/sections/home/ExploreHomesSection';
 import WhyModularPanelizedSection from '@/sections/home/WhyModularPanelizedSection';
 import OurProcessSection from '@/sections/home/OurProcessSection';
 import FAQSection from '@/sections/home/FAQSection';
-import ContactFormSection from '@/sections/home/ContactFormSection';
 import ExperienceSection from '@/sections/home/ExperienceSection';
 import { getContent, getModules } from '@/lib/content';
 

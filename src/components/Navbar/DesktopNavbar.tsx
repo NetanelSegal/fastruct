@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ROUTES } from '@/lib/routes';
-import NavLink from '../NavLink';
+import NavLink from './NavLink';
 import { Button } from '../Button';
 
 const DesktopNavbar = () => {

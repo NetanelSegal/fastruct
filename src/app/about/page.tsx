@@ -1,12 +1,20 @@
-export default function About() {
+import { getContent } from '@/lib/content';
+import HeroAboutSection from '@/sections/about/HeroAboutSection';
+import AboutIntroSection from '@/sections/about/AboutIntroSection';
+import ImageTextSection from '@/sections/about/ImageTextSection';
+import FeaturesGridSection from '@/sections/about/FeaturesGridSection';
+
+const AboutPage = async () => {
+  const content = await getContent('about', 'en');
+
   return (
-    <section className='py-16'>
-      <div className='container max-w-6xl'>
-        <h2 className='mb-2 text-2xl font-semibold md:text-3xl'>
-          About FastStruct
-        </h2>
-        <p className='max-w-3xl text-gray-600'>Company story placeholder.</p>
-      </div>
-    </section>
+    <div className='bg-dark'>
+      <HeroAboutSection {...content.hero} />
+      <AboutIntroSection {...content.about} />
+      <ImageTextSection {...content.imageText} />
+      <FeaturesGridSection {...content.featuresGrid} />
+    </div>
   );
-}
+};
+
+export default AboutPage;

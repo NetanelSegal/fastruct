@@ -1,4 +1,4 @@
-import FadeInParagraph from './FadeInParagraph';
+import FadeInParagraph from './text-animation/FadeInParagraph';
 
 interface IValuePropCardProps {
   title: string;

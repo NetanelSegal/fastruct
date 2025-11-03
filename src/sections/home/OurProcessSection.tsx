@@ -1,10 +1,10 @@
 import React from 'react';
 import { Section } from '@/components/Section';
-import AnimatedHeading from '@/components/AnimatedHeading';
+import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 
-import { IProcess } from '@/types/content';
+import { IProcess } from '@/types/home';
 
-import FadeInParagraph from '@/components/FadeInParagraph';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 
 const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
   return (

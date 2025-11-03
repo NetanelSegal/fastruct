@@ -1,16 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import TypingEffect from '@/components/TypingEffect';
+import TypingEffect from '@/components/text-animation/TypingEffect';
 import { useRef } from 'react';
 import Parallax from '@/components/Parallax';
 import { UseScrollOptions } from 'motion/react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { TailwindBreakpoints } from '@/lib/css-constants';
-
-import { IHeroSection } from '@/types/content';
-
-import FadeInParagraph from '@/components/FadeInParagraph';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
+import { IHeroSection } from '@/types/home';
 
 const HeroSection: React.FC<IHeroSection> = ({
   title,
@@ -26,7 +24,7 @@ const HeroSection: React.FC<IHeroSection> = ({
   const unitType = 'px';
 
   return (
-    <div ref={ref} className={`bg-white pt-[30vh]`}>
+    <div ref={ref} className={`relative bg-white pt-[30vh]`}>
       {/* text container */}
       <Parallax endRange={100} ref={ref} offset={offset} unitType={unitType}>
         <div className='flex flex-col flex-wrap justify-end px-[12%] lg:justify-between xl:flex-row xl:items-end'>

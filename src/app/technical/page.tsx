@@ -1,7 +1,7 @@
 export default function Technical() {
   return (
     <section className='py-16'>
-      <div className='container max-w-6xl'>
+      <div className='max-w-6xl'>
         <h2 className='mb-4 text-2xl font-semibold md:text-3xl'>
           Technical Overview
         </h2>

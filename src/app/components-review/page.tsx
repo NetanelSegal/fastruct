@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/Button';
-import { ProductCard } from '@/components/ProductCard';
+import { ModuleCard } from '@/components/ModuleCard';
 import { ValuePropCard } from '@/components/ValuePropCard';
 import TestimonialsSection from '@/sections/home/TestimonialsSection';
 import {
@@ -10,11 +10,20 @@ import {
   AccordionTrigger,
 } from '@/components/Accordion';
 import { TeamMemberCard } from '@/components/TeamMemberCard';
+import modules from '@/../public/content/en/modules.json';
 
 const ComponentsReviewPage = () => {
+  const moduleData = modules[0];
+  const specs = [
+    `${moduleData.specs.areaSqft} sqft`,
+    `${moduleData.specs.bedrooms} Bedroom`,
+    `${moduleData.specs.bathrooms} Bathroom`,
+    `${moduleData.specs.modulesCount} modules`,
+  ];
+
   return (
     <div className='bg-dark text-light section-padding'>
-      <div className='container mx-auto space-y-16'>
+      <div className='mx-auto space-y-16'>
         <section>
           <h1 className='text-h2 font-bebas border-accent/20 mb-8 border-b pb-4'>
             Component Review
@@ -56,10 +65,11 @@ const ComponentsReviewPage = () => {
         <section>
           <h2 className='text-h3 font-bebas mb-4'>Product Card</h2>
           <div className='max-w-md'>
-            <ProductCard
-              imageUrl='/file.svg' // Using a placeholder from your public folder
-              title='SMART COMPACT LIVING'
-              specs={['480 sqft', '1 Bedroom', '1 Bathroom', '2 modules']}
+            <ModuleCard
+              slug={moduleData.slug}
+              imageUrl={moduleData.mainImage}
+              title={moduleData.title}
+              specs={specs}
             />
           </div>
         </section>

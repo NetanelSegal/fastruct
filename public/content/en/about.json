@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "title": "Our Mission: Precision. Speed. Trust.",
+    "subtitle": "A compact and elegant unit ideal for guest homes, ADUs, or urban lots.",
+    "backgroundImage": "/assets/intro-image.jpg",
+    "bigTextLine1": "Where Innovation"
+  },
+  "about": {
+    "bigTextLine2": "Meets Home",
+    "paragraph": "Fastruct began with a simple idea - to remove the friction from building your dream home. Traditional construction is slow, unpredictable, and overwhelming. We created a smarter way - one that puts speed, quality, and clarity first."
+  },
+  "imageText": {
+    "image": "/assets/intro-image.jpg",
+    "paragraph": "By combining modular and panelized construction, we bring together speed, flexibility, and quality. Every client gets a dedicated project manager, and our team handles everything from permits to final delivery."
+  },
+  "featuresGrid": {
+    "items": [
+      {
+        "title": "Speed without Compromise",
+        "text": "faster delivery, no corners cut."
+      },
+      {
+        "title": "Simplicity in Every Step",
+        "text": "clear guided process."
+      },
+      {
+        "title": "Enduring Quality",
+        "text": "premium materials, modular engineering."
+      },
+      {
+        "title": "Personal Support",
+        "text": "team guidance every step."
+      }
+    ]
+  }
+}

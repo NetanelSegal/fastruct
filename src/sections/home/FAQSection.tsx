@@ -5,16 +5,15 @@ import {
   AccordionTrigger,
 } from '@/components/Accordion';
 import { Section } from '@/components/Section';
-import AnimatedHeading from '@/components/AnimatedHeading';
-
-import { IFAQ } from '@/types/content';
+import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
+import { IFAQ } from '@/types/home';
 
 const FAQSection: React.FC<IFAQ> = ({ title, items }) => {
   return (
-    <Section bgColor='dark'>
+    <Section bgColor='dark' className='text-center'>
       <AnimatedHeading
         text={title}
-        className='text-h2 font-bebas text-light mb-8 w-full text-center'
+        className='text-h2 font-bebas text-light mb-8 text-center'
         revealColor='dark'
       />
       <Accordion type='single' collapsible className='mx-auto max-w-xl'>

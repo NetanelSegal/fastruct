@@ -1,6 +1,8 @@
 import { Section } from '@/components/Section';
-import { ProductCard } from '@/components/ProductCard';
+import { ModuleCard } from '@/components/ModuleCard';
 import { IModule } from '@/types/modules';
+import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 
 interface IExploreHomesSectionProps {
   featuredModules: IModule[];
@@ -13,17 +15,22 @@ const ExploreHomesSection = ({
     <Section>
       <div className='flex flex-col gap-8'>
         <div className='text-center'>
-          <h2 className='text-h2 font-bebas text-light'>Explore Our Homes</h2>
-          <h6 className='text-h6 text-light/80 mx-auto max-w-2xl'>
+          <AnimatedHeading
+            text='Explore Our Homes'
+            className='text-h2 font-bebas text-light'
+          />
+
+          <FadeInParagraph className='text-h6 text-light/80 mx-auto max-w-2xl'>
             Explore our range of models, each designed for flexibility and
             comfort
-          </h6>
+          </FadeInParagraph>
         </div>
         <div className='grid gap-8 md:grid-cols-2'>
-          {featuredModules.slice(0, 4).map((module) => (
-            <ProductCard
+          {featuredModules.map((module) => (
+            <ModuleCard
               key={module.slug}
-              imageUrl='https://picsum.photos/400/300'
+              slug={module.slug}
+              imageUrl={module.mainImage}
               title={module.title}
               specs={[
                 `${module.specs.areaSqft} sqft`,

@@ -9,7 +9,7 @@
       "bathrooms": 1,
       "modulesCount": 2
     },
-    "mainImage": "/images/models/smart-compact-living/hero.jpg",
+    "mainImage": "/assets/modules-images/main-image1.jpg",
     "images": [
       "/images/models/smart-compact-living/exterior-01.jpg",
       "/images/models/smart-compact-living/exterior-02.jpg",
@@ -44,7 +44,7 @@
       "bathrooms": 1,
       "modulesCount": 3
     },
-    "mainImage": "/images/models/family-smart-unit/hero.jpg",
+    "mainImage": "/assets/modules-images/main-image2.jpg",
     "images": [
       "/images/models/family-smart-unit/exterior-01.jpg",
       "/images/models/family-smart-unit/living-dining.jpg",
@@ -78,7 +78,7 @@
       "bathrooms": 2,
       "modulesCount": 4
     },
-    "mainImage": "/images/models/live-and-work-hybrid/hero.jpg",
+    "mainImage": "/assets/modules-images/main-image3.jpg",
     "images": [
       "/images/models/live-and-work-hybrid/exterior-01.jpg",
       "/images/models/live-and-work-hybrid/workspace.jpg",
@@ -112,7 +112,7 @@
       "bathrooms": 2,
       "modulesCount": 5
     },
-    "mainImage": "/images/models/executive-comfort/hero.jpg",
+    "mainImage": "/assets/modules-images/main-image4.jpg",
     "images": [
       "/images/models/executive-comfort/exterior-hero.jpg",
       "/images/models/executive-comfort/open-plan-living.jpg",

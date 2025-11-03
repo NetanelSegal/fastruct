@@ -8,7 +8,7 @@ import {
   MotionValue,
   useMotionTemplate,
 } from 'motion/react';
-import { IFeatureItem } from '@/types/content';
+import { IFeatureItem } from '@/types/home';
 
 interface FeatureCarouselProps {
   features: IFeatureItem[];
@@ -23,8 +23,8 @@ interface FeatureSlideProps {
 
 const SLIDES_GAP = 5;
 
-import FadeInParagraph from '@/components/FadeInParagraph';
-import AnimatedHeading from '@/components/AnimatedHeading';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
+import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 
 const FeatureSlide = ({
   feature,

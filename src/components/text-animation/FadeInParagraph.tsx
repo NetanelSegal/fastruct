@@ -16,12 +16,11 @@ const FadeInParagraph = ({ children, className }: FadeInParagraphProps) => {
   });
 
   return (
-    <div ref={anchorRef}>
+    <div ref={anchorRef} className={`${className} relative`}>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`${className} relative`}>
+        transition={{ duration: 0.5, ease: 'easeOut' }}>
         {children}
       </motion.p>
     </div>

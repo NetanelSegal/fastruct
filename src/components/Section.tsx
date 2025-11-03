@@ -16,7 +16,7 @@ export const Section = ({
   ...props
 }: SectionProps) => {
   const classes = clsx(
-    'section-padding',
+    'section-padding relative',
     `bg-${bgColor}`,
     `text-${textColor}`,
     className

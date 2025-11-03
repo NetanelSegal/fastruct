@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar/Navbar';
+import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/Footer';
 // import WebsiteLoader from '@/components/WebsiteLoader';
 import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
-import WebsiteLoader from '@/components/WebsiteLoader';
+import WebsiteLoader from '@/components/website-loader/WebsiteLoader';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],

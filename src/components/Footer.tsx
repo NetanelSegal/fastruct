@@ -2,13 +2,15 @@ import { ROUTES } from '@/lib/routes';
 import FastructLogo from './FastructLogo';
 import Link from 'next/link';
 import { Button } from './Button';
+import AnimatedHeading from './text-animation/AnimatedHeading';
 
 const LetsBuildTogetherCTA = () => {
   return (
     <div className='flex flex-col gap-2 text-center'>
-      <h2 className='text-h2 font-bebas text-light'>
-        Let&apos;s build together
-      </h2>
+      <AnimatedHeading
+        className='text-h2 font-bebas text-light'
+        text="Let's build together"
+      />
       <p className='text-h6 text-light'>
         Have a project in mind? Let&apos;s talk about how we can bring it to
         life.

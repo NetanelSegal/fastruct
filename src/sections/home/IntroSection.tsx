@@ -1,8 +1,8 @@
 import { Section } from '@/components/Section';
-import AnimatedHeading from '@/components/AnimatedHeading';
+import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import IntroSectionImage from './IntroSectionImage';
-import { IIntro } from '@/types/content';
-import FadeInParagraph from '@/components/FadeInParagraph';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
+import { IIntro } from '@/types/home';
 
 const IntroSection: React.FC<IIntro> = ({ text }) => {
   return (
@@ -10,9 +10,9 @@ const IntroSection: React.FC<IIntro> = ({ text }) => {
       bgColor='dark'
       textColor='light'
       className='relative overflow-x-hidden'>
-      <div className='flex flex-col items-center justify-between gap-8 lg:flex-row-reverse'>
+      <div className='relative flex flex-col items-center justify-between gap-8 lg:flex-row-reverse'>
         <IntroSectionImage />
-        <div className='relative z-10 flex basis-1/2 flex-col gap-4 overflow-y-clip'>
+        <div className='z-10 flex basis-1/2 flex-col gap-4 overflow-y-clip'>
           <AnimatedHeading
             text='More Than Just Construction'
             className='text-h2 font-bebas text-light'
