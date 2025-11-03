@@ -39,7 +39,8 @@ const ExperienceSection: React.FC<{ experienceData: IExperienceMetric[] }> = ({
     <Section bgColor='white' textColor='dark'>
       {/* Sticky heading */}
       <div
-        className={`sticky top-[${HEADING_TOP}px] bg-white pb-6 text-center`}>
+        style={{ top: `${HEADING_TOP}px` }}
+        className={`sticky bg-white pb-6 text-center`}>
         <AnimatedHeading
           text='Our Experience'
           className='text-h2 font-bebas text-dark'
@@ -48,7 +49,7 @@ const ExperienceSection: React.FC<{ experienceData: IExperienceMetric[] }> = ({
       </div>
 
       {/* transparent placeholder for sticky heading */}
-      <div ref={headingRef} className={`top-[${HEADING_TOP}px] opacity-0`}>
+      <div ref={headingRef} className='opacity-0'>
         <h2 className='text-h2 font-bebas text-dark'>x</h2>
       </div>
 
