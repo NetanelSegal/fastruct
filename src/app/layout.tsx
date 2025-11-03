@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/Footer';
-// import WebsiteLoader from '@/components/WebsiteLoader';
 import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
