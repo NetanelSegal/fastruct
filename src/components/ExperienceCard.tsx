@@ -1,4 +1,3 @@
-import { RefObject } from 'react';
 import AnimatedHeading from './text-animation/AnimatedHeading';
 import FadeInParagraph from './text-animation/FadeInParagraph';
 
