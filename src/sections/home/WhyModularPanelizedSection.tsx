@@ -1,9 +1,35 @@
 import React from 'react';
 import { Section } from '@/components/Section';
-import { ValuePropCard } from '@/components/ValuePropCard';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
-
 import { IWhyModularPanelized } from '@/types/home';
+import Image from 'next/image';
+
+const WhyModularPanelizedSectionItem: React.FC<
+  IWhyModularPanelized[keyof IWhyModularPanelized]
+> = ({ title, items, image }) => {
+  return (
+    <div className='relative mt-20 flex h-screen items-start text-white'>
+      <AnimatedHeading
+        text={title}
+        className='text-h1 font-bebas text-light basis-1/2'
+        revealColor='dark'
+      />
+      <div className='mt-4 flex basis-1/2 flex-col gap-6'>
+        {items.map((item, index) => (
+          <p key={index} className='text-h5 font-poppins font-extralight'>
+            {item}
+          </p>
+        ))}
+      </div>
+      <Image
+        src={image}
+        alt={title}
+        fill
+        className='object-contain object-left opacity-40'
+      />
+    </div>
+  );
+};
 
 const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
   modular,
@@ -11,7 +37,7 @@ const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
   combinedApproach,
 }) => {
   return (
-    <Section>
+    <Section bgColor='dark'>
       <div className='mb-8 text-center'>
         <AnimatedHeading
           text='Why Modular & Panelized Construction'
@@ -19,20 +45,9 @@ const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
           revealColor='dark'
         />
       </div>
-      <div className='grid gap-8 md:grid-cols-3'>
-        <ValuePropCard
-          title={modular.title}
-          description={modular.items.join('. ')}
-        />
-        <ValuePropCard
-          title={panelized.title}
-          description={panelized.items.join('. ')}
-        />
-        <ValuePropCard
-          title={combinedApproach.title}
-          description={combinedApproach.items.join('. ')}
-        />
-      </div>
+      <WhyModularPanelizedSectionItem {...modular} />
+      <WhyModularPanelizedSectionItem {...panelized} />
+      <WhyModularPanelizedSectionItem {...combinedApproach} />
     </Section>
   );
 };

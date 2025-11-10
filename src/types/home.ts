@@ -18,6 +18,7 @@ export interface IFeatureItem {
 export interface IConstructionCategory {
   title: string;
   items: string[];
+  image: string;
 }
 
 export interface IWhyModularPanelized {

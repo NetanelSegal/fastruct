@@ -55,7 +55,8 @@
         "Faster timelines (up to 50% quicker)",
         "Consistent quality control in a controlled environment",
         "Minimal disruption on-site"
-      ]
+      ],
+      "image": "/assets/why-image-1.png"
     },
     "panelized": {
       "title": "Panelized",
@@ -64,7 +65,8 @@
         "Flexible for complex or hard-to-reach sites",
         "Easier permitting in many regions",
         "Scalable for a variety of project sizes"
-      ]
+      ],
+      "image": "/assets/why-image-2.png"
     },
     "combinedApproach": {
       "title": "Combined Approach",
@@ -72,7 +74,8 @@
         "Best of both worlds",
         "Tailored to project needs and client vision",
         "Maximum flexibility and efficiency"
-      ]
+      ],
+      "image": "/assets/why-image-3.png"
     }
   },
   "process": {

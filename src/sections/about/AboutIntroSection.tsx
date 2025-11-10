@@ -1,12 +1,16 @@
+import { Section } from '@/components/Section';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import { IAbout } from '@/types/about';
 
 const AboutIntroSection = ({ paragraph }: IAbout) => {
   return (
-    <div className='bg-light py-32 text-center'>
-      <div className='container mx-auto mt-16 max-w-4xl'>
-        <p className='text-h6 text-dark leading-relaxed'>{paragraph}</p>
+    <Section bgColor='light' textColor='dark' className='text-center'>
+      <div className='mx-auto max-w-4xl'>
+        <FadeInParagraph className='text-h6 leading-relaxed'>
+          {paragraph}
+        </FadeInParagraph>
       </div>
-    </div>
+    </Section>
   );
 };
 
