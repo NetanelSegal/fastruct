@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { clsx } from 'clsx';
 import { ColorsUnion } from '@/lib/css-constants';
 
@@ -6,6 +6,7 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   bgColor?: ColorsUnion;
   textColor?: ColorsUnion;
+  ref?: RefObject<HTMLElement | null>;
 }
 
 export const Section = ({
@@ -13,6 +14,7 @@ export const Section = ({
   className,
   bgColor,
   textColor,
+  ref,
   ...props
 }: SectionProps) => {
   const classes = clsx(
@@ -23,7 +25,7 @@ export const Section = ({
   );
 
   return (
-    <section className={classes} {...props}>
+    <section className={classes} {...props} ref={ref}>
       {children}
     </section>
   );
