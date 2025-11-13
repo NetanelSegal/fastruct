@@ -11,6 +11,7 @@ interface IModuleCardProps {
   imageUrl: string;
   title: string;
   specs: string[];
+  variants: Variants;
 }
 
 const CARD_ANIMATION_DURATION = 0.5;
@@ -26,15 +27,6 @@ export const ModuleCard = ({
   const { breakpoint } = useScreenWidth();
   const isMobile =
     breakpoint === 'xs' || breakpoint === 'sm' || breakpoint === 'md';
-
-  const cardVariants: Variants = {
-    initial: { opacity: 0, y: 20 },
-    inView: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: CARD_ANIMATION_DURATION },
-    },
-  };
 
   const imageVariants: Variants = {
     initial: { scale: 1 },
@@ -60,9 +52,7 @@ export const ModuleCard = ({
       };
 
   return (
-    <motion.div
-      {...rest}
-      className='overflow-hidden rounded-xl shadow-md'>
+    <motion.div {...rest} className='overflow-hidden rounded-xl shadow-md'>
       <motion.div
         initial='initial'
         transition={{ duration: CARD_ANIMATION_DURATION }}
