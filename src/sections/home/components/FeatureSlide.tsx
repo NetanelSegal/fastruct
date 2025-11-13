@@ -1,18 +1,15 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
+import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
+import { IFeatureItem } from '@/types/home';
 import {
   motion,
-  useScroll,
-  useTransform,
   MotionValue,
   useMotionTemplate,
+  useTransform,
 } from 'motion/react';
-import { IFeatureItem } from '@/types/home';
-
-interface FeatureCarouselProps {
-  features: IFeatureItem[];
-}
+import { useState } from 'react';
 
 interface FeatureSlideProps {
   feature: IFeatureItem;
@@ -22,9 +19,6 @@ interface FeatureSlideProps {
 }
 
 const SLIDES_GAP = 5;
-
-import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
-import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 
 const FeatureSlide = ({
   feature,
@@ -80,36 +74,4 @@ const FeatureSlide = ({
   );
 };
 
-const FeatureCarousel = ({ features }: FeatureCarouselProps) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  });
-
-  const numSlides = features.length;
-  const slideIndex = useTransform(scrollYProgress, [0, 1], [1, numSlides]);
-
-  return (
-    <section
-      style={{ height: `${features.length * 100}vh` }}
-      ref={sectionRef}
-      className={`relative w-full`}>
-      {/* Sticky container overlays on top during scroll */}
-      <div className='sticky top-0 right-0 left-0 h-screen w-screen overflow-hidden'>
-        {features.map((feature, index) => (
-          <FeatureSlide
-            key={`feature-${index}`}
-            feature={feature}
-            index={index}
-            progress={slideIndex}
-            featuresCount={features.length}
-          />
-        ))}
-      </div>
-    </section>
-  );
-};
-
-export { FeatureCarousel };
+export default FeatureSlide;

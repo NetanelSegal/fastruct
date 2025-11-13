@@ -21,6 +21,7 @@ export const ModuleCard = ({
   imageUrl,
   title,
   specs,
+  ...rest
 }: IModuleCardProps) => {
   const { breakpoint } = useScreenWidth();
   const isMobile =
@@ -60,10 +61,7 @@ export const ModuleCard = ({
 
   return (
     <motion.div
-      variants={cardVariants}
-      initial='initial'
-      whileInView='inView'
-      viewport={{ once: true, amount: 0.2 }}
+      {...rest}
       className='overflow-hidden rounded-xl shadow-md'>
       <motion.div
         initial='initial'

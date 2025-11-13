@@ -1,8 +1,8 @@
 import { Section } from '@/components/Section';
-import { ModuleCard } from '@/components/ModuleCard';
 import { IModule } from '@/types/modules';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
+import ModuleList from './components/ModuleList';
 
 interface IExploreHomesSectionProps {
   featuredModules: IModule[];
@@ -25,21 +25,7 @@ const ExploreHomesSection = ({
             comfort
           </FadeInParagraph>
         </div>
-        <div className='grid gap-8 md:grid-cols-2'>
-          {featuredModules.map((module) => (
-            <ModuleCard
-              key={module.slug}
-              slug={module.slug}
-              imageUrl={module.mainImage}
-              title={module.title}
-              specs={[
-                `${module.specs.areaSqft} sqft`,
-                `${module.specs.bedrooms} Bedroom`,
-                `${module.specs.bathrooms} Bathroom`,
-              ]}
-            />
-          ))}
-        </div>
+        <ModuleList modules={featuredModules} />
       </div>
     </Section>
   );

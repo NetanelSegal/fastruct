@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/Button';
-import { ModuleCard } from '@/components/ModuleCard';
+import { ModuleCard } from '@/sections/home/components/ModuleCard';
 import { ValuePropCard } from '@/components/ValuePropCard';
 import TestimonialsSection from '@/sections/home/TestimonialsSection';
 import {

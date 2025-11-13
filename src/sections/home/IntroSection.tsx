@@ -2,7 +2,7 @@
 
 import { Section } from '@/components/Section';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
-import IntroSectionImage from './IntroSectionImage';
+import IntroSectionImage from './components/IntroSectionImage';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import { IIntro } from '@/types/home';
 import { useRef } from 'react';

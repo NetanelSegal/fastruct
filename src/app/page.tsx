@@ -2,7 +2,7 @@ import { Section } from '@/components/Section';
 import TestimonialsSection from '@/sections/home/TestimonialsSection';
 import HeroSection from '@/sections/home/HeroSection';
 import IntroSection from '@/sections/home/IntroSection';
-import { FeatureCarousel } from '@/sections/home/FeatureCarousel';
+import { FeatureCarousel } from '@/sections/home/FeatureCarouselSection';
 import CTASection from '@/sections/home/CTASection';
 import ExploreHomesSection from '@/sections/home/ExploreHomesSection';
 import WhyModularPanelizedSection from '@/sections/home/WhyModularPanelizedSection';
