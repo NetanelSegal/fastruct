@@ -90,7 +90,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start start', 'end 120vh'],
+    offset: ['start -30vh', 'end 120vh'],
   });
 
   const stepIndex = useTransform(
@@ -230,7 +230,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       {steps.map((s) => (
         <div
           key={`placeholder-${s.title}`}
-          className='h-screen opacity-0'></div>
+          className='h-[50vh] opacity-0'></div>
       ))}
     </section>
   );
@@ -268,7 +268,7 @@ const StepContent = ({
         perspective: 1000,
       }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
-      className='point absolute origin-left p-5 text-start text-white md:p-0 md:pr-10'>
+      className='point absolute p-5 text-start text-white md:p-0 md:pr-10'>
       <motion.h2
         style={{
           rotateY: 360 + tranformValue * 90,

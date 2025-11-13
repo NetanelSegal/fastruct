@@ -8,13 +8,13 @@ const WhyModularPanelizedSectionItem: React.FC<
   IWhyModularPanelized[keyof IWhyModularPanelized]
 > = ({ title, items, image }) => {
   return (
-    <div className='relative mt-20 flex h-screen items-start text-white'>
+    <div className='relative mt-20 flex h-screen flex-col items-start text-white md:flex-row md:items-start md:justify-between'>
       <AnimatedHeading
         text={title}
-        className='text-h1 font-bebas text-light basis-1/2'
+        className='text-h1 font-bebas text-light md:basis-1/2'
         revealColor='dark'
       />
-      <div className='mt-4 flex basis-1/2 flex-col gap-6'>
+      <div className='mt-4 flex flex-col gap-6 md:basis-1/2'>
         {items.map((item, index) => (
           <p key={index} className='text-h5 font-poppins font-extralight'>
             {item}

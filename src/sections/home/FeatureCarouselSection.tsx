@@ -33,7 +33,7 @@ const FeatureCarousel = ({ features }: FeatureCarouselProps) => {
             feature={feature}
             index={index}
             progress={slideIndex}
-            featuresCount={features.length}
+            // featuresCount={features.length}
           />
         ))}
       </div>
