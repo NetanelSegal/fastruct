@@ -5,7 +5,7 @@ import { Section } from '@/components/Section';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { IExperienceMetric } from '@/types/home';
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Fragment, useLayoutEffect, useRef, useState } from 'react';
 
 const HEADING_TOP = 112; // px
 
@@ -30,10 +30,6 @@ const ExperienceSection: React.FC<{ experienceData: IExperienceMetric[] }> = ({
 
     calculateHeights();
   }, [screenWidth]);
-
-  useEffect(() => {
-    console.log(headingHeight, cardsHeights);
-  }, [headingHeight, cardsHeights]);
 
   return (
     <Section bgColor='white' textColor='dark'>

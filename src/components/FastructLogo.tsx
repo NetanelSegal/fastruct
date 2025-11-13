@@ -3,21 +3,17 @@
 import CSSConstants, { ColorsUnion } from '@/lib/css-constants';
 
 interface IFastructLogoProps {
-  height?: string;
+  className?: string;
   color?: ColorsUnion;
 }
 
-const FastructLogo = ({
-  height = '50',
-  color = 'black',
-}: IFastructLogoProps) => {
+const FastructLogo = ({ className, color = 'black' }: IFastructLogoProps) => {
   return (
     <svg
+      className={className}
       fill={CSSConstants.colors[color]}
-      height={height}
       viewBox='0 0 226 47'
-      xmlns='http://www.w3.org/2000/svg'
-    >
+      xmlns='http://www.w3.org/2000/svg'>
       <path d='M0.879395 8.81963L16.1009 0H71.9013L56.6753 8.81963H0.879395Z' />
       <path d='M0 46.666V12.6816H54.3701V20.1256H6.08061V46.666H0Z' />
       <path d='M10.8862 46.6641V39.2202H48.2849V33.3912H10.8862V25.9473H54.3699V46.6641H10.8862Z' />

@@ -97,7 +97,7 @@ const Footer = () => {
       <LetsBuildTogetherCTA />
       <div className='container-padding section-padding-top'>
         <div className='flex flex-col items-start justify-between gap-8 md:flex-row md:justify-between'>
-          <FastructLogo color='white' height='60' />
+          <FastructLogo color='white' className='h-[40px]' />
           <FooterLinksAndContact />
         </div>
         <div className='border-cream/20 mt-12 border-t pt-8 text-center text-sm opacity-70'>

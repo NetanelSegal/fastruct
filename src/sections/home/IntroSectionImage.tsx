@@ -2,16 +2,22 @@
 
 import Parallax from '@/components/Parallax';
 import Image from 'next/image';
+import { RefObject } from 'react';
 
-const IntroSectionImage = () => {
+const IntroSectionImage = ({
+  parentRef,
+}: {
+  parentRef: RefObject<HTMLElement | null>;
+}) => {
   return (
     <Parallax
-      className='size-full'
-      startRange={-50}
-      endRange={150}
+      ref={parentRef}
+      className='z-0 size-full'
+      startRange={-100}
+      endRange={100}
       unitType='px'
-      offset={['start end', 'end start']}>
-      <div className='relative h-96 w-full translate-x-10 scale-105 overflow-hidden rounded-lg lg:h-[70vh] lg:-translate-y-10 lg:scale-125'>
+      offset={['start center', 'end center']}>
+      <div className='relative h-96 w-full translate-x-10 scale-105 overflow-hidden rounded-lg lg:h-[70vh] lg:scale-125'>
         <Image
           src='/assets/intro-image.jpg'
           alt='Construction site'

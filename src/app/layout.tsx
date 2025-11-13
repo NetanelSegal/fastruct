@@ -6,6 +6,7 @@ import './globals.css';
 import Script from 'next/script';
 import WebsiteLoader from '@/components/website-loader/WebsiteLoader';
 
+
 const fontPoppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
@@ -36,9 +37,9 @@ export default function RootLayout({
           crossOrigin='anonymous'
         />
         <WebsiteLoader>
-          <Navbar />
-          <main className='relative z-0'>{children}</main>
-          <Footer />
+        <Navbar />
+        <main className='relative z-0'>{children}</main>
+        <Footer />
         </WebsiteLoader>
       </body>
     </html>

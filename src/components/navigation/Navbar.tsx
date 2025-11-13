@@ -10,7 +10,7 @@ import { AnimatePresence, motion, Variants } from 'motion/react';
 import Link from 'next/link';
 import FastructLogo from '../FastructLogo';
 import HamburgerButton from './HamburgerButton';
-import clsx from 'clsx';
+import { useMounted } from '@/hooks/useMounted';
 
 const NAVBAR_SWAP_BREAKPOINT = TailwindBreakpoints.lg;
 
@@ -26,9 +26,10 @@ const variants: Variants = {
 export default function Navbar() {
   const [isMobileMenuOpen, toggleIsMobileMenuOpen] = useToggle(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const { screenWidth, breakpoint } = useScreenWidth();
+  const { screenWidth } = useScreenWidth();
   const previousScrollY = useRef(0);
   const menuRef = useRef<HTMLDivElement>(null);
+  const hasMounted = useMounted();
 
   useEffect(() => {
     if (screenWidth < NAVBAR_SWAP_BREAKPOINT) return;
@@ -40,10 +41,13 @@ export default function Navbar() {
       setShowNavbar(!directionDown);
     };
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [screenWidth]);
+
+  if (!hasMounted) return null;
 
   return (
     <motion.header
@@ -58,11 +62,7 @@ export default function Navbar() {
         <Link href='/'>
           <FastructLogo
             color='light'
-            height={clsx({
-              '40': screenWidth > TailwindBreakpoints.lg,
-              '35': breakpoint == 'md',
-              '25': screenWidth < TailwindBreakpoints.md,
-            })}
+            className='h-[25px] md:h-[35px] lg:h-[40px]'
           />
         </Link>
         {screenWidth > NAVBAR_SWAP_BREAKPOINT ? (
