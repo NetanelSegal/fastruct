@@ -5,7 +5,7 @@ import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
 import WebsiteLoader from '@/components/website-loader/WebsiteLoader';
-
+import { ReactLenis } from 'lenis/react';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],
@@ -36,11 +36,13 @@ export default function RootLayout({
           src='https://kit.fontawesome.com/42dfb7600e.js'
           crossOrigin='anonymous'
         />
-        <WebsiteLoader>
-        <Navbar />
-        <main className='relative z-0'>{children}</main>
-        <Footer />
-        </WebsiteLoader>
+        <ReactLenis root options={{ lerp: 0.08 }}>
+          <WebsiteLoader>
+            <Navbar />
+            <main className='relative z-0'>{children}</main>
+            <Footer />
+          </WebsiteLoader>
+        </ReactLenis>
       </body>
     </html>
   );
