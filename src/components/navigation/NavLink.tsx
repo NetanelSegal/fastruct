@@ -7,9 +7,10 @@ import { usePathname } from 'next/navigation';
 interface INavLinkProps {
   href: string;
   children: React.ReactNode;
+  onNavigate?: () => void;
 }
 
-const NavLink = ({ href, children }: INavLinkProps) => {
+const NavLink = ({ href, children, onNavigate }: INavLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname === href;
 
@@ -19,7 +20,7 @@ const NavLink = ({ href, children }: INavLinkProps) => {
   );
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} className={classes} onClick={onNavigate}>
       {children}
     </Link>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { TailwindBreakpoints } from '@/lib/css-constants';
 import { useToggle } from '@/hooks/useToggle';
@@ -29,7 +29,14 @@ export default function Navbar() {
   const { screenWidth } = useScreenWidth();
   const previousScrollY = useRef(0);
   const menuRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const hasMounted = useMounted();
+
+  const closeMobileMenu = useCallback(() => {
+    if (isMobileMenuOpen) {
+      toggleIsMobileMenuOpen();
+    }
+  }, [isMobileMenuOpen, toggleIsMobileMenuOpen]);
 
   useEffect(() => {
     if (screenWidth < NAVBAR_SWAP_BREAKPOINT) return;
@@ -47,10 +54,35 @@ export default function Navbar() {
     };
   }, [screenWidth]);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    if (!isMobileMenuOpen || screenWidth >= NAVBAR_SWAP_BREAKPOINT) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(target) &&
+        headerRef.current &&
+        !headerRef.current.contains(target)
+      ) {
+        closeMobileMenu();
+      }
+    };
+
+    // Use capture phase to catch clicks before they bubble
+    document.addEventListener('mousedown', handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside, true);
+    };
+  }, [isMobileMenuOpen, screenWidth, closeMobileMenu]);
+
   if (!hasMounted) return null;
 
   return (
     <motion.header
+      ref={headerRef}
       variants={variants}
       initial={{ y: '0%' }}
       animate={showNavbar ? { y: '0%' } : { y: '-100%' }}
@@ -77,7 +109,11 @@ export default function Navbar() {
       {screenWidth < NAVBAR_SWAP_BREAKPOINT && (
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <MobileNavbar key='mobile-menu' menuRef={menuRef} />
+            <MobileNavbar
+              key='mobile-menu'
+              menuRef={menuRef}
+              onNavigate={closeMobileMenu}
+            />
           )}
         </AnimatePresence>
       )}

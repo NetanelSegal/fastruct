@@ -9,6 +9,7 @@ import { motion, Variants } from 'motion/react';
 
 interface IMobileNavbarProps {
   menuRef: RefObject<HTMLDivElement | null>;
+  onNavigate?: () => void;
 }
 
 const variants: Variants = {
@@ -22,7 +23,7 @@ const variants: Variants = {
   },
 };
 
-const MobileNavbar = ({ menuRef }: IMobileNavbarProps) => {
+const MobileNavbar = ({ menuRef, onNavigate }: IMobileNavbarProps) => {
   return (
     <motion.div
       initial='closed'
@@ -36,13 +37,13 @@ const MobileNavbar = ({ menuRef }: IMobileNavbarProps) => {
         className='flex flex-col items-center justify-center gap-2'>
         {ROUTES.map((route) =>
           route.isButton ? (
-            <Link href={route.href} key={route.href}>
+            <Link href={route.href} key={route.href} onClick={onNavigate}>
               <Button variant='primary' size='lg' hoverTransition='lift'>
                 {route.title}
               </Button>
             </Link>
           ) : (
-            <NavLink key={route.href} href={route.href}>
+            <NavLink key={route.href} href={route.href} onNavigate={onNavigate}>
               {route.title}
             </NavLink>
           )

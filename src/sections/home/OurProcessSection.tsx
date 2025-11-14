@@ -122,6 +122,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
           ? Math.ceil(v)
           : Math.floor(v)
         : Math.round(v);
+
     setStepNumber(v);
 
     animate(snappedIndex, rounded, {
