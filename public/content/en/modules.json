@@ -9,19 +9,20 @@
       "bathrooms": 1,
       "modulesCount": 2
     },
-    "mainImage": "/assets/modules-images/main-image1.jpg",
+    "mainImage": "/assets/modules-images/module-1/out-1.jpg",
     "images": [
-      "/images/models/smart-compact-living/exterior-01.jpg",
-      "/images/models/smart-compact-living/exterior-02.jpg",
-      "/images/models/smart-compact-living/interior-living.jpg",
-      "/images/models/smart-compact-living/interior-kitchen.jpg",
-      "/images/models/smart-compact-living/interior-bedroom.jpg",
-      "/images/models/smart-compact-living/interior-bathroom.jpg"
+      "/assets/modules-images/module-1/out-1.jpg",
+      "/assets/modules-images/module-1/out-2.jpg",
+      "/assets/modules-images/module-1/out-3.jpg",
+      "/assets/modules-images/module-1/out-4.jpg",
+      "/assets/modules-images/module-1/in-1.jpg",
+      "/assets/modules-images/module-1/in-2.jpg",
+      "/assets/modules-images/module-1/in-3.jpg",
+      "/assets/modules-images/module-1/in-4.jpg",
+      "/assets/modules-images/module-1/in-5.jpg",
+      "/assets/modules-images/module-1/in-6.jpg"
     ],
-    "sketchPlans": [
-      "/images/models/smart-compact-living/plans/top-view.png",
-      "/images/models/smart-compact-living/plans/annotated.png"
-    ],
+    "sketchPlans": [],
     "tags": ["ADU", "Guest", "Compact"],
     "highlights": [
       "Energy-efficient windows and doors",
@@ -44,13 +45,18 @@
       "bathrooms": 1,
       "modulesCount": 3
     },
-    "mainImage": "/assets/modules-images/main-image2.jpg",
+    "mainImage": "/assets/modules-images/module-1/out-1.jpg",
     "images": [
-      "/images/models/family-smart-unit/exterior-01.jpg",
-      "/images/models/family-smart-unit/living-dining.jpg",
-      "/images/models/family-smart-unit/kitchen.jpg",
-      "/images/models/family-smart-unit/primary-bedroom.jpg",
-      "/images/models/family-smart-unit/secondary-room.jpg"
+      "/assets/modules-images/module-1/out-1.jpg",
+      "/assets/modules-images/module-1/out-2.jpg",
+      "/assets/modules-images/module-1/out-3.jpg",
+      "/assets/modules-images/module-1/out-4.jpg",
+      "/assets/modules-images/module-1/in-1.jpg",
+      "/assets/modules-images/module-1/in-2.jpg",
+      "/assets/modules-images/module-1/in-3.jpg",
+      "/assets/modules-images/module-1/in-4.jpg",
+      "/assets/modules-images/module-1/in-5.jpg",
+      "/assets/modules-images/module-1/in-6.jpg"
     ],
     "sketchPlans": [
       "/images/models/family-smart-unit/plans/floorplan.png",
@@ -78,14 +84,18 @@
       "bathrooms": 2,
       "modulesCount": 4
     },
-    "mainImage": "/assets/modules-images/main-image3.jpg",
+    "mainImage": "/assets/modules-images/module-1/out-1.jpg",
     "images": [
-      "/images/models/live-and-work-hybrid/exterior-01.jpg",
-      "/images/models/live-and-work-hybrid/workspace.jpg",
-      "/images/models/live-and-work-hybrid/living.jpg",
-      "/images/models/live-and-work-hybrid/kitchen.jpg",
-      "/images/models/live-and-work-hybrid/bedroom.jpg",
-      "/images/models/live-and-work-hybrid/bathroom.jpg"
+      "/assets/modules-images/module-1/out-1.jpg",
+      "/assets/modules-images/module-1/out-2.jpg",
+      "/assets/modules-images/module-1/out-3.jpg",
+      "/assets/modules-images/module-1/out-4.jpg",
+      "/assets/modules-images/module-1/in-1.jpg",
+      "/assets/modules-images/module-1/in-2.jpg",
+      "/assets/modules-images/module-1/in-3.jpg",
+      "/assets/modules-images/module-1/in-4.jpg",
+      "/assets/modules-images/module-1/in-5.jpg",
+      "/assets/modules-images/module-1/in-6.jpg"
     ],
     "sketchPlans": [
       "/images/models/live-and-work-hybrid/plans/floorplan-work-zone.png"
@@ -112,13 +122,18 @@
       "bathrooms": 2,
       "modulesCount": 5
     },
-    "mainImage": "/assets/modules-images/main-image4.jpg",
+    "mainImage": "/assets/modules-images/module-1/out-1.jpg",
     "images": [
-      "/images/models/executive-comfort/exterior-hero.jpg",
-      "/images/models/executive-comfort/open-plan-living.jpg",
-      "/images/models/executive-comfort/premium-kitchen.jpg",
-      "/images/models/executive-comfort/primary-suite.jpg",
-      "/images/models/executive-comfort/outdoor-deck.jpg"
+      "/assets/modules-images/module-1/out-1.jpg",
+      "/assets/modules-images/module-1/out-2.jpg",
+      "/assets/modules-images/module-1/out-3.jpg",
+      "/assets/modules-images/module-1/out-4.jpg",
+      "/assets/modules-images/module-1/in-1.jpg",
+      "/assets/modules-images/module-1/in-2.jpg",
+      "/assets/modules-images/module-1/in-3.jpg",
+      "/assets/modules-images/module-1/in-4.jpg",
+      "/assets/modules-images/module-1/in-5.jpg",
+      "/assets/modules-images/module-1/in-6.jpg"
     ],
     "sketchPlans": [
       "/images/models/executive-comfort/plans/floorplan.png",
