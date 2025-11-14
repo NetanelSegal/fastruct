@@ -1,7 +1,6 @@
 'use client';
 
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
-import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import { IFeatureItem } from '@/types/home';
 import {
   motion,
@@ -58,26 +57,52 @@ const FeatureSlide = ({
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
 
-      <div className='from-dark/80 via-dark/40 absolute inset-0 bg-gradient-to-t to-transparent' />
+      {/* Enhanced gradient overlay with better transparency */}
+      <div className='from-dark/90 via-dark/60 to-dark/30 absolute inset-0 bg-gradient-to-t' />
+      <div className='absolute inset-0 bg-dark/20' />
 
-      <div
-        style={
-          {
-            // paddingBottom: `calc(${SLIDES_GAP * (featuresCount - index)}vh)`,
-          }
-        }
-        className='relative flex h-full flex-col justify-end p-8 md:p-16'>
-        <div className='text-accent mb-4'>
-          <FadeInParagraph className={`${iconClass} text-h3 mb-2`} />
+      {/* Centered content container with backdrop blur */}
+      <div className='relative z-10 flex h-full flex-col items-center justify-center p-8 md:p-16'>
+        <div className='text-center'>
+          {/* Icon with impressive styling */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={
+              runTextAnimation
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 0.5 }
+            }
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className='mb-6 flex justify-center'>
+            <div className='bg-accent/20 backdrop-blur-sm rounded-full p-6 md:p-8 border-2 border-accent/30'>
+              <i className={`${iconClass} text-h1 md:text-[4rem] text-accent`}></i>
+            </div>
+          </motion.div>
+
+          {/* Title - bigger and centered */}
+          <AnimatedHeading
+            text={title}
+            className='text-h1 md:text-[5rem] font-bebas text-light mb-4 text-center'
+            runAnimation={runTextAnimation}
+          />
+
+          {/* Description - bigger and centered with backdrop */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              runTextAnimation
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0, y: 20 }
+            }
+            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+            className='mx-auto max-w-2xl'>
+            <div className='bg-dark/40 backdrop-blur-md rounded-lg px-6 py-4 md:px-8 md:py-6 border border-light/10'>
+              <p className='font-poppins text-h4 md:text-h3 text-light/90 text-center leading-relaxed'>
+                {text}
+              </p>
+            </div>
+          </motion.div>
         </div>
-        <AnimatedHeading
-          text={title}
-          className='text-h3 font-bebas text-light w-fit'
-          runAnimation={runTextAnimation}
-        />
-        <FadeInParagraph className='font-poppins text-h6 text-light/80 mt-2 max-w-md pr-16'>
-          {text}
-        </FadeInParagraph>
       </div>
     </motion.div>
   );
