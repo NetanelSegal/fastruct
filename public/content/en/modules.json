@@ -4,10 +4,10 @@
     "title": "Smart Compact Living",
     "summary": "A compact and elegant unit ideal for guest homes, ADUs, or urban lots.",
     "specs": {
-      "areaSqft": 480,
+      "areaSqft": 460,
       "bedrooms": 1,
       "bathrooms": 1,
-      "modulesCount": 2
+      "modulesCount": 1
     },
     "mainImage": "/assets/modules-images/module-1/out-1.jpg",
     "images": [
@@ -40,12 +40,12 @@
     "title": "Family Smart Unit",
     "summary": "A balanced modular home designed for young families and flexible use.",
     "specs": {
-      "areaSqft": 720,
-      "bedrooms": 2,
+      "areaSqft": 520,
+      "bedrooms": 1,
       "bathrooms": 1,
-      "modulesCount": 3
+      "modulesCount": 1
     },
-    "mainImage": "/assets/modules-images/module-1/out-1.jpg",
+    "mainImage": "/assets/modules-images/module-1/out-2.jpg",
     "images": [
       "/assets/modules-images/module-1/out-1.jpg",
       "/assets/modules-images/module-1/out-2.jpg",
@@ -79,10 +79,10 @@
     "title": "Live & Work Hybrid",
     "summary": "Blends residential comfort with workspace functionality — perfect for professionals or home-based studios.",
     "specs": {
-      "areaSqft": 900,
+      "areaSqft": 1200,
       "bedrooms": 2,
       "bathrooms": 2,
-      "modulesCount": 4
+      "modulesCount": 1
     },
     "mainImage": "/assets/modules-images/module-1/out-1.jpg",
     "images": [
@@ -117,12 +117,12 @@
     "title": "Executive Comfort",
     "summary": "A luxury modular home designed for premium comfort and entertaining.",
     "specs": {
-      "areaSqft": 1200,
-      "bedrooms": 3,
-      "bathrooms": 2,
-      "modulesCount": 5
+      "areaSqft": 660,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "modulesCount": 1
     },
-    "mainImage": "/assets/modules-images/module-1/out-1.jpg",
+    "mainImage": "/assets/modules-images/module-1/out-3.jpg",
     "images": [
       "/assets/modules-images/module-1/out-1.jpg",
       "/assets/modules-images/module-1/out-2.jpg",
@@ -144,11 +144,47 @@
       "Spacious open-plan living",
       "Premium finishes and fixtures",
       "Primary suite with ensuite",
-      "Indoor–outdoor living focus"
+      "Indoor-outdoor living focus"
     ],
     "cta": {
       "primaryLabel": "Discover Full Specs",
       "secondaryLabel": "Schedule a Consultation"
+    }
+  },
+  {
+    "slug": "ultra-compact-retreat",
+    "title": "Ultra Compact Retreat",
+    "summary": "An ultra-compact single-bedroom unit perfect for minimalists, students, or as a cozy retreat.",
+    "specs": {
+      "areaSqft": 435,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "modulesCount": 1
+    },
+    "mainImage": "/assets/modules-images/module-1/out-2.jpg",
+    "images": [
+      "/assets/modules-images/module-1/out-1.jpg",
+      "/assets/modules-images/module-1/out-2.jpg",
+      "/assets/modules-images/module-1/out-3.jpg",
+      "/assets/modules-images/module-1/out-4.jpg",
+      "/assets/modules-images/module-1/in-1.jpg",
+      "/assets/modules-images/module-1/in-2.jpg",
+      "/assets/modules-images/module-1/in-3.jpg",
+      "/assets/modules-images/module-1/in-4.jpg",
+      "/assets/modules-images/module-1/in-5.jpg",
+      "/assets/modules-images/module-1/in-6.jpg"
+    ],
+    "sketchPlans": [],
+    "tags": ["Ultra-Compact", "1BR", "Minimalist"],
+    "highlights": [
+      "Maximized space efficiency",
+      "Affordable and practical",
+      "Perfect for small lots",
+      "Low maintenance design"
+    ],
+    "cta": {
+      "primaryLabel": "View Details",
+      "secondaryLabel": "Get Floor Plan"
     }
   }
 ]

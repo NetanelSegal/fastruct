@@ -2,19 +2,21 @@
 
 import Image from 'next/image';
 import TypingEffect from '@/components/text-animation/TypingEffect';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Parallax from '@/components/Parallax';
 import { UseScrollOptions } from 'motion/react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { TailwindBreakpoints } from '@/lib/css-constants';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import { IHeroSection } from '@/types/home';
+import { useSiteReady } from '@/contexts/SiteReadyProvider';
 
 const HeroSection: React.FC<IHeroSection> = ({
   title,
   animatedWords,
   subtitle,
 }) => {
+  const { setSiteReady } = useSiteReady();
   const { screenWidth } = useScreenWidth();
   const ref = useRef<HTMLDivElement>(null);
   const offset: UseScrollOptions['offset'] = [
@@ -41,6 +43,7 @@ const HeroSection: React.FC<IHeroSection> = ({
       {/* image container */}
       <div className='relative aspect-[3/1] overflow-hidden'>
         <Image
+          onLoad={() => setSiteReady(true)}
           priority
           fill
           src='/assets/hero-image.png'

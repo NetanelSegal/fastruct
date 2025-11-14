@@ -6,6 +6,7 @@ import './globals.css';
 import Script from 'next/script';
 import WebsiteLoader from '@/components/website-loader/WebsiteLoader';
 import { ReactLenis } from 'lenis/react';
+import { SiteReadyProvider } from '@/contexts/SiteReadyProvider';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],
@@ -36,13 +37,15 @@ export default function RootLayout({
           src='https://kit.fontawesome.com/42dfb7600e.js'
           crossOrigin='anonymous'
         />
-        <ReactLenis root options={{ lerp: 0.08 }}>
-          <WebsiteLoader>
-            <Navbar />
-            <main className='relative z-0'>{children}</main>
-            <Footer />
-          </WebsiteLoader>
-        </ReactLenis>
+        <SiteReadyProvider>
+          <ReactLenis root options={{ lerp: 0.08 }}>
+            <WebsiteLoader>
+              <Navbar />
+              <main className='relative z-0'>{children}</main>
+              <Footer />
+            </WebsiteLoader>
+          </ReactLenis>
+        </SiteReadyProvider>
       </body>
     </html>
   );

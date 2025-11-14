@@ -13,10 +13,9 @@ const IntroSectionImage = ({
     <Parallax
       ref={parentRef}
       className='z-0 size-full'
-      startRange={-100}
-      endRange={50}
+      endRange={-100}
       unitType='px'
-      offset={['start center', 'end center']}>
+      offset={['start end', 'end start']}>
       <div className='relative h-96 w-full translate-x-10 scale-105 overflow-hidden rounded-lg lg:h-[70vh] lg:scale-125'>
         <Image
           src='/assets/intro-image.jpg'

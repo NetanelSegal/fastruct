@@ -53,7 +53,7 @@ const WebsiteLoader = ({ children }: IWebsiteLoaderProps) => {
               duration={LOGO_ANIMATION_DURATION}
             />
           </motion.div>
-          <div className='bg-dark h-[120vh] w-full'></div>
+          <div className='bg-dark fixed h-[120vh] w-full'></div>
         </>
       ) : (
         <Fragment key='website-content'>{children}</Fragment>
