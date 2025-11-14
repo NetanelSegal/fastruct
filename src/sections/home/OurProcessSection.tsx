@@ -3,7 +3,17 @@
 import { IProcess } from '@/types/home';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import { cloneElement, RefObject, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react';
+import {
+  animate,
+  AnimatePresence,
+  mix,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'motion/react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { calculateDistance, getElementCenter } from '@/lib/utils';
 import { TailwindBreakpoints } from '@/lib/css-constants';
@@ -93,31 +103,45 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     offset: ['start -30vh', 'end 120vh'],
   });
 
+  const lastStepIndex = useRef(0);
+
   const stepIndex = useTransform(
     scrollYProgress,
     [0, 1],
     [0, steps.length - 1]
   );
 
-  stepIndex.on('change', (v) => {
-    const radiansDiffBetweenSteps =
-      steps.length > 1 ? RADIANS_RANGE / steps.length : 0;
+  const snappedIndex = useMotionValue(0);
 
-    const offsetsFromNumberContainer = getStepsPositionsOffsetFromNumber(
-      radiansDiffBetweenSteps,
+  stepIndex.on('change', (v) => {
+    const scrollDirection = v > lastStepIndex.current ? 'down' : 'up';
+    const rounded = scrollDirection === 'down' ? Math.ceil(v) : Math.floor(v);
+
+    setStepNumber(v);
+    animate(snappedIndex, rounded, {
+      ease: 'easeInOut',
+      delay: 0,
+      duration: 0.2,
+    });
+  });
+
+  useMotionValueEvent(snappedIndex, 'change', (fi) => {
+    const radiansStep = steps.length > 1 ? RADIANS_RANGE / steps.length : 0;
+
+    const offsets = getStepsPositionsOffsetFromNumber(
+      radiansStep,
       distance,
       steps.length,
       isMobile,
-      v
+      fi
     );
 
     setPositions(
-      offsetsFromNumberContainer.map((p) => ({
+      offsets.map((p) => ({
         x: p.x - (isMobile ? 0 : window.innerWidth * 0.15),
         y: p.y + stepsPositionYOffset,
       }))
     );
-    setStepNumber(v);
   });
 
   useEffect(() => {
@@ -230,7 +254,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       {steps.map((s) => (
         <div
           key={`placeholder-${s.title}`}
-          className='h-[50vh] opacity-0'></div>
+          className='h-screen opacity-0 md:h-[50vh]'></div>
       ))}
     </section>
   );
@@ -317,6 +341,20 @@ const StepNumber: React.FC<IStepNumberProps> = ({ number, ref }) => {
   );
 };
 
+/**
+ * Calculates the offset positions for process step markers around a central number container,
+ * distributing them evenly in a circle, with an optional rotation for mobile layouts.
+ *
+ * @param radiansDiffBetweenSteps - The difference in angle (in radians) between each step.
+ * @param distance                - The radius/distance from the center number container to each step.
+ * @param stepsCount              - The total number of steps/markers to position.
+ * @param isMobile                - Flag to adjust rotation offset for mobile screens.
+ * @param stepIndex               - The index of the current highlighted or "active" step.
+ * @returns An array of position objects { x, y } for each step, relative to the center point.
+ *
+ * The resultant positions place the steps in a circle. The currently highlighted step is at the "0 angle",
+ * with others distributed at increments of radiansDiffBetweenSteps, offset as needed for mobile.
+ */
 const getStepsPositionsOffsetFromNumber = (
   radiansDiffBetweenSteps: number,
   distance: number,
@@ -325,8 +363,10 @@ const getStepsPositionsOffsetFromNumber = (
   stepIndex: number
 ) => {
   return [...Array(stepsCount)].map((_, i) => {
+    // On mobile, rotate the circle 90deg (π/2 radians) to align vertically.
     const rotationOffset = isMobile ? Math.PI / 2 : 0;
 
+    // Compute this step's angle, wrapping around the circle.
     const currentRadians =
       ((i - stepIndex + stepsCount) % stepsCount) * radiansDiffBetweenSteps +
       rotationOffset;
@@ -340,3 +380,53 @@ const getStepsPositionsOffsetFromNumber = (
     };
   });
 };
+
+/**
+ * Softly snaps a continuous value to the nearest integer, with a "lock zone".
+ *
+ * @param value           Continuous index, e.g. from scroll (0 → steps-1)
+ * @param innerRadius     Distance where we are fully snapped (|value-n| <= innerRadius)
+ * @param outerRadius     Distance where snapping effect completely disappears
+ *
+ * innerRadius < outerRadius
+ */
+export function getSoftSnappedIndex(
+  value: number,
+  innerRadius: number = 0.05,
+  outerRadius: number = 0.25
+): {
+  finalIndex: number; // use this for positions
+  snappedIndex: number; // nearest integer index
+  blend: number; // 0..1, how much we are pulled to snappedIndex
+} {
+  const snappedIndex = Math.round(value);
+  const diff = Math.abs(value - snappedIndex); // how far we are from that step
+
+  // Completely outside snap range → no snapping at all
+  if (diff >= outerRadius) {
+    return {
+      finalIndex: value,
+      snappedIndex,
+      blend: 0,
+    };
+  }
+
+  // Deep inside snap zone → fully snapped (hard lock)
+  if (diff <= innerRadius) {
+    return {
+      finalIndex: snappedIndex,
+      snappedIndex,
+      blend: 1,
+    };
+  }
+
+  // Between inner & outer → blend smoothly between continuous and snapped
+  // Map diff from [innerRadius, outerRadius] → [0,1]
+  const t = (diff - innerRadius) / (outerRadius - innerRadius); // 0..1
+  const blend = 1 - t; // 1 near inner, 0 near outer
+
+  // Linear interpolation (lerp) between continuous value and snapped step
+  const finalIndex = value * (1 - blend) + snappedIndex * blend;
+
+  return { finalIndex, snappedIndex, blend };
+}
