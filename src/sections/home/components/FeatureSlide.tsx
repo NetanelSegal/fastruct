@@ -57,14 +57,11 @@ const FeatureSlide = ({
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
 
-      {/* Enhanced gradient overlay with better transparency */}
       <div className='from-dark/90 via-dark/60 to-dark/30 absolute inset-0 bg-gradient-to-t' />
-      <div className='absolute inset-0 bg-dark/20' />
+      <div className='bg-dark/20 absolute inset-0' />
 
-      {/* Centered content container with backdrop blur */}
       <div className='relative z-10 flex h-full flex-col items-center justify-center p-8 md:p-16'>
         <div className='text-center'>
-          {/* Icon with impressive styling */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={
@@ -74,30 +71,28 @@ const FeatureSlide = ({
             }
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className='mb-6 flex justify-center'>
-            <div className='bg-accent/20 backdrop-blur-sm rounded-full p-6 md:p-8 border-2 border-accent/30'>
-              <i className={`${iconClass} text-h1 md:text-[4rem] text-accent`}></i>
+            <div className='bg-accent/20 border-accent/30 rounded-full border-2 p-6 backdrop-blur-sm md:p-8'>
+              <i
+                className={`${iconClass} text-h1 text-accent md:text-[4rem]`}></i>
             </div>
           </motion.div>
 
           {/* Title - bigger and centered */}
           <AnimatedHeading
             text={title}
-            className='text-h1 md:text-[5rem] font-bebas text-light mb-4 text-center'
+            className='text-h1 font-bebas text-light mb-4 text-center md:text-[5rem]'
             runAnimation={runTextAnimation}
           />
 
-          {/* Description - bigger and centered with backdrop */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={
-              runTextAnimation
-                ? { opacity: 1, y: 0 }
-                : { opacity: 0, y: 20 }
+              runTextAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             className='mx-auto max-w-2xl'>
-            <div className='bg-dark/40 backdrop-blur-md rounded-lg px-6 py-4 md:px-8 md:py-6 border border-light/10'>
-              <p className='font-poppins text-h4 md:text-h3 text-light/90 text-center leading-relaxed'>
+            <div className='bg-dark/40 border-light/10 rounded-lg border px-6 py-4 backdrop-blur-md md:px-8 md:py-6'>
+              <p className='font-poppins text-h6 text-light/90 text-center leading-relaxed'>
                 {text}
               </p>
             </div>
