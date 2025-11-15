@@ -1,12 +1,18 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useMotionTemplate } from 'motion/react';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionTemplate,
+} from 'motion/react';
 import { useRef } from 'react';
 import { IStackedImages } from '@/types/product';
+import { Section } from '@/components/Section';
 
 const StackedImagesSection = ({ images }: IStackedImages) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -20,10 +26,12 @@ const StackedImagesSection = ({ images }: IStackedImages) => {
   );
 
   return (
-    <section
+    <Section
       ref={sectionRef}
+      bgColor='dark'
+      textColor='white'
       style={{ height: `${images.length * 100}vh` }}
-      className='relative w-full'>
+      className='relative w-full p-0'>
       {/* Sticky container for stacked images */}
       <div className='sticky top-0 h-screen w-full overflow-hidden'>
         {images.map((image, index) => {
@@ -33,11 +41,7 @@ const StackedImagesSection = ({ images }: IStackedImages) => {
           );
 
           // Calculate scale, opacity, and z-index based on progress
-          const scale = useTransform(
-            imageProgress,
-            [-1, 0, 1],
-            [0.7, 1, 0.8]
-          );
+          const scale = useTransform(imageProgress, [-1, 0, 1], [0.7, 1, 0.8]);
           const opacity = useTransform(
             imageProgress,
             [-1, 0, 0.5, 1],
@@ -72,9 +76,8 @@ const StackedImagesSection = ({ images }: IStackedImages) => {
           );
         })}
       </div>
-    </section>
+    </Section>
   );
 };
 
 export default StackedImagesSection;
-

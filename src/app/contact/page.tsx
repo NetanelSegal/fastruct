@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { getContent } from '@/lib/content';
+import HeroContactSection from '@/sections/contact/HeroContactSection';
+import ContactFormSection from '@/sections/contact/ContactFormSection';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Fastruct',
@@ -6,26 +9,13 @@ export const metadata: Metadata = {
     'Get in touch with Fastruct to start your modular and panelized construction project. We handle everything from consultation to completion.',
 };
 
-export default function Contact() {
+export default async function Contact() {
+  const content = await getContent('contact', 'en');
+
   return (
-    <section className='py-16'>
-      <div className='max-w-6xl'>
-        <h2 className='mb-2 text-2xl font-semibold md:text-3xl'>Contact</h2>
-        <form className='grid max-w-xl gap-4'>
-          <input className='rounded-lg border p-3' placeholder='Name' />
-          <input
-            className='rounded-lg border p-3'
-            type='email'
-            placeholder='Email'
-          />
-          <textarea
-            className='rounded-lg border p-3'
-            placeholder='Message'
-            rows={5}
-          />
-          <button className='rounded-xl border px-4 py-2'>Send</button>
-        </form>
-      </div>
-    </section>
+    <div className='bg-dark'>
+      <HeroContactSection hero={content.hero} />
+      <ContactFormSection form={content.form} info={content.info} />
+    </div>
   );
 }

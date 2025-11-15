@@ -19,9 +19,12 @@ const ProductDescriptionSection = ({
   return (
     <>
       {/* Image Section */}
-      <section ref={sectionRef} className='relative overflow-hidden'>
+      <Section
+        ref={sectionRef}
+        bgColor='dark'
+        textColor='white'
+        className='relative overflow-hidden p-0'>
         <Parallax
-          ref={sectionRef}
           className='relative h-[60vh] w-full md:h-[80vh]'
           startRange={0}
           endRange={-20}
@@ -37,7 +40,7 @@ const ProductDescriptionSection = ({
             />
           </div>
         </Parallax>
-      </section>
+      </Section>
 
       {/* Text Section */}
       <Section bgColor='dark' textColor='white' className='py-32'>

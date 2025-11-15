@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/navigation/Navbar';
-import Footer from '@/components/Footer';
+import Footer from '@/components/footer/Footer';
 import { Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
 import WebsiteLoader from '@/components/website-loader/WebsiteLoader';
 import { ReactLenis } from 'lenis/react';
 import { SiteReadyProvider } from '@/contexts/SiteReadyProvider';
+import { getContent } from '@/lib/content';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],
@@ -25,11 +26,13 @@ export const metadata: Metadata = {
   description: 'Modular + Panelized construction, done right.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const contactContent = await getContent('contact', 'en');
+
   return (
     <html lang='en'>
       <body className={`${fontPoppins.variable} ${fontBebasNeue.variable}`}>
@@ -42,7 +45,10 @@ export default function RootLayout({
             <WebsiteLoader>
               <Navbar />
               <main className='relative z-0'>{children}</main>
-              <Footer />
+              <Footer
+                contactInfo={contactContent.info}
+                contactSocial={contactContent.social}
+              />
             </WebsiteLoader>
           </ReactLenis>
         </SiteReadyProvider>

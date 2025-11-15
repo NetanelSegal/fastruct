@@ -5,20 +5,20 @@ import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import Parallax from '@/components/Parallax';
 import { IHeroProduct } from '@/types/product';
-import { useRef } from 'react';
+import { Section } from '@/components/Section';
 
 const HeroProductSection = ({
   title,
   subtitle,
   backgroundImage,
 }: IHeroProduct) => {
-  const sectionRef = useRef<HTMLElement>(null);
-
   return (
-    <section ref={sectionRef} className='relative h-screen overflow-hidden'>
+    <Section
+      bgColor='dark'
+      textColor='white'
+      className='relative h-screen overflow-hidden p-0'>
       {/* Background Image with Parallax */}
       <Parallax
-        ref={sectionRef}
         className='absolute inset-0'
         startRange={0}
         endRange={-30}
@@ -47,7 +47,7 @@ const HeroProductSection = ({
           {subtitle}
         </FadeInParagraph>
       </div>
-    </section>
+    </Section>
   );
 };
 

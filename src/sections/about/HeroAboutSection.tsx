@@ -5,7 +5,7 @@ import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import Parallax from '@/components/Parallax';
 import { IHeroAbout } from '@/types/about';
-import { useRef } from 'react';
+import { Section } from '@/components/Section';
 
 const HeroAboutSection = ({
   title,
@@ -13,13 +13,13 @@ const HeroAboutSection = ({
   backgroundImage,
   bigTextLine1,
 }: IHeroAbout) => {
-  const sectionRef = useRef<HTMLElement>(null);
-
   return (
-    <section ref={sectionRef} className='relative h-screen overflow-hidden'>
+    <Section
+      bgColor='dark'
+      textColor='white'
+      className='relative h-screen overflow-hidden p-0'>
       {/* Background Image with Parallax */}
       <Parallax
-        ref={sectionRef}
         className='absolute inset-0'
         startRange={0}
         endRange={-30}
@@ -34,7 +34,7 @@ const HeroAboutSection = ({
             className='object-cover object-center'
             priority
           />
-          <div className='absolute inset-0 bg-dark/40' />
+          <div className='bg-dark/40 absolute inset-0' />
         </div>
       </Parallax>
 
@@ -51,13 +51,20 @@ const HeroAboutSection = ({
 
       {/* Bottom headline extending into next section */}
       <div className='container-padding absolute -bottom-20 left-0 z-10 w-full md:-bottom-32'>
-        <div className='flex flex-col gap-2 md:flex-row md:gap-4'>
-          <span className='text-h1 font-bebas text-white md:text-[6rem] lg:text-[8rem]'>
-            {bigTextLine1}
-          </span>
-        </div>
+        <Parallax
+          className='relative'
+          startRange={0}
+          endRange={-200}
+          unitType='px'
+          offset={['start start', 'end start']}>
+          <div className='flex flex-col gap-2 md:flex-row md:gap-4'>
+            <span className='text-h1 font-bebas text-white md:text-[6rem] lg:text-[8rem]'>
+              {bigTextLine1}
+            </span>
+          </div>
+        </Parallax>
       </div>
-    </section>
+    </Section>
   );
 };
 

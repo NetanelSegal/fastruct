@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "Let's Build Together",
+    "subtitle": "Ready to start your modular construction project? Get in touch with our team and let's discuss how we can bring your vision to life."
+  },
+  "form": {
+    "title": "Get in Touch",
+    "description": "Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your.email@example.com"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "(123) 456-7890"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell us about your project..."
+      }
+    },
+    "submitButton": "Send Message",
+    "submittingButton": "Sending..."
+  },
+  "info": {
+    "address": {
+      "street": "123 Main Street",
+      "city": "Anytown, USA 12345"
+    },
+    "email": "contact@fastruct.com",
+    "phone": {
+      "display": "(123) 456-7890",
+      "link": "+1234567890"
+    }
+  },
+  "social": {
+    "title": "Follow Us",
+    "links": [
+      {
+        "name": "LinkedIn",
+        "url": "#"
+      },
+      {
+        "name": "Facebook",
+        "url": "#"
+      },
+      {
+        "name": "Instagram",
+        "url": "#"
+      }
+    ]
+  }
+}
