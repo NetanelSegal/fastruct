@@ -10,6 +10,15 @@ import OurProcessSection from '@/sections/home/OurProcessSection';
 import FAQSection from '@/sections/home/FAQSection';
 import ExperienceSection from '@/sections/home/ExperienceSection';
 import { getContent, getModules } from '@/lib/content';
+import type { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent('home', 'en');
+  return {
+    title: 'Home | Fastruct',
+    description: content.heroSection.subtitle,
+  };
+}
 
 const HomePage = async () => {
   const content = await getContent('home', 'en');

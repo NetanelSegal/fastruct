@@ -1,5 +1,5 @@
-import AnimatedHeading from './text-animation/AnimatedHeading';
-import FadeInParagraph from './text-animation/FadeInParagraph';
+import AnimatedHeading from '../../../components/text-animation/AnimatedHeading';
+import FadeInParagraph from '../../../components/text-animation/FadeInParagraph';
 
 interface ExperienceCardProps {
   title: string;

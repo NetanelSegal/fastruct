@@ -3,6 +3,15 @@ import HeroAboutSection from '@/sections/about/HeroAboutSection';
 import AboutIntroSection from '@/sections/about/AboutIntroSection';
 import ImageTextSection from '@/sections/about/ImageTextSection';
 import FeaturesGridSection from '@/sections/about/FeaturesGridSection';
+import type { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent('about', 'en');
+  return {
+    title: 'About Us | Fastruct',
+    description: content.hero.subtitle,
+  };
+}
 
 const AboutPage = async () => {
   const content = await getContent('about', 'en');

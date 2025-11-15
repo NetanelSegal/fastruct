@@ -17,19 +17,23 @@
     "items": [
       {
         "title": "Speed without Compromise",
-        "text": "faster delivery, no corners cut."
+        "text": "faster delivery, no corners cut.",
+        "imageUrl": "/assets/features-image-1.jpg"
       },
       {
         "title": "Simplicity in Every Step",
-        "text": "clear guided process."
+        "text": "clear guided process.",
+        "imageUrl": "/assets/features-image-2.jpg"
       },
       {
         "title": "Enduring Quality",
-        "text": "premium materials, modular engineering."
+        "text": "premium materials, modular engineering.",
+        "imageUrl": "/assets/features-image-3.jpg"
       },
       {
         "title": "Personal Support",
-        "text": "team guidance every step."
+        "text": "team guidance every step.",
+        "imageUrl": "/assets/features-image-4.jpg"
       }
     ]
   }

@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Technical Overview | Fastruct',
+  description:
+    "Learn about Fastruct's technical specifications, materials, safety compliance, and construction processes for modular and panelized buildings.",
+};
+
 export default function Technical() {
   return (
     <section className='py-16'>

@@ -18,6 +18,7 @@ export interface IImageText {
 export interface IFeatureItem {
   title: string;
   text: string;
+  imageUrl?: string;
 }
 
 export interface IFeaturesGrid {

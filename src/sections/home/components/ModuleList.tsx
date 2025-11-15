@@ -22,13 +22,15 @@ const itemVariants: Variants = {
 const ModuleList = ({ modules }: { modules: IModule[] }) => {
   return (
     <motion.div
-      className='grid gap-8 md:grid-cols-2'
+      className='grid gap-8 md:auto-rows-auto md:grid-cols-2'
       variants={containerVariants}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true, amount: 0.2 }}>
-      {modules.map((module) => (
+      {modules.map((module, index) => (
         <ModuleCard
+          isLast={index === modules.length - 1}
+          index={index}
           key={module.slug}
           slug={module.slug}
           imageUrl={module.mainImage}

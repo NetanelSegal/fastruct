@@ -15,6 +15,7 @@ export interface IModule {
   slug: string;
   title: string;
   summary: string;
+  marketingDescription: string;
   specs: ISpecs;
   mainImage: string;
   images: string[];

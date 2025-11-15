@@ -1,0 +1,80 @@
+'use client';
+
+import Image from 'next/image';
+import { motion, useScroll, useTransform, useMotionTemplate } from 'motion/react';
+import { useRef } from 'react';
+import { IStackedImages } from '@/types/product';
+
+const StackedImagesSection = ({ images }: IStackedImages) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+
+  const imageIndex = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, images.length - 1]
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      style={{ height: `${images.length * 100}vh` }}
+      className='relative w-full'>
+      {/* Sticky container for stacked images */}
+      <div className='sticky top-0 h-screen w-full overflow-hidden'>
+        {images.map((image, index) => {
+          const imageProgress = useTransform(
+            imageIndex,
+            (current) => current - index
+          );
+
+          // Calculate scale, opacity, and z-index based on progress
+          const scale = useTransform(
+            imageProgress,
+            [-1, 0, 1],
+            [0.7, 1, 0.8]
+          );
+          const opacity = useTransform(
+            imageProgress,
+            [-1, 0, 0.5, 1],
+            [0.2, 1, 0.7, 0.3]
+          );
+          const zIndex = useTransform(imageProgress, (p) => {
+            // Higher z-index for images closer to front (progress near 0)
+            return Math.round(images.length - Math.abs(p) * images.length);
+          });
+
+          const transform = useMotionTemplate`scale(${scale})`;
+
+          return (
+            <motion.div
+              key={index}
+              style={{
+                transform,
+                opacity,
+                zIndex,
+              }}
+              className='absolute inset-0 flex items-center justify-center p-8 md:p-16'>
+              <div className='relative h-full w-full max-w-6xl overflow-hidden rounded-2xl shadow-2xl'>
+                <Image
+                  src={image.url}
+                  alt={image.alt || `Product image ${index + 1}`}
+                  fill
+                  sizes='(max-width: 768px) 100vw, 90vw'
+                  className='object-cover object-center'
+                />
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+export default StackedImagesSection;
+

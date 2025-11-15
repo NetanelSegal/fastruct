@@ -4,15 +4,14 @@ import Image from 'next/image';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import Parallax from '@/components/Parallax';
-import { IHeroAbout } from '@/types/about';
+import { IHeroProduct } from '@/types/product';
 import { useRef } from 'react';
 
-const HeroAboutSection = ({
+const HeroProductSection = ({
   title,
   subtitle,
   backgroundImage,
-  bigTextLine1,
-}: IHeroAbout) => {
+}: IHeroProduct) => {
   const sectionRef = useRef<HTMLElement>(null);
 
   return (
@@ -28,13 +27,13 @@ const HeroAboutSection = ({
         <div className='relative h-full w-full'>
           <Image
             src={backgroundImage}
-            alt='Hero background'
+            alt='Product hero background'
             fill
             sizes='100vw'
             className='object-cover object-center'
             priority
           />
-          <div className='absolute inset-0 bg-dark/40' />
+          <div className='bg-dark/40 absolute inset-0' />
         </div>
       </Parallax>
 
@@ -48,17 +47,8 @@ const HeroAboutSection = ({
           {subtitle}
         </FadeInParagraph>
       </div>
-
-      {/* Bottom headline extending into next section */}
-      <div className='container-padding absolute -bottom-20 left-0 z-10 w-full md:-bottom-32'>
-        <div className='flex flex-col gap-2 md:flex-row md:gap-4'>
-          <span className='text-h1 font-bebas text-white md:text-[6rem] lg:text-[8rem]'>
-            {bigTextLine1}
-          </span>
-        </div>
-      </div>
     </section>
   );
 };
 
-export default HeroAboutSection;
+export default HeroProductSection;

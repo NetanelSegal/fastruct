@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact Us | Fastruct',
+  description:
+    'Get in touch with Fastruct to start your modular and panelized construction project. We handle everything from consultation to completion.',
+};
+
 export default function Contact() {
   return (
     <section className='py-16'>

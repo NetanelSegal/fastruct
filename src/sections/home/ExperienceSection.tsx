@@ -1,6 +1,6 @@
 'use client';
 
-import ExperienceCard from '@/components/ExperienceCard';
+import ExperienceCard from '@/sections/home/components/ExperienceCard';
 import { Section } from '@/components/Section';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import { useScreenWidth } from '@/hooks/useScreenWidth';

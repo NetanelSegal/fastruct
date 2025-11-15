@@ -25,20 +25,6 @@ export async function getContent<K extends ContentKey>(
 
 import { IModule } from '@/types/modules';
 
-export const getModules = async () => {
-  const baseDir = path.join(process.cwd(), 'public', 'content');
-  const localizedPath = path.join(baseDir, 'en', 'modules.json');
-  const fallbackPath = path.join(baseDir, 'en', 'modules.json');
-
-  try {
-    const file = await fs.readFile(localizedPath, 'utf8');
-    return JSON.parse(file) as IModule[];
-  } catch {
-    console.warn(
-      `[getModules] Missing/invalid modules file. Falling back to "en".`
-    );
-
-    const fallback = await fs.readFile(fallbackPath, 'utf8');
-    return JSON.parse(fallback) as IModule[];
-  }
+export const getModules = async (lang: Language = 'en'): Promise<IModule[]> => {
+  return getContent('modules', lang);
 };
