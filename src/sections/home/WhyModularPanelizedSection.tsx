@@ -1,41 +1,17 @@
-import React from 'react';
+'use client';
+
 import { Section } from '@/components/Section';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import { IWhyModularPanelized } from '@/types/home';
-import Image from 'next/image';
-
-const WhyModularPanelizedSectionItem: React.FC<
-  IWhyModularPanelized[keyof IWhyModularPanelized]
-> = ({ title, items, image }) => {
-  return (
-    <div className='relative mt-20 flex h-screen flex-col items-start text-white md:flex-row md:items-start md:justify-between'>
-      <AnimatedHeading
-        text={title}
-        className='text-h1 font-bebas text-light md:basis-1/2'
-        revealColor='dark'
-      />
-      <div className='mt-4 flex flex-col gap-6 md:basis-1/2'>
-        {items.map((item, index) => (
-          <p key={index} className='text-h5 font-poppins font-extralight'>
-            {item}
-          </p>
-        ))}
-      </div>
-      <Image
-        src={image}
-        alt={title}
-        fill
-        className='object-contain object-left opacity-40'
-      />
-    </div>
-  );
-};
+import WhyModularPanelizedMiniSection from './components/WhyModularPanelizedMiniSection';
 
 const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
   modular,
   panelized,
   combinedApproach,
 }) => {
+  const categories = [modular, panelized, combinedApproach];
+
   return (
     <Section bgColor='dark'>
       <div className='mb-8 text-center'>
@@ -45,9 +21,17 @@ const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
           revealColor='dark'
         />
       </div>
-      <WhyModularPanelizedSectionItem {...modular} />
-      <WhyModularPanelizedSectionItem {...panelized} />
-      <WhyModularPanelizedSectionItem {...combinedApproach} />
+
+      <div className='flex flex-col'>
+        {categories.map((category, index) => (
+          <WhyModularPanelizedMiniSection
+            key={category.title}
+            category={category}
+            index={index}
+            totalSections={categories.length}
+          />
+        ))}
+      </div>
     </Section>
   );
 };
