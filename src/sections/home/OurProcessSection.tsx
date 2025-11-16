@@ -136,6 +136,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
 
     calculatePositions();
   }, [steps, screenWidth, lenis]);
+  console.log('lenis', lenis);
 
   useEffect(() => {
     if (!lenis || !sectionInView) return;
