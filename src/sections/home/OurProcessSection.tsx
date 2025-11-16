@@ -62,8 +62,10 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     );
 
     if (fi !== Math.round(fi) && !lenis?.isStopped) {
+      console.log('lenis stop');
       lenis?.stop();
     } else if (fi === Math.round(fi)) {
+      console.log('lenis start');
       lenis?.start();
     }
   });
@@ -137,14 +139,16 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
 
   useEffect(() => {
     if (!lenis || !sectionInView) return;
-    const unsub = lenis?.on('scroll', (e) => {
+    const unsub = lenis.on('scroll', (e) => {
       if (snappedIndex.isAnimating()) return;
+      console.log('lenis scroll event');
 
       const targetIndex = Math.round(snappedIndex.get()) + e.direction;
+      console.log('targetIndex', targetIndex);
 
       if (targetIndex < 0 || targetIndex >= steps.length) return;
 
-      lenis?.scrollTo(`#step-placeholder-${targetIndex}`, { immediate: true });
+      lenis.scrollTo(`#step-placeholder-${targetIndex}`, { immediate: true });
       animate(snappedIndex, targetIndex, {
         ease: 'easeInOut',
         delay: 0,
