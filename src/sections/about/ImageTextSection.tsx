@@ -4,15 +4,18 @@ import Image from 'next/image';
 import { IImageText } from '@/types/about';
 import Parallax from '@/components/Parallax';
 import { Section } from '@/components/Section';
+import { useRef } from 'react';
 
 const ImageTextSection = ({ image, paragraph }: IImageText) => {
+  const ref = useRef<HTMLDivElement>(null);
   return (
-    <Section bgColor='light' textColor='dark' className='py-32'>
-      <div className='grid grid-cols-1 items-center gap-16 md:grid-cols-2'>
+    <Section ref={ref} bgColor='light' textColor='dark' className='py-32'>
+      <div className='grid grid-cols-1 items-center gap-8 md:grid-cols-2'>
         <Parallax
+          ref={ref}
           className='size-full'
-          startRange={300}
-          endRange={-200}
+          startRange={-50}
+          endRange={50}
           unitType='px'
           offset={['start end', 'end start']}>
           <div className='relative h-96 w-full overflow-hidden rounded-xl lg:h-[70vh]'>
@@ -27,13 +30,14 @@ const ImageTextSection = ({ image, paragraph }: IImageText) => {
           </div>
         </Parallax>
         <Parallax
+          ref={ref}
           className='relative'
-          startRange={150}
-          endRange={-150}
+          startRange={-100}
+          endRange={50}
           unitType='px'
           offset={['start end', 'end start']}>
           <div className='bg-accent absolute top-0 bottom-0 left-0 w-[2px]' />
-          <div className='pl-8 md:pl-16'>
+          <div className='pl-4 md:pl-8'>
             <p className='text-h6 text-dark leading-relaxed'>{paragraph}</p>
           </div>
         </Parallax>

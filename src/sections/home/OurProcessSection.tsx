@@ -6,12 +6,10 @@ import { cloneElement, RefObject, useEffect, useRef, useState } from 'react';
 import {
   animate,
   AnimatePresence,
-  mix,
   motion,
   useMotionValue,
   useMotionValueEvent,
   useScroll,
-  useSpring,
   useTransform,
 } from 'motion/react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
@@ -102,37 +100,34 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     target: sectionRef,
     offset: ['start -30vh', 'end 120vh'],
   });
-
-  const lastStepIndex = useRef(0);
-
-  const stepIndex = useTransform(
+  scrollYProgress;
+  const snappedIndex = useTransform(
     scrollYProgress,
     [0, 1],
     [0, steps.length - 1]
   );
 
-  const snappedIndex = useMotionValue(0);
+  const roundedIndex = useMotionValue(0);
 
-  stepIndex.on('change', (v) => {
-    const diff = Math.abs(Math.round(v) - v);
-    const scrollDirection = v > lastStepIndex.current ? 'down' : 'up';
-    const rounded =
-      diff > 0.3
-        ? scrollDirection === 'down'
-          ? Math.ceil(v)
-          : Math.floor(v)
-        : Math.round(v);
+  snappedIndex.on('change', (v) => {
+    if (roundedIndex.isAnimating()) {
+      return;
+    }
+    const currentIndex = roundedIndex.get();
+    const roundedTargetIndex = Math.round(v);
+    const diff = roundedTargetIndex - currentIndex;
 
-    setStepNumber(v);
+    const targetIndex =
+      diff === 0 ? currentIndex : currentIndex + Math.sign(diff);
 
-    animate(snappedIndex, rounded, {
-      ease: 'circInOut',
+    animate(roundedIndex, targetIndex, {
+      ease: 'easeInOut',
       delay: 0,
-      duration: 0.1,
+      duration: 0.5,
     });
   });
 
-  useMotionValueEvent(snappedIndex, 'change', (fi) => {
+  useMotionValueEvent(roundedIndex, 'change', (fi) => {
     const radiansStep = steps.length > 1 ? RADIANS_RANGE / steps.length : 0;
 
     const offsets = getStepsPositionsOffsetFromNumber(
@@ -143,6 +138,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       fi
     );
 
+    setStepNumber(fi);
     setPositions(
       offsets.map((p) => ({
         x: p.x - (isMobile ? 0 : window.innerWidth * 0.15),
@@ -258,10 +254,10 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         </div>
       </div>
 
-      {steps.map((s) => (
-        <div
+      {steps.map((s, i) => (
+        <motion.div
           key={`placeholder-${s.title}`}
-          className='h-screen opacity-0 md:h-[50vh]'></div>
+          className='h-screen md:h-[80vh]'></motion.div>
       ))}
     </section>
   );
