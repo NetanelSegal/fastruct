@@ -70,5 +70,5 @@ export interface IHomeContent {
   experienceMetrics: IExperienceMetric[];
   faq: IFAQ;
   cta: ICTA;
-  testimonial: ITestimonial;
+  testimonials: ITestimonial[];
 }

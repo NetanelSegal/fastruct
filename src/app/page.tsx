@@ -52,7 +52,7 @@ const HomePage = async () => {
 
       {/* Testimonial Section */}
       <Section bgColor='accent'>
-        <TestimonialsSection {...content.testimonial} />
+        <TestimonialsSection testimonials={content.testimonials} />
       </Section>
 
       {/* FAQ Section */}

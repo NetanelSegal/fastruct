@@ -8,7 +8,6 @@ import { useScreenWidth } from '@/hooks/useScreenWidth';
 import clsx from 'clsx';
 
 interface IModuleCardProps {
-  isLast: boolean;
   index: number;
   slug: string;
   imageUrl: string;
@@ -21,8 +20,6 @@ const CARD_ANIMATION_DURATION = 0.5;
 const ITEMS_ANIMATION_DURATION = 0.5;
 
 export const ModuleCard = ({
-  isLast,
-  index,
   slug,
   imageUrl,
   title,
@@ -59,10 +56,7 @@ export const ModuleCard = ({
   return (
     <motion.div
       variants={variants}
-      className={clsx(
-        'w-full overflow-hidden rounded-xl shadow-md',
-        isLast && index % 2 === 0 && 'md:col-span-2 md:mx-auto'
-      )}>
+      className='w-full basis-full overflow-hidden rounded-xl shadow-md md:basis-1/2'>
       <Link href={`/module/${slug}`} className='block'>
         <motion.div
           initial='initial'
@@ -81,7 +75,7 @@ export const ModuleCard = ({
             </motion.div>
           </div>
           <Specs specs={specs} />
-          <ModulesTitle title={title} slug={slug} variants={titleVariants} />
+          <ModulesTitle title={title} variants={titleVariants} />
         </motion.div>
       </Link>
     </motion.div>
@@ -90,11 +84,9 @@ export const ModuleCard = ({
 
 const ModulesTitle = ({
   title,
-  slug,
   variants,
 }: {
   title: string;
-  slug: string;
   variants: Variants;
 }) => {
   return (

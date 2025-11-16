@@ -131,8 +131,18 @@
       }
     ]
   },
-  "testimonial": {
-    "quote": "FastStruct crafted our forever home with unrivaled care. Every detail felt luxurious and personal.",
-    "author": "John Doe"
-  }
+  "testimonials": [
+    {
+      "quote": "FastStruct crafted our forever home with unrivaled care. Every detail felt luxurious and personal.",
+      "author": "John Doe"
+    },
+    {
+      "quote": "The speed and quality of construction exceeded our expectations. We moved in 4 months after breaking ground!",
+      "author": "Sarah Johnson"
+    },
+    {
+      "quote": "Working with FastStruct was seamless from start to finish. Their team made the entire process stress-free.",
+      "author": "Michael Chen"
+    }
+  ]
 }

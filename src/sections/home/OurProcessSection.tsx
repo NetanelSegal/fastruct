@@ -8,13 +8,13 @@ import {
   motion,
   useMotionValue,
   useMotionValueEvent,
-  useScroll,
 } from 'motion/react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { calculateDistance, getElementCenter } from '@/lib/utils';
 import { TailwindBreakpoints } from '@/lib/css-constants';
 import ProcessStepNumber from './components/ProcessStepNumber';
 import ProcessStepContent from './components/ProcessStepContent';
+import clsx from 'clsx';
 
 const RADIANS_RANGE = 2 * Math.PI;
 
@@ -203,7 +203,10 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
               viewport={{ amount: 0.3 }}
               id={`step-placeholder-${i + 1}`}
               key={`placeholder-${s.title}`}
-              className='text-light h-screen text-center'></motion.div>
+              className={clsx(
+                'text-light h-screen text-center',
+                i === steps.length - 1 ? 'h-[120vh]' : 'h-screen'
+              )}></motion.div>
           )
       )}
     </section>
