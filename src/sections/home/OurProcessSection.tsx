@@ -16,12 +16,11 @@ import { calculateDistance, getElementCenter } from '@/lib/utils';
 import { TailwindBreakpoints } from '@/lib/css-constants';
 import ProcessStepNumber from './components/ProcessStepNumber';
 import ProcessStepContent from './components/ProcessStepContent';
-import { useLenis } from 'lenis/react';
+import clsx from 'clsx';
 
 const RADIANS_RANGE = 2 * Math.PI;
 
 const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
-  const lenis = useLenis();
   const { screenWidth } = useScreenWidth();
   const isMobile = screenWidth < TailwindBreakpoints.md;
 
@@ -40,7 +39,6 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
   const [stepsPositionYOffset, setStepsPositionYOffset] = useState<number>(0);
 
   const snappedIndex = useMotionValue(0);
-  const lastValidStepRef = useRef<number>(0);
 
   // Track scroll progress through the entire section
   const { scrollYProgress } = useScroll({
@@ -55,53 +53,19 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     [0, steps.length - 1]
   );
 
-  // Sync scroll-based step index with snappedIndex, limiting to one step at a time
+  // Sync scroll-based step index with snappedIndex
   useMotionValueEvent(scrollStepIndex, 'change', (latest) => {
     if (!snappedIndex.isAnimating()) {
       const targetIndex = Math.round(latest);
       const currentIndex = Math.round(snappedIndex.get());
-      const lastValidIndex = lastValidStepRef.current;
 
-      // Calculate the difference from the last valid step
-      const stepDiff = targetIndex - lastValidIndex;
-
-      // Only allow moving one step at a time (±1)
-      let allowedTargetIndex = lastValidIndex;
-      if (Math.abs(stepDiff) > 1) {
-        // If trying to jump more than one step, only allow moving one step
-        allowedTargetIndex = lastValidIndex + (stepDiff > 0 ? 1 : -1);
-      } else {
-        // If within one step, allow the change
-        allowedTargetIndex = targetIndex;
-      }
-
-      // Clamp to valid range
-      allowedTargetIndex = Math.max(
-        0,
-        Math.min(allowedTargetIndex, steps.length - 1)
-      );
-
-      // Only update if different from current
-      if (allowedTargetIndex !== currentIndex) {
-        lastValidStepRef.current = allowedTargetIndex;
-
-        // If we're limiting the scroll, snap to the correct placeholder
-        if (allowedTargetIndex !== targetIndex) {
-          lenis?.scrollTo(`#step-placeholder-${allowedTargetIndex}`, {
-            immediate: true,
-          });
-          const placeholderElement = document.getElementById(
-            `step-placeholder-${allowedTargetIndex}`
-          );
-          if (placeholderElement) {
-            placeholderElement.scrollIntoView({
-              behavior: 'instant',
-              block: 'center',
-            });
-          }
-        }
-
-        animate(snappedIndex, allowedTargetIndex, {
+      // Only update if different to prevent unnecessary animations
+      if (targetIndex !== currentIndex) {
+        const clampedIndex = Math.max(
+          0,
+          Math.min(targetIndex, steps.length - 1)
+        );
+        animate(snappedIndex, clampedIndex, {
           ease: 'easeInOut',
           duration: 0.3,
         });
@@ -191,33 +155,10 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       setDistance(distance);
       setStepsPositionYOffset(stepsPositionYOffset);
       setStepNumber(0);
-      lastValidStepRef.current = 0;
     };
 
     calculatePositions();
   }, [steps, screenWidth, isMobile]);
-
-  // const onStepEnter = (index: number) => {
-  //   if (snappedIndex.isAnimating() || !sectionInView) {
-  //     return;
-  //   }
-  //   const currentIndex = Math.round(snappedIndex.get());
-  //   const direction = currentIndex < index ? 'forward' : 'backward';
-  //   const targetIndex = currentIndex + (direction === 'forward' ? 1 : -1);
-  //   console.log('--------------------------------------');
-  //   console.log('index', index);
-  //   console.log('currentIndex', currentIndex);
-  //   console.log('targetIndex', targetIndex);
-  //   if (currentIndex === targetIndex) return;
-
-  //   lenis?.scrollTo(`#step-placeholder-${targetIndex}`, { immediate: true });
-
-  //   animate(snappedIndex, targetIndex, {
-  //     ease: 'easeInOut',
-  //     delay: 0,
-  //     duration: 0.5,
-  //   });
-  // };
 
   return (
     <section ref={sectionRef} className='relative z-0 text-center'>
@@ -260,7 +201,6 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       </div>
 
       <motion.div
-        // onViewportEnter={() => onStepEnter(0)}
         id={`step-placeholder-0`}
         key={`placeholder-0`}
         className='text-light absolute top-0 h-screen w-full text-center'></motion.div>
@@ -269,10 +209,12 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         (s, i) =>
           i < steps.length - 1 && (
             <motion.div
-              // onViewportEnter={() => onStepEnter(i + 1)}
               id={`step-placeholder-${i + 1}`}
               key={`placeholder-${s.title}`}
-              className='text-light h-screen text-center'></motion.div>
+              className={clsx(
+                'text-light h-screen text-center',
+                i % 2 === 1 ? '' : 'bg-white/10'
+              )}></motion.div>
           )
       )}
     </section>
