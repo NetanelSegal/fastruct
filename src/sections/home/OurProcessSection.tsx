@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   animate,
   motion,
+  useInView,
   useMotionValue,
   useMotionValueEvent,
 } from 'motion/react';
@@ -38,6 +39,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
   const [distance, setDistance] = useState<number>(0);
   const [stepsPositionYOffset, setStepsPositionYOffset] = useState<number>(0);
 
+  const sectionInView = useInView(contentContainerRef, { amount: 1 });
   const snappedIndex = useMotionValue(0);
 
   useMotionValueEvent(snappedIndex, 'change', (fi) => {
@@ -133,21 +135,46 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     calculatePositions();
   }, [steps, screenWidth, lenis]);
 
-  const onStepEnter = (index: number) => {
-    if (snappedIndex.isAnimating()) {
-      return;
-    }
-    const targetIndex = Math.max(0, Math.min(index, steps.length - 1));
-    const currentIndex = Math.round(snappedIndex.get());
+  useEffect(() => {
+    if (!lenis || !sectionInView) return;
+    const unsub = lenis?.on('scroll', (e) => {
+      if (snappedIndex.isAnimating()) return;
 
-    if (currentIndex === targetIndex) return;
+      const targetIndex = Math.round(snappedIndex.get()) + e.direction;
 
-    animate(snappedIndex, targetIndex, {
-      ease: 'easeInOut',
-      delay: 0,
-      duration: 0.5,
+      if (targetIndex < 0 || targetIndex >= steps.length) return;
+
+      lenis?.scrollTo(`#step-placeholder-${targetIndex}`, { immediate: true });
+      animate(snappedIndex, targetIndex, {
+        ease: 'easeInOut',
+        delay: 0,
+        duration: 0.5,
+      });
     });
-  };
+    return () => unsub();
+  }, [sectionInView]);
+
+  // const onStepEnter = (index: number) => {
+  //   if (snappedIndex.isAnimating() || !sectionInView) {
+  //     return;
+  //   }
+  //   const currentIndex = Math.round(snappedIndex.get());
+  //   const direction = currentIndex < index ? 'forward' : 'backward';
+  //   const targetIndex = currentIndex + (direction === 'forward' ? 1 : -1);
+  //   console.log('--------------------------------------');
+  //   console.log('index', index);
+  //   console.log('currentIndex', currentIndex);
+  //   console.log('targetIndex', targetIndex);
+  //   if (currentIndex === targetIndex) return;
+
+  //   lenis?.scrollTo(`#step-placeholder-${targetIndex}`, { immediate: true });
+
+  //   animate(snappedIndex, targetIndex, {
+  //     ease: 'easeInOut',
+  //     delay: 0,
+  //     duration: 0.5,
+  //   });
+  // };
 
   return (
     <section ref={sectionRef} className='relative z-0 text-center'>
@@ -190,8 +217,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       </div>
 
       <motion.div
-        onViewportEnter={() => onStepEnter(0)}
-        viewport={{ amount: 0.3 }}
+        // onViewportEnter={() => onStepEnter(0)}
         id={`step-placeholder-0`}
         key={`placeholder-0`}
         className='text-light absolute top-0 h-screen w-full text-center'></motion.div>
@@ -200,11 +226,10 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         (s, i) =>
           i < steps.length - 1 && (
             <motion.div
-              onViewportEnter={() => onStepEnter(i + 1)}
-              viewport={{ amount: 0.3 }}
+              // onViewportEnter={() => onStepEnter(i + 1)}
               id={`step-placeholder-${i + 1}`}
               key={`placeholder-${s.title}`}
-              className='text-light h-[50vh] text-center'></motion.div>
+              className='text-light h-screen text-center'></motion.div>
           )
       )}
     </section>
