@@ -15,10 +15,12 @@ import { TailwindBreakpoints } from '@/lib/css-constants';
 import ProcessStepNumber from './components/ProcessStepNumber';
 import ProcessStepContent from './components/ProcessStepContent';
 import clsx from 'clsx';
+import { useLenis } from 'lenis/react';
 
 const RADIANS_RANGE = 2 * Math.PI;
 
 const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
+  const lenis = useLenis();
   const { screenWidth } = useScreenWidth();
   const isMobile = screenWidth < TailwindBreakpoints.md;
 
@@ -63,23 +65,34 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       if (
         !numberContainerRef.current ||
         !stepsPlaceholderRef.current ||
-        !contentContainerRef.current
+        !contentContainerRef.current ||
+        !sectionRef.current
       )
         return;
 
-      const sectionRect = contentContainerRef.current.getBoundingClientRect();
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      const isInViewport =
+        sectionRect.top <= 0 && sectionRect.bottom >= window.innerHeight;
+
+      if (isInViewport) {
+        lenis?.scrollTo(sectionRef.current.offsetTop, { immediate: true });
+      }
+
+      const contentContainerRect =
+        contentContainerRef.current.getBoundingClientRect();
+
       const numberContainerRect =
         numberContainerRef.current.getBoundingClientRect();
       const stepsPlaceholderRect =
         stepsPlaceholderRef.current.getBoundingClientRect();
 
       const numberContainerCenter = getElementCenter(numberContainerRect);
-      numberContainerCenter.x -= sectionRect.left;
-      numberContainerCenter.y -= sectionRect.top;
+      numberContainerCenter.x -= contentContainerRect.left;
+      numberContainerCenter.y -= contentContainerRect.top;
 
       const stepsPlaceholderCenter = getElementCenter(stepsPlaceholderRect);
-      stepsPlaceholderCenter.x -= sectionRect.left;
-      stepsPlaceholderCenter.y -= sectionRect.top;
+      stepsPlaceholderCenter.x -= contentContainerRect.left;
+      stepsPlaceholderCenter.y -= contentContainerRect.top;
 
       const distance = isMobile
         ? window.innerHeight * 0.7
@@ -120,10 +133,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     };
 
     calculatePositions();
-    window.addEventListener('resize', calculatePositions);
-
-    return () => window.removeEventListener('resize', calculatePositions);
-  }, [steps, isMobile]);
+  }, [steps, screenWidth, lenis]);
 
   const onStepEnter = (index: number) => {
     if (snappedIndex.isAnimating()) {

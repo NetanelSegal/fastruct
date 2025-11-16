@@ -22,7 +22,7 @@ const fontBebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: 'FastStruct',
+  title: 'Fastruct',
   description: 'Modular + Panelized construction, done right.',
 };
 

@@ -2,10 +2,10 @@
   "heroSection": {
     "title": "BUILD",
     "animatedWords": ["Faster", "Smarter", "For Life"],
-    "subtitle": "FastStruct delivers modular and panelized buildings designed to fit your needs — from consultation to completion."
+    "subtitle": "Fastruct delivers modular and panelized buildings designed to fit your needs — from consultation to completion."
   },
   "intro": {
-    "text": "FastStruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish."
+    "text": "Fastruct is redefining how homes and spaces are built. By combining modular and panelized construction, we deliver faster timelines, higher quality, and a smoother experience from start to finish."
   },
   "features": [
     {
@@ -133,16 +133,20 @@
   },
   "testimonials": [
     {
-      "quote": "FastStruct crafted our forever home with unrivaled care. Every detail felt luxurious and personal.",
-      "author": "John Doe"
+      "author": "Daniel Cooper",
+      "quote": "Fastruct made the entire building process incredibly smooth. The modular installation was fast, clean, and exactly on schedule. The final result feels solid, modern, and far higher quality than traditional builds I've seen."
     },
     {
-      "quote": "The speed and quality of construction exceeded our expectations. We moved in 4 months after breaking ground!",
-      "author": "Sarah Johnson"
+      "author": "Victoria Lane",
+      "quote": "The precision is unbelievable. Every detail of our home feels intentional and well-crafted. Communication was consistent and clear throughout the project. Truly a premium building experience."
     },
     {
-      "quote": "Working with FastStruct was seamless from start to finish. Their team made the entire process stress-free.",
-      "author": "Michael Chen"
+      "author": "Michael Adams",
+      "quote": "Our project was completed months earlier than expected. The factory-built components made the timeline reliable and stress-free. The team was professional, and the result exceeded every expectation we had."
+    },
+    {
+      "author": "Sarah Mitchell",
+      "quote": "Finally, a modern way to build. Fastruct guided us through a simple, organized process and delivered a home that looks amazing and feels incredibly sturdy. The entire experience was efficient and surprisingly enjoyable."
     }
   ]
 }

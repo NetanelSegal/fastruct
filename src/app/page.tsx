@@ -1,4 +1,3 @@
-import { Section } from '@/components/Section';
 import TestimonialsSection from '@/sections/home/TestimonialsSection';
 import HeroSection from '@/sections/home/HeroSection';
 import IntroSection from '@/sections/home/IntroSection';
@@ -51,9 +50,7 @@ const HomePage = async () => {
       <OurProcessSection {...content.process} />
 
       {/* Testimonial Section */}
-      <Section bgColor='accent'>
-        <TestimonialsSection testimonials={content.testimonials} />
-      </Section>
+      <TestimonialsSection testimonials={content.testimonials} />
 
       {/* FAQ Section */}
       <FAQSection {...content.faq} />
