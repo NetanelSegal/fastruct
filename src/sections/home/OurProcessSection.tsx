@@ -70,14 +70,6 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       )
         return;
 
-      const sectionRect = sectionRef.current.getBoundingClientRect();
-      const isInViewport =
-        sectionRect.top <= 0 && sectionRect.bottom >= window.innerHeight;
-
-      if (isInViewport) {
-        lenis?.scrollTo(sectionRef.current.offsetTop, { immediate: true });
-      }
-
       const contentContainerRect =
         contentContainerRef.current.getBoundingClientRect();
 
