@@ -193,9 +193,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
               viewport={{ amount: 0.3 }}
               id={`step-placeholder-${i + 1}`}
               key={`placeholder-${s.title}`}
-              className='text-light h-screen text-center md:h-[80vh]'>
-              {i + 1}
-            </motion.div>
+              className='text-light h-screen text-center md:h-[80vh]'></motion.div>
           )
       )}
     </section>
