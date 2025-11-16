@@ -137,23 +137,11 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       return;
     }
 
-    // Animate to the exact step that entered viewport
     animate(snappedIndex, targetIndex, {
       ease: 'easeInOut',
       delay: 0,
       duration: 0.5,
     });
-
-    const element = document.getElementById(`step-placeholder-${targetIndex}`);
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      const scrollTarget = rect.top + window.scrollY - window.innerHeight * 0.3;
-
-      window.scrollTo({
-        top: scrollTarget,
-        behavior: 'smooth',
-      });
-    }
   };
 
   return (
