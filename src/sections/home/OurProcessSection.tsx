@@ -176,10 +176,10 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         onViewportEnter={() => {
           onStepEnter(0);
         }}
-        viewport={{ amount: 0.5 }}
+        viewport={{ amount: 0.3 }}
         id={`step-placeholder-0`}
         key={`placeholder-0`}
-        className='text-light absolute top-0 h-screen w-full text-center md:h-[80vh]'>
+        className='text-light absolute top-0 h-[80vh] w-full text-center'>
         0
       </motion.div>
 
@@ -190,7 +190,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
               onViewportEnter={() => {
                 onStepEnter(i + 1);
               }}
-              viewport={{ amount: 0.5 }}
+              viewport={{ amount: 0.3 }}
               id={`step-placeholder-${i + 1}`}
               key={`placeholder-${s.title}`}
               className='text-light h-screen text-center md:h-[80vh]'>
