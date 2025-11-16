@@ -6,16 +6,16 @@ import { useEffect, useRef, useState } from 'react';
 import {
   animate,
   motion,
-  useInView,
   useMotionValue,
   useMotionValueEvent,
+  useScroll,
+  useTransform,
 } from 'motion/react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';
 import { calculateDistance, getElementCenter } from '@/lib/utils';
 import { TailwindBreakpoints } from '@/lib/css-constants';
 import ProcessStepNumber from './components/ProcessStepNumber';
 import ProcessStepContent from './components/ProcessStepContent';
-import clsx from 'clsx';
 import { useLenis } from 'lenis/react';
 
 const RADIANS_RANGE = 2 * Math.PI;
@@ -39,8 +39,75 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
   const [distance, setDistance] = useState<number>(0);
   const [stepsPositionYOffset, setStepsPositionYOffset] = useState<number>(0);
 
-  const sectionInView = useInView(contentContainerRef, { amount: 1 });
   const snappedIndex = useMotionValue(0);
+  const lastValidStepRef = useRef<number>(0);
+
+  // Track scroll progress through the entire section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // Transform scroll progress (0-1) to step index (0 to steps.length - 1)
+  const scrollStepIndex = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, steps.length - 1]
+  );
+
+  // Sync scroll-based step index with snappedIndex, limiting to one step at a time
+  useMotionValueEvent(scrollStepIndex, 'change', (latest) => {
+    if (!snappedIndex.isAnimating()) {
+      const targetIndex = Math.round(latest);
+      const currentIndex = Math.round(snappedIndex.get());
+      const lastValidIndex = lastValidStepRef.current;
+
+      // Calculate the difference from the last valid step
+      const stepDiff = targetIndex - lastValidIndex;
+
+      // Only allow moving one step at a time (±1)
+      let allowedTargetIndex = lastValidIndex;
+      if (Math.abs(stepDiff) > 1) {
+        // If trying to jump more than one step, only allow moving one step
+        allowedTargetIndex = lastValidIndex + (stepDiff > 0 ? 1 : -1);
+      } else {
+        // If within one step, allow the change
+        allowedTargetIndex = targetIndex;
+      }
+
+      // Clamp to valid range
+      allowedTargetIndex = Math.max(
+        0,
+        Math.min(allowedTargetIndex, steps.length - 1)
+      );
+
+      // Only update if different from current
+      if (allowedTargetIndex !== currentIndex) {
+        lastValidStepRef.current = allowedTargetIndex;
+
+        // If we're limiting the scroll, snap to the correct placeholder
+        if (allowedTargetIndex !== targetIndex) {
+          lenis?.scrollTo(`#step-placeholder-${allowedTargetIndex}`, {
+            immediate: true,
+          });
+          const placeholderElement = document.getElementById(
+            `step-placeholder-${allowedTargetIndex}`
+          );
+          if (placeholderElement) {
+            placeholderElement.scrollIntoView({
+              behavior: 'instant',
+              block: 'center',
+            });
+          }
+        }
+
+        animate(snappedIndex, allowedTargetIndex, {
+          ease: 'easeInOut',
+          duration: 0.3,
+        });
+      }
+    }
+  });
 
   useMotionValueEvent(snappedIndex, 'change', (fi) => {
     const radiansStep = steps.length > 1 ? RADIANS_RANGE / steps.length : 0;
@@ -60,14 +127,6 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         y: p.y + stepsPositionYOffset,
       }))
     );
-
-    if (fi !== Math.round(fi) && !lenis?.isStopped) {
-      console.log('lenis stop');
-      lenis?.stop();
-    } else if (fi === Math.round(fi)) {
-      console.log('lenis start');
-      lenis?.start();
-    }
   });
 
   useEffect(() => {
@@ -132,32 +191,11 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       setDistance(distance);
       setStepsPositionYOffset(stepsPositionYOffset);
       setStepNumber(0);
+      lastValidStepRef.current = 0;
     };
 
     calculatePositions();
-  }, [steps, screenWidth, lenis]);
-  console.log('lenis', lenis);
-
-  useEffect(() => {
-    if (!lenis || !sectionInView) return;
-    const unsub = lenis.on('scroll', (e) => {
-      if (snappedIndex.isAnimating()) return;
-      console.log('lenis scroll event');
-
-      const targetIndex = Math.round(snappedIndex.get()) + e.direction;
-      console.log('targetIndex', targetIndex);
-
-      if (targetIndex < 0 || targetIndex >= steps.length) return;
-
-      lenis.scrollTo(`#step-placeholder-${targetIndex}`, { immediate: true });
-      animate(snappedIndex, targetIndex, {
-        ease: 'easeInOut',
-        delay: 0,
-        duration: 0.5,
-      });
-    });
-    return () => unsub();
-  }, [sectionInView]);
+  }, [steps, screenWidth, isMobile]);
 
   // const onStepEnter = (index: number) => {
   //   if (snappedIndex.isAnimating() || !sectionInView) {

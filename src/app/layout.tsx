@@ -41,7 +41,14 @@ export default async function RootLayout({
           crossOrigin='anonymous'
         />
         <SiteReadyProvider>
-          <ReactLenis root options={{ lerp: 0.08 }}>
+          <ReactLenis
+            root
+            options={{
+              lerp: 0.08,
+              smoothWheel: true,
+              touchMultiplier: 2,
+              wheelMultiplier: 1,
+            }}>
             <WebsiteLoader>
               <Navbar />
               <main className='relative z-0'>{children}</main>
