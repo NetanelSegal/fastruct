@@ -58,6 +58,12 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         y: p.y + stepsPositionYOffset,
       }))
     );
+
+    if (fi !== Math.round(fi) && !lenis?.isStopped) {
+      lenis?.stop();
+    } else if (fi === Math.round(fi)) {
+      lenis?.start();
+    }
   });
 
   useEffect(() => {
@@ -131,13 +137,10 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     if (snappedIndex.isAnimating()) {
       return;
     }
-
     const targetIndex = Math.max(0, Math.min(index, steps.length - 1));
     const currentIndex = Math.round(snappedIndex.get());
 
-    if (currentIndex === targetIndex) {
-      return;
-    }
+    if (currentIndex === targetIndex) return;
 
     animate(snappedIndex, targetIndex, {
       ease: 'easeInOut',
@@ -187,9 +190,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
       </div>
 
       <motion.div
-        onViewportEnter={() => {
-          onStepEnter(0);
-        }}
+        onViewportEnter={() => onStepEnter(0)}
         viewport={{ amount: 0.3 }}
         id={`step-placeholder-0`}
         key={`placeholder-0`}
@@ -199,16 +200,11 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         (s, i) =>
           i < steps.length - 1 && (
             <motion.div
-              onViewportEnter={() => {
-                onStepEnter(i + 1);
-              }}
+              onViewportEnter={() => onStepEnter(i + 1)}
               viewport={{ amount: 0.3 }}
               id={`step-placeholder-${i + 1}`}
               key={`placeholder-${s.title}`}
-              className={clsx(
-                'text-light h-screen text-center',
-                i === steps.length - 1 ? 'h-[120vh]' : 'h-screen'
-              )}></motion.div>
+              className='text-light h-[50vh] text-center'></motion.div>
           )
       )}
     </section>
