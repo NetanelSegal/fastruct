@@ -125,12 +125,36 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
     return () => window.removeEventListener('resize', calculatePositions);
   }, [steps, isMobile]);
 
-  const onStepEnter = (index: number) =>
-    animate(snappedIndex, index, {
+  const onStepEnter = (index: number) => {
+    if (snappedIndex.isAnimating()) {
+      return;
+    }
+
+    const targetIndex = Math.max(0, Math.min(index, steps.length - 1));
+    const currentIndex = Math.round(snappedIndex.get());
+
+    if (currentIndex === targetIndex) {
+      return;
+    }
+
+    // Animate to the exact step that entered viewport
+    animate(snappedIndex, targetIndex, {
       ease: 'easeInOut',
       delay: 0,
       duration: 0.5,
     });
+
+    const element = document.getElementById(`step-placeholder-${targetIndex}`);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const scrollTarget = rect.top + window.scrollY - window.innerHeight * 0.3;
+
+      window.scrollTo({
+        top: scrollTarget,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
     <section ref={sectionRef} className='relative z-0 text-center'>
@@ -179,7 +203,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
         viewport={{ amount: 0.3 }}
         id={`step-placeholder-0`}
         key={`placeholder-0`}
-        className='text-light absolute top-0 h-[80vh] w-full text-center'></motion.div>
+        className='text-light absolute top-0 h-screen w-full text-center'></motion.div>
 
       {steps.map(
         (s, i) =>
@@ -191,7 +215,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
               viewport={{ amount: 0.3 }}
               id={`step-placeholder-${i + 1}`}
               key={`placeholder-${s.title}`}
-              className='text-light h-screen text-center md:h-[80vh]'></motion.div>
+              className='text-light h-screen text-center'></motion.div>
           )
       )}
     </section>
