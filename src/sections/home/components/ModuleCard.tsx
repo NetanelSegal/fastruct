@@ -60,7 +60,7 @@ export const ModuleCard = ({
         <motion.div
           initial='initial'
           transition={{ duration: CARD_ANIMATION_DURATION }}
-          viewport={{ once: false, amount: 0.8 }}
+          viewport={{ once: true, amount: 0.8 }}
           {...motionContainerProps}
           className='bg-light group relative z-0 flex cursor-pointer flex-col gap-4'>
           <div className='relative aspect-[4/3] w-full overflow-hidden'>
