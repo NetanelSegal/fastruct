@@ -104,6 +104,8 @@ const FeaturesGridSection = ({ items }: IFeaturesGrid) => {
   const isMobile = screenWidth < TailwindBreakpoints.md;
 
   useEffect(() => {
+    if (!isMobile) return;
+
     const updateActiveRow = () => {
       const viewportCenter = window.innerHeight / 2;
       let closestIndex: number | null = null;
@@ -137,7 +139,7 @@ const FeaturesGridSection = ({ items }: IFeaturesGrid) => {
       window.removeEventListener('scroll', updateActiveRow);
       window.removeEventListener('resize', updateActiveRow);
     };
-  }, []);
+  }, [screenWidth]);
 
   return (
     <section ref={sectionRef} className='bg-light text-dark py-0'>
