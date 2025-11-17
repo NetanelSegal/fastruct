@@ -25,9 +25,22 @@ export interface IFeaturesGrid {
   items: IFeatureItem[];
 }
 
+export interface ITeamMember {
+  name: string;
+  role: string;
+  bio: string;
+  imageUrl: string;
+}
+
+export interface ITeam {
+  title: string;
+  members: ITeamMember[];
+}
+
 export interface IAboutContent {
   hero: IHeroAbout;
   about: IAbout;
   imageText: IImageText;
   featuresGrid: IFeaturesGrid;
+  team: ITeam;
 }
