@@ -4,7 +4,7 @@
  *
  * Currently enabled: Home and Contact (ready for client review)
  */
-const ENABLED_PAGES = ['/', '/contact'];
+const ENABLED_PAGES = ['/', '/contact', '/about'];
 
 /**
  * Check if a page path is enabled

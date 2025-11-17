@@ -6,6 +6,7 @@ import FeaturesGridSection from '@/sections/about/FeaturesGridSection';
 import { isPageEnabled } from '@/lib/page-config';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getContent('about', 'en');
@@ -16,7 +17,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const AboutPage = async () => {
-  // Check if page is enabled
   if (!isPageEnabled('/about')) {
     notFound();
   }

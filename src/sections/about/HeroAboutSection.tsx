@@ -6,65 +6,61 @@ import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import Parallax from '@/components/Parallax';
 import { IHeroAbout } from '@/types/about';
 import { Section } from '@/components/Section';
+import { useRef } from 'react';
+import { useScroll, useTransform, motion } from 'motion/react';
+import { WhereInnovation } from './components/WhereInnovationMeatsHome';
 
-const HeroAboutSection = ({
-  title,
-  subtitle,
-  backgroundImage,
-  bigTextLine1,
-}: IHeroAbout) => {
+const HeroAboutSection = ({ title, subtitle, backgroundImage }: IHeroAbout) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['end end', 'end start'],
+  });
+
+  const topLineY = useTransform(scrollYProgress, [0, 0.5, 1], [120, 0, 0]);
+
   return (
-    <Section
-      bgColor='dark'
-      textColor='white'
-      className='relative h-screen overflow-hidden p-0'>
-      {/* Background Image with Parallax */}
-      <Parallax
-        className='absolute inset-0'
-        startRange={0}
-        endRange={-30}
-        unitType='%'
-        offset={['start start', 'end end']}>
-        <div className='relative h-full w-full'>
-          <Image
-            src={backgroundImage}
-            alt='Hero background'
-            fill
-            sizes='100vw'
-            className='object-cover object-center'
-            priority
-          />
-          <div className='bg-dark/40 absolute inset-0' />
-        </div>
-      </Parallax>
+    <section
+      ref={sectionRef}
+      className='bg-dark relative overflow-hidden p-0 text-white'>
+      <div className='absolute inset-0'>
+        <Image
+          fill
+          priority
+          src={backgroundImage}
+          alt='About us'
+          className='object-cover object-center'
+        />
+        <div className='bg-dark/40 absolute inset-0' />
+      </div>
 
       {/* Bottom-left text overlay */}
-      <div className='container-padding absolute bottom-4 left-0 z-10 w-full text-white md:bottom-8 md:w-2/3 lg:bottom-16 lg:w-1/2'>
-        <AnimatedHeading
-          text={title}
-          className='text-h1 font-bebas tracking-wider'
-        />
-        <FadeInParagraph className='text-h6 text-light opacity-70'>
-          {subtitle}
-        </FadeInParagraph>
+      <div className='absolute right-0 left-0 h-screen'>
+        <div className='container-padding absolute bottom-4 left-0 z-10 w-full text-white md:bottom-8 md:w-2/3 lg:bottom-16 lg:w-1/2'>
+          <AnimatedHeading
+            text={title}
+            className='text-h1 font-bebas tracking-wider'
+          />
+          <FadeInParagraph className='text-h6 text-light opacity-70'>
+            {subtitle}
+          </FadeInParagraph>
+        </div>
       </div>
-
-      {/* Bottom headline extending into next section */}
-      <div className='container-padding absolute -bottom-20 left-0 z-10 w-full md:-bottom-32'>
-        <Parallax
-          className='relative'
-          startRange={0}
-          endRange={-200}
-          unitType='px'
-          offset={['start start', 'end start']}>
-          <div className='flex flex-col gap-2 md:flex-row md:gap-4'>
-            <span className='text-h1 font-bebas text-white md:text-[6rem] lg:text-[8rem]'>
-              {bigTextLine1}
-            </span>
-          </div>
-        </Parallax>
+      {/* section height placeholder */}
+      <div className='opacity-0'>
+        <div className='h-screen'></div>
+        <WhereInnovation className='w-full md:w-2/3 lg:w-1/2' />
       </div>
-    </Section>
+      {/* Bottom headline - scroll-driven animation */}
+      <div className='absolute bottom-0 left-0 z-10 w-full overflow-hidden'>
+        <motion.div
+          style={{ y: topLineY }}
+          className='flex w-full justify-center'>
+          <WhereInnovation className='w-full md:w-2/3 lg:w-1/2' />
+        </motion.div>
+      </div>
+    </section>
   );
 };
 
