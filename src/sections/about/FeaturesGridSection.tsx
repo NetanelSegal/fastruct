@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import { motion, Transition } from 'motion/react';
 import { IFeaturesGrid, IFeatureItem } from '@/types/about';
+import { useScreenWidth } from '@/hooks/useScreenWidth';
+import { TailwindBreakpoints } from '@/lib/css-constants';
 
 const FeatureRow = ({
   title,
@@ -11,13 +13,19 @@ const FeatureRow = ({
   imageUrl,
   index,
   isActive,
+  isMobile,
   rowRef,
 }: IFeatureItem & {
   index: number;
   isActive: boolean;
+  isMobile: boolean;
   rowRef: (el: HTMLDivElement | null) => void;
 }) => {
-  const isCardActive = isActive;
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Desktop: flip on hover, Mobile: flip on scroll activation
+  const isFlipped = isMobile ? isActive : isHovered;
+  const isCardActive = isMobile ? isActive : isHovered;
   const transition: Transition = {
     duration: 0.6,
     ease: 'easeInOut',
@@ -28,11 +36,14 @@ const FeatureRow = ({
       ref={rowRef}
       className='border-dark/20 relative z-0 w-full border-b last:border-b-0'
       data-row-index={index}>
-      <div className='relative w-full overflow-hidden'>
+      <div
+        className='relative w-full overflow-hidden'
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}>
         <motion.div
           className='relative grid size-full grid-cols-1 grid-rows-1 content-center items-center justify-center py-10 text-center'
           animate={{
-            rotateX: isCardActive ? 180 : 0,
+            rotateX: isFlipped ? 180 : 0,
           }}
           transition={transition}>
           <motion.div
@@ -89,6 +100,8 @@ const FeaturesGridSection = ({ items }: IFeaturesGrid) => {
   const sectionRef = useRef<HTMLElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { screenWidth } = useScreenWidth();
+  const isMobile = screenWidth < TailwindBreakpoints.md;
 
   useEffect(() => {
     const updateActiveRow = () => {
@@ -135,6 +148,7 @@ const FeaturesGridSection = ({ items }: IFeaturesGrid) => {
             {...item}
             index={index}
             isActive={activeIndex === index}
+            isMobile={isMobile}
             rowRef={(el) => {
               rowRefs.current[index] = el;
             }}
