@@ -4,6 +4,9 @@ import { Section } from '@/components/Section';
 import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import { IWhyModularPanelized } from '@/types/home';
 import WhyModularPanelizedMiniSection from './components/WhyModularPanelizedMiniSection';
+import Image from 'next/image';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 
 const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
   modular,
@@ -11,9 +14,20 @@ const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
   combinedApproach,
 }) => {
   const categories = [modular, panelized, combinedApproach];
+  const [isMiniSectionVisible, setIsMiniSectionVisible] = useState<boolean[]>([
+    false,
+    false,
+    false,
+  ]);
+  const activeCategoryIndex = isMiniSectionVisible.findLastIndex(
+    (value) => value
+  );
+
+  console.log('isMiniSectionVisible', isMiniSectionVisible);
+  console.log('activeCategoryIndex', activeCategoryIndex);
 
   return (
-    <Section bgColor='dark'>
+    <Section bgColor='dark' textColor='light'>
       <div className='mb-8 text-center'>
         <AnimatedHeading
           text='Why Modular & Panelized Construction'
@@ -22,13 +36,38 @@ const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
         />
       </div>
 
-      <div className='flex flex-col'>
+      <div className='relative mt-16 flex flex-col gap-36'>
+        <AnimatePresence>
+          <motion.div
+            key={categories[activeCategoryIndex]?.title}
+            style={{ display: activeCategoryIndex !== -1 ? 'block' : 'none' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.2 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className='fixed top-0 size-full h-screen w-full -translate-x-1/4'>
+            <Image
+              src={
+                categories[activeCategoryIndex]?.image || categories[0].image
+              }
+              alt={
+                categories[activeCategoryIndex]?.title ||
+                'Why Modular & Panelized Construction image'
+              }
+              fill
+              className='object-contain'
+            />
+          </motion.div>
+        </AnimatePresence>
         {categories.map((category, index) => (
           <WhyModularPanelizedMiniSection
             key={category.title}
             category={category}
-            index={index}
-            totalSections={categories.length}
+            updateActiveCategoryIndex={(isInView) =>
+              setIsMiniSectionVisible((prev) =>
+                prev.map((value, i) => (i === index ? isInView : value))
+              )
+            }
           />
         ))}
       </div>

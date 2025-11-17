@@ -56,7 +56,7 @@ export const ModuleCard = ({
   return (
     <motion.div
       variants={variants}
-      className='w-full basis-full overflow-hidden rounded-xl shadow-md md:basis-1/2'>
+      className='w-full shrink grow overflow-hidden rounded-xl shadow-md md:max-w-1/2 md:basis-1/3'>
       <Link href={`/module/${slug}`} className='block'>
         <motion.div
           initial='initial'

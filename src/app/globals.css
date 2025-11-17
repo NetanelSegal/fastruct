@@ -55,6 +55,15 @@
   .section-padding-top {
     @apply pt-18 md:pt-26 lg:pt-34;
   }
+
+  .section-padding-bottom {
+    @apply pb-18 md:pb-26 lg:pb-34;
+  }
+
+  .section-padding-y {
+    @apply py-18 md:py-26 lg:py-34;
+  }
+
   .section-padding {
     @apply px-4 py-18 md:px-8 md:py-26 lg:px-16 lg:py-34;
   }

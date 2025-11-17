@@ -161,7 +161,12 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
   }, [steps, screenWidth, isMobile]);
 
   return (
-    <section ref={sectionRef} className='relative z-0 text-center'>
+    <section
+      ref={sectionRef}
+      className={clsx(
+        'relative z-0 text-center',
+        isMobile && 'section-padding-y'
+      )}>
       <AnimatedHeading
         text={title}
         className='text-h1 font-bebas text-light'
@@ -213,7 +218,7 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
               key={`placeholder-${s.title}`}
               className={clsx(
                 'text-light h-screen text-center',
-                i % 2 === 1 ? '' : 'bg-white/10'
+                i % 2 === 0 && 'bg-white/5'
               )}></motion.div>
           )
       )}
