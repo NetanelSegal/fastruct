@@ -1,3 +1,5 @@
+import { isPageEnabled } from './page-config';
+
 export const ROUTES = [
   { href: '/', title: 'Home' },
   { href: '/about', title: 'About' },
@@ -8,3 +10,8 @@ export const ROUTES = [
     isButton: true,
   },
 ];
+
+// Export filtered routes for navigation components
+export const ENABLED_ROUTES = ROUTES.filter((route) =>
+  isPageEnabled(route.href)
+);

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import NavLink from './NavLink';
 import { Button } from '../Button';
-import { ROUTES } from '@/lib/routes';
+import { ENABLED_ROUTES } from '@/lib/routes';
 import { RefObject } from 'react';
 import { motion, Variants } from 'motion/react';
 
@@ -35,7 +35,7 @@ const MobileNavbar = ({ menuRef, onNavigate }: IMobileNavbarProps) => {
       <nav
         ref={menuRef}
         className='flex flex-col items-center justify-center gap-2'>
-        {ROUTES.map((route) =>
+        {ENABLED_ROUTES.map((route) =>
           route.isButton ? (
             <Link href={route.href} key={route.href} onClick={onNavigate}>
               <Button variant='primary' size='lg' hoverTransition='lift'>

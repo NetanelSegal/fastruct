@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import AnimatedHeading from '../text-animation/AnimatedHeading';
 import { Button } from '../Button';
-import { ROUTES } from '@/lib/routes';
+import { ENABLED_ROUTES } from '@/lib/routes';
 import { IContactInfo, IContactSocial } from '@/types/contact';
 
 const LetsBuildTogetherCTA = () => {
@@ -33,7 +33,7 @@ const FooterLinksAndContact = ({
   info,
   social,
 }: FooterLinksAndContactProps) => {
-  const footerLinks = ROUTES.filter((route) => !route.isButton);
+  const footerLinks = ENABLED_ROUTES.filter((route) => !route.isButton);
   return (
     <div className='flex w-full flex-col gap-4 md:w-auto md:flex-row'>
       <div className='border-light flex flex-col gap-1 border-b-2 pb-4 md:border-r-2 md:border-b-0 md:pr-4'>

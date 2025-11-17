@@ -3,6 +3,8 @@ import HeroAboutSection from '@/sections/about/HeroAboutSection';
 import AboutIntroSection from '@/sections/about/AboutIntroSection';
 import ImageTextSection from '@/sections/about/ImageTextSection';
 import FeaturesGridSection from '@/sections/about/FeaturesGridSection';
+import { isPageEnabled } from '@/lib/page-config';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -14,6 +16,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const AboutPage = async () => {
+  // Check if page is enabled
+  if (!isPageEnabled('/about')) {
+    notFound();
+  }
+
   const content = await getContent('about', 'en');
 
   return (

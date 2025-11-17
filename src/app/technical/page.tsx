@@ -1,3 +1,5 @@
+import { isPageEnabled } from '@/lib/page-config';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,6 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function Technical() {
+  // Check if page is enabled
+  if (!isPageEnabled('/technical')) {
+    notFound();
+  }
+
   return (
     <section className='py-16'>
       <div className='max-w-6xl'>

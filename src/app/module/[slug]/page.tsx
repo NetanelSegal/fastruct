@@ -1,5 +1,6 @@
 import { getModules } from '@/lib/content';
 import { notFound } from 'next/navigation';
+import { isModulePageEnabled } from '@/lib/page-config';
 import HeroProductSection from '@/sections/product/HeroProductSection';
 import SpecificationsSection from '@/sections/product/SpecificationsSection';
 import ProductDescriptionSection from '@/sections/product/ProductDescriptionSection';
@@ -35,6 +36,11 @@ export async function generateMetadata({ params }: ModulePageProps) {
 }
 
 const ModulePage = async ({ params }: ModulePageProps) => {
+  // Check if module pages are enabled
+  if (!isModulePageEnabled()) {
+    notFound();
+  }
+
   const { slug } = await params;
   const modules = await getModules();
   const module = modules.find((m) => m.slug === slug);
