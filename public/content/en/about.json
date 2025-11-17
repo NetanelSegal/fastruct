@@ -36,5 +36,34 @@
         "imageUrl": "/assets/features-image-4.jpg"
       }
     ]
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "members": [
+      {
+        "name": "Sarah Johnson",
+        "role": "CEO & Founder",
+        "bio": "With over 15 years in construction and modular building, Sarah leads FastStruct with a vision to revolutionize home building.",
+        "imageUrl": "/assets/team-member-1.jpg"
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Head of Engineering",
+        "bio": "Michael brings innovative engineering solutions to every project, ensuring quality and efficiency in our modular systems.",
+        "imageUrl": "/assets/team-member-2.jpg"
+      },
+      {
+        "name": "Emily Rodriguez",
+        "role": "Project Director",
+        "bio": "Emily oversees project delivery, ensuring every client receives personalized attention and seamless execution from start to finish.",
+        "imageUrl": "/assets/team-member-3.jpg"
+      },
+      {
+        "name": "David Thompson",
+        "role": "Design Lead",
+        "bio": "David combines architectural excellence with practical design, creating homes that are both beautiful and functional.",
+        "imageUrl": "/assets/team-member-4.jpg"
+      }
+    ]
   }
 }

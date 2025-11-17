@@ -66,8 +66,8 @@ const OurProcessSection: React.FC<IProcess> = ({ title, steps }) => {
           Math.min(targetIndex, steps.length - 1)
         );
         animate(snappedIndex, clampedIndex, {
-          ease: 'easeInOut',
-          duration: 0.3,
+          ease: 'easeOut',
+          duration: 0.5,
         });
       }
     }

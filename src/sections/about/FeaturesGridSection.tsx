@@ -1,135 +1,163 @@
 'use client';
 
 import Image from 'next/image';
-import {
-  motion,
-  MotionValue,
-  useInView,
-  useScroll,
-  useTransform,
-} from 'motion/react';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { motion, Transition } from 'motion/react';
 import { IFeaturesGrid, IFeatureItem } from '@/types/about';
-import { Section } from '@/components/Section';
-import Parallax from '@/components/Parallax';
+import { useScreenWidth } from '@/hooks/useScreenWidth';
+import { TailwindBreakpoints } from '@/lib/css-constants';
 
-// Utility to detect mobile (SSR-safe)
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < breakpoint);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, [breakpoint]);
-  return isMobile;
-}
-
-const FeatureCard = ({
+const FeatureRow = ({
   title,
   text,
   imageUrl,
   index,
-  sectionProgress,
-}: IFeatureItem & { index: number; sectionProgress: MotionValue<number> }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 0.3, once: true });
+  isActive,
+  isMobile,
+  rowRef,
+}: IFeatureItem & {
+  index: number;
+  isActive: boolean;
+  isMobile: boolean;
+  rowRef: (el: HTMLDivElement | null) => void;
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-  const isMobile = useIsMobile();
-
-  // Only apply parallax effect on desktop
-  const cardY = useTransform(
-    sectionProgress,
-    [0, 1],
-    isMobile
-      ? [0, 0]
-      : [index % 2 === 0 ? 100 : -100, index % 2 === 0 ? -100 : 100]
-  );
-  const cardOpacity = useTransform(
-    sectionProgress,
-    [0, 0.2 + index * 0.1, 0.8, 1],
-    isMobile ? [1, 1, 1, 1] : [0, 1, 1, 0]
-  );
+  // Desktop: flip on hover, Mobile: flip on scroll activation
+  const isFlipped = isMobile ? isActive : isHovered;
+  const isCardActive = isMobile ? isActive : isHovered;
+  const transition: Transition = {
+    duration: 0.6,
+    ease: 'easeInOut',
+  };
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ y: cardY, opacity: cardOpacity }}
-      initial={{ opacity: 0, y: isMobile ? 0 : 50 }}
-      animate={
-        isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: isMobile ? 0 : 50 }
-      }
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className='group relative aspect-[4/3] overflow-hidden rounded-xl'>
-      {/* Background Image: No Parallax for mobile */}
-      {imageUrl &&
-        (isMobile ? (
-          <div className='absolute inset-0'>
+    <div
+      ref={rowRef}
+      className='border-dark/20 relative z-0 w-full border-b last:border-b-0'
+      data-row-index={index}>
+      <div
+        className='relative w-full overflow-hidden'
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}>
+        <motion.div
+          className='relative grid size-full grid-cols-1 grid-rows-1 content-center items-center justify-center py-10 text-center'
+          animate={{
+            rotateX: isFlipped ? 180 : 0,
+          }}
+          transition={transition}>
+          <motion.div
+            className='absolute inset-0 z-0'
+            animate={{
+              filter: isCardActive
+                ? 'brightness(1) saturate(1)'
+                : 'brightness(0.5) saturate(0)',
+            }}
+            transition={transition}>
             <Image
               src={imageUrl}
               alt={title}
               fill
-              sizes='(max-width: 768px) 100vw, 50vw'
-              className='scale-125 object-cover object-center transition-transform duration-700 group-hover:scale-150'
+              sizes='100vw'
+              className='object-cover object-center'
             />
-          </div>
-        ) : (
-          <Parallax
-            className='absolute inset-0'
-            startRange={30}
-            endRange={-30}
-            unitType='px'
-            offset={['start center', 'end center']}>
-            <div className='relative h-full w-full'>
-              <Image
-                src={imageUrl}
-                alt={title}
-                fill
-                sizes='(max-width: 768px) 100vw, 50vw'
-                className='scale-125 object-cover object-center transition-transform duration-700 group-hover:scale-150'
-              />
-            </div>
-          </Parallax>
-        ))}
+          </motion.div>
 
-      {/* Dark Overlay */}
-      <div className='bg-dark/60 group-hover:bg-dark/40 absolute inset-0 transition-opacity duration-300' />
+          <div className='bg-dark/30 absolute inset-0 z-0 flex items-center justify-center' />
 
-      {/* Content */}
-      <div className='relative flex h-full flex-col justify-between p-6 md:p-8'>
-        <h3 className='text-h2 font-bebas md:text-h1 text-white'>{title}</h3>
-        <p className='text-h6 text-light/90 max-w-md'>{text}</p>
+          <motion.h3
+            style={{
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+            }}
+            transition={transition}
+            animate={{
+              rotateX: isCardActive ? 180 : 0,
+            }}
+            className='text-h2 font-bebas md:text-h1 z-10 text-white lg:text-[4rem]'>
+            {title}
+          </motion.h3>
+
+          <motion.div
+            transition={transition}
+            animate={{
+              rotateX: isCardActive ? 0 : 180,
+            }}
+            style={{
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+            }}
+            className='absolute inset-0 z-50 flex items-center justify-center'>
+            <p className='text-h6 text-light max-w-2xl rotate-x-180'>{text}</p>
+          </motion.div>
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 const FeaturesGridSection = ({ items }: IFeaturesGrid) => {
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { screenWidth } = useScreenWidth();
+  const isMobile = screenWidth < TailwindBreakpoints.md;
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const updateActiveRow = () => {
+      const viewportCenter = window.innerHeight / 2;
+      let closestIndex: number | null = null;
+      let closestDistance = Infinity;
+
+      rowRefs.current.forEach((rowRef, index) => {
+        if (!rowRef) return;
+
+        const rowRect = rowRef.getBoundingClientRect();
+        const rowCenter = rowRect.top + rowRect.height / 2;
+        const distanceFromCenter = Math.abs(rowCenter - viewportCenter);
+
+        if (
+          rowRect.bottom > 0 &&
+          rowRect.top < window.innerHeight &&
+          distanceFromCenter < closestDistance
+        ) {
+          closestDistance = distanceFromCenter;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    updateActiveRow();
+    window.addEventListener('scroll', updateActiveRow, { passive: true });
+    window.addEventListener('resize', updateActiveRow);
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveRow);
+      window.removeEventListener('resize', updateActiveRow);
+    };
+  }, [screenWidth]);
 
   return (
-    <Section
-      ref={sectionRef}
-      bgColor='light'
-      textColor='dark'
-      className='py-32'>
-      <div className='container mx-auto'>
-        <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
-          {items.map((item, index) => (
-            <FeatureCard
-              key={index}
-              {...item}
-              index={index}
-              sectionProgress={scrollYProgress}
-            />
-          ))}
-        </div>
+    <section ref={sectionRef} className='bg-light text-dark py-0'>
+      <div className='w-full'>
+        {items.map((item, index) => (
+          <FeatureRow
+            key={index}
+            {...item}
+            index={index}
+            isActive={activeIndex === index}
+            isMobile={isMobile}
+            rowRef={(el) => {
+              rowRefs.current[index] = el;
+            }}
+          />
+        ))}
       </div>
-    </Section>
+    </section>
   );
 };
 

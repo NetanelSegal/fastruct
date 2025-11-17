@@ -23,9 +23,6 @@ const WhyModularPanelizedSection: React.FC<IWhyModularPanelized> = ({
     (value) => value
   );
 
-  console.log('isMiniSectionVisible', isMiniSectionVisible);
-  console.log('activeCategoryIndex', activeCategoryIndex);
-
   return (
     <Section bgColor='dark' textColor='light'>
       <div className='mb-8 text-center'>

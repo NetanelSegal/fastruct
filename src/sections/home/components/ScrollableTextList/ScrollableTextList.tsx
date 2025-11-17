@@ -22,18 +22,14 @@ const ScrollableTextList: React.FC<ScrollableTextListProps> = ({
 
   // Use motion values for smooth animations
   const top = useMotionValue(cubeTop);
-  const x = useMotionValue(0);
 
   // Shared spring configuration for synchronized animations
   const springConfig = {
-    stiffness: 100,
-    damping: 20,
-    mass: 0.5,
+    stiffness: 80,
+    damping: 10,
   };
 
-  // Spring animations - both use the same config for perfect synchronization
   const springTop = useSpring(top, springConfig);
-  const springX = useSpring(x, springConfig);
 
   useEffect(() => {
     if (onActiveIndexChange) {
@@ -48,21 +44,11 @@ const ScrollableTextList: React.FC<ScrollableTextListProps> = ({
         setPrevActiveIndex(activeIndex);
         setPrevCubeTop(cubeTop);
 
-        // Update both positions simultaneously - they will animate in sync
         top.set(cubeTop);
-        // Bounce left first, then return to 0
-        x.set(-28);
-
-        // After a brief delay, return x to 0 (this creates the bounce effect)
-        // The delay should be about 30% of the spring duration
-        const bounceDelay = 200; // milliseconds
-        setTimeout(() => {
-          x.set(0);
-        }, bounceDelay);
       }
     };
     triggerBounceAnimation();
-  }, [activeIndex, prevActiveIndex, cubeTop, prevCubeTop, x, top]);
+  }, [activeIndex, prevActiveIndex, cubeTop, prevCubeTop, top]);
 
   return (
     <div
@@ -74,7 +60,6 @@ const ScrollableTextList: React.FC<ScrollableTextListProps> = ({
         style={{
           left: 0,
           top: springTop,
-          x: springX,
         }}
       />
       {/* Text items */}
