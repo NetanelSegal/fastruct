@@ -5,8 +5,6 @@ import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import ScrollableTextList from './ScrollableTextList/ScrollableTextList';
 import { useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
-import { useScreenWidth } from '@/hooks/useScreenWidth';
-import { TailwindBreakpoints } from '@/lib/css-constants';
 
 interface WhyModularPanelizedMiniSectionProps {
   category: IConstructionCategory;
@@ -21,7 +19,7 @@ const WhyModularPanelizedMiniSection: React.FC<
 
   useEffect(() => {
     updateActiveCategoryIndex(isInView);
-  }, [isInView]);
+  }, [isInView, updateActiveCategoryIndex]);
 
   return (
     <div ref={sectionRef} className='md:min-h-screen'>

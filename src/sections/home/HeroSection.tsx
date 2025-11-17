@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import TypingEffect from '@/components/text-animation/TypingEffect';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Parallax from '@/components/Parallax';
 import { UseScrollOptions } from 'motion/react';
 import { useScreenWidth } from '@/hooks/useScreenWidth';

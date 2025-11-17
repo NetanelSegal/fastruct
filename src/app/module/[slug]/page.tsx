@@ -36,47 +36,46 @@ export async function generateMetadata({ params }: ModulePageProps) {
 }
 
 const ModulePage = async ({ params }: ModulePageProps) => {
-  // Check if module pages are enabled
   if (!isModulePageEnabled()) {
     notFound();
   }
 
   const { slug } = await params;
-  const modules = await getModules();
-  const module = modules.find((m) => m.slug === slug);
+  const modulesList = await getModules();
+  const currentModule = modulesList.find((m) => m.slug === slug);
 
-  if (!module) {
+  if (!currentModule) {
     notFound();
   }
 
   // Transform module data to match section props
   const heroData = {
-    title: module.title,
-    subtitle: module.summary,
-    backgroundImage: module.mainImage,
+    title: currentModule.title,
+    subtitle: currentModule.summary,
+    backgroundImage: currentModule.mainImage,
   };
 
   const specificationsData = {
-    floorPlanImage: module.sketchPlans[0] || module.mainImage,
+    floorPlanImage: currentModule.sketchPlans[0] || currentModule.mainImage,
     floorPlanLabel: 'FLOOR PLAN',
-    area: `${module.specs.areaSqft} sq.ft.`,
+    area: `${currentModule.specs.areaSqft} sq.ft.`,
     specs: [
-      { label: 'SIZE (sqft)', value: module.specs.areaSqft },
-      { label: 'BEDROOM', value: module.specs.bedrooms },
-      { label: 'BATHROOMS', value: module.specs.bathrooms },
-      { label: 'MODULES', value: module.specs.modulesCount },
+      { label: 'SIZE (sqft)', value: currentModule.specs.areaSqft },
+      { label: 'BEDROOM', value: currentModule.specs.bedrooms },
+      { label: 'BATHROOMS', value: currentModule.specs.bathrooms },
+      { label: 'MODULES', value: currentModule.specs.modulesCount },
     ],
   };
 
   const descriptionData = {
-    image: module.images[0] || module.mainImage,
-    paragraph: module.marketingDescription,
+    image: currentModule.images[0] || currentModule.mainImage,
+    paragraph: currentModule.marketingDescription,
   };
 
   const stackedImagesData = {
-    images: module.images.map((url, index) => ({
+    images: currentModule.images.map((url, index) => ({
       url,
-      alt: `${module.title} - Image ${index + 1}`,
+      alt: `${currentModule.title} - Image ${index + 1}`,
     })),
   };
 
@@ -86,7 +85,7 @@ const ModulePage = async ({ params }: ModulePageProps) => {
       'Explore our range of models, each designed for flexibility and comfort.',
   };
 
-  const otherModules = modules.filter((m) => m.slug !== slug);
+  const otherModules = modulesList.filter((m) => m.slug !== slug);
 
   return (
     <div className='bg-dark'>

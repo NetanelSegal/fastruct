@@ -3,7 +3,6 @@
 import { ModuleCard } from '@/sections/home/components/ModuleCard';
 import { IModule } from '@/types/modules';
 import { motion, Variants } from 'motion/react';
-import { Fragment } from 'react/jsx-runtime';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

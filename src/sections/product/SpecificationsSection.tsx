@@ -1,11 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useInView, useMotionValue, useSpring, animate } from 'motion/react';
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  animate,
+} from 'motion/react';
 import { useRef, useEffect, useState } from 'react';
 import { Section } from '@/components/Section';
 import { ISpecifications } from '@/types/product';
-import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 
 interface CounterProps {
   value: number;
@@ -62,7 +67,7 @@ const SpecItem = ({
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className='flex flex-col gap-2'>
-      <span className='text-h6 text-dark/70 uppercase tracking-wider'>
+      <span className='text-h6 text-dark/70 tracking-wider uppercase'>
         {label}
       </span>
       <span className='text-h1 font-bebas text-dark md:text-[5rem]'>
@@ -79,7 +84,10 @@ const SpecificationsSection = ({
   specs,
 }: ISpecifications) => {
   const floorPlanRef = useRef<HTMLDivElement>(null);
-  const isFloorPlanInView = useInView(floorPlanRef, { once: true, amount: 0.3 });
+  const isFloorPlanInView = useInView(floorPlanRef, {
+    once: true,
+    amount: 0.3,
+  });
 
   return (
     <Section bgColor='light' textColor='dark' className='py-32'>
@@ -129,4 +137,3 @@ const SpecificationsSection = ({
 };
 
 export default SpecificationsSection;
-

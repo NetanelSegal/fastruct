@@ -39,26 +39,29 @@ const ScrollableTextList: React.FC<ScrollableTextListProps> = ({
     if (onActiveIndexChange) {
       onActiveIndexChange(activeIndex);
     }
-  }, [activeIndex, onActiveIndexChange]);
+  }, [activeIndex, onActiveIndexChange, setPrevActiveIndex]);
 
   useEffect(() => {
-    // Trigger bounce animation when active index changes
-    if (activeIndex !== prevActiveIndex && cubeTop !== prevCubeTop) {
-      setPrevActiveIndex(activeIndex);
-      setPrevCubeTop(cubeTop);
+    const triggerBounceAnimation = () => {
+      // Trigger bounce animation when active index changes
+      if (activeIndex !== prevActiveIndex && cubeTop !== prevCubeTop) {
+        setPrevActiveIndex(activeIndex);
+        setPrevCubeTop(cubeTop);
 
-      // Update both positions simultaneously - they will animate in sync
-      top.set(cubeTop);
-      // Bounce left first, then return to 0
-      x.set(-28);
+        // Update both positions simultaneously - they will animate in sync
+        top.set(cubeTop);
+        // Bounce left first, then return to 0
+        x.set(-28);
 
-      // After a brief delay, return x to 0 (this creates the bounce effect)
-      // The delay should be about 30% of the spring duration
-      const bounceDelay = 200; // milliseconds
-      setTimeout(() => {
-        x.set(0);
-      }, bounceDelay);
-    }
+        // After a brief delay, return x to 0 (this creates the bounce effect)
+        // The delay should be about 30% of the spring duration
+        const bounceDelay = 200; // milliseconds
+        setTimeout(() => {
+          x.set(0);
+        }, bounceDelay);
+      }
+    };
+    triggerBounceAnimation();
   }, [activeIndex, prevActiveIndex, cubeTop, prevCubeTop, x, top]);
 
   return (

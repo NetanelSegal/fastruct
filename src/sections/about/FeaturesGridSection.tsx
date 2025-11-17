@@ -1,7 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useInView, useScroll, useTransform } from 'motion/react';
+import {
+  motion,
+  MotionValue,
+  useInView,
+  useScroll,
+  useTransform,
+} from 'motion/react';
 import { useRef, useEffect, useState } from 'react';
 import { IFeaturesGrid, IFeatureItem } from '@/types/about';
 import { Section } from '@/components/Section';
@@ -25,7 +31,7 @@ const FeatureCard = ({
   imageUrl,
   index,
   sectionProgress,
-}: IFeatureItem & { index: number; sectionProgress: any }) => {
+}: IFeatureItem & { index: number; sectionProgress: MotionValue<number> }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.3, once: true });
 

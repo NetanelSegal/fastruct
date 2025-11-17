@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { useScreenWidth } from '@/hooks/useScreenWidth';
-import clsx from 'clsx';
 
 interface IModuleCardProps {
   index: number;

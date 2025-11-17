@@ -25,11 +25,25 @@ export default function NotFound() {
             {/* Construction worker sitting */}
             <g transform='translate(100, 120)'>
               {/* Head */}
-              <circle cx='0' cy='-30' r='20' fill='currentColor' opacity='0.4' />
+              <circle
+                cx='0'
+                cy='-30'
+                r='20'
+                fill='currentColor'
+                opacity='0.4'
+              />
               {/* Hard hat */}
               <ellipse cx='0' cy='-35' rx='22' ry='8' fill='currentColor' />
               {/* Body */}
-              <rect x='-15' y='-10' width='30' height='40' rx='5' fill='currentColor' opacity='0.4' />
+              <rect
+                x='-15'
+                y='-10'
+                width='30'
+                height='40'
+                rx='5'
+                fill='currentColor'
+                opacity='0.4'
+              />
               {/* Arms resting */}
               <line
                 x1='-20'
@@ -71,7 +85,15 @@ export default function NotFound() {
             </g>
             {/* Coffee cup */}
             <g transform='translate(140, 130)'>
-              <rect x='-8' y='-15' width='16' height='20' rx='2' fill='currentColor' opacity='0.3' />
+              <rect
+                x='-8'
+                y='-15'
+                width='16'
+                height='20'
+                rx='2'
+                fill='currentColor'
+                opacity='0.3'
+              />
               <path
                 d='M 8 -15 Q 12 -15, 12 -10 L 12 5 Q 12 10, 8 10 L -8 10 Q -12 10, -12 5 L -12 -10 Q -12 -15, -8 -15'
                 stroke='currentColor'
@@ -93,14 +115,14 @@ export default function NotFound() {
         </div>
 
         {/* Heading */}
-        <h1 className='text-h1 mb-4 font-bebas text-light'>
+        <h1 className='text-h1 font-bebas text-light mb-4'>
           Page Under Construction
         </h1>
 
         {/* Message */}
-        <p className='text-h5 mb-8 font-poppins font-extralight text-light opacity-80'>
-          We're working hard to bring you something amazing. This page will be
-          ready soon!
+        <p className='text-h5 font-poppins text-light mb-8 font-extralight opacity-80'>
+          We&apos;re working hard to bring you something amazing. This page will
+          be ready soon!
         </p>
 
         {/* CTA Button */}
@@ -113,4 +135,3 @@ export default function NotFound() {
     </div>
   );
 }
-
