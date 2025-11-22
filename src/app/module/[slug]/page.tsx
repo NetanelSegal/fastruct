@@ -37,11 +37,11 @@ export async function generateMetadata({ params }: ModulePageProps) {
 
 const ModulePage = async ({ params }: ModulePageProps) => {
   const { slug } = await params;
-  const modulePath = `/module/${slug}`;
 
-  if (!isModulePageEnabled(modulePath)) {
+  if (!isModulePageEnabled()) {
     notFound();
   }
+
   const modulesList = await getModules();
   const currentModule = modulesList.find((m) => m.slug === slug);
 
@@ -92,8 +92,8 @@ const ModulePage = async ({ params }: ModulePageProps) => {
     <div className='bg-dark'>
       <HeroProductSection {...heroData} />
       <SpecificationsSection {...specificationsData} />
-      <ProductDescriptionSection {...descriptionData} />
       <StackedImagesSection {...stackedImagesData} />
+      <ProductDescriptionSection {...descriptionData} />
       <ExploreHomesSection
         featuredModules={otherModules}
         exploreContent={exploreData}

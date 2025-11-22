@@ -4,7 +4,7 @@
  *
  * Currently enabled: Home and Contact (ready for client review)
  */
-const ENABLED_PAGES = ['/', '/contact', '/about'];
+const ENABLED_PAGES = ['/', '/contact', '/about', '/module'];
 
 /**
  * Check if a page path is enabled
@@ -20,12 +20,6 @@ export function isPageEnabled(path: string): boolean {
  * Module pages are accessible if the homepage is enabled
  * Supports dynamic routes like /module/[slug]
  */
-export function isModulePageEnabled(path?: string): boolean {
-  // If a path is provided, check if it starts with /module
-  if (path) {
-    const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '');
-    return normalizedPath.startsWith('/module');
-  }
-  // If no path provided, check if homepage is enabled (legacy behavior)
-  return isPageEnabled('/');
+export function isModulePageEnabled(): boolean {
+  return isPageEnabled('/module');
 }
