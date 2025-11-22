@@ -4,7 +4,7 @@
  *
  * Currently enabled: Home and Contact (ready for client review)
  */
-const ENABLED_PAGES = ['/', '/contact'];
+const ENABLED_PAGES = ['/', '/contact', '/about', '/module'];
 
 /**
  * Check if a page path is enabled
@@ -18,6 +18,7 @@ export function isPageEnabled(path: string): boolean {
 /**
  * Check if a module detail page should be accessible
  * Module pages are accessible if the homepage is enabled
+ * Supports dynamic routes like /module/[slug]
  */
 export function isModulePageEnabled(): boolean {
   return isPageEnabled('/module');

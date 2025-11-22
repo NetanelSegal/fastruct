@@ -8,6 +8,7 @@ import AnimatedHeading from '@/components/text-animation/AnimatedHeading';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
 import { Button } from '@/components/Button';
 import { IContactForm, IContactInfo } from '@/types/contact';
+import { submitContactForm } from '@/lib/contact-service';
 
 interface ContactFormSectionProps {
   form: IContactForm;
@@ -22,6 +23,10 @@ const ContactFormSection = ({ form, info }: ContactFormSectionProps) => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{
+    type: 'success' | 'error' | null;
+    text: string;
+  }>({ type: null, text: '' });
   const formRef = useRef<HTMLFormElement>(null);
   const isFormInView = useInView(formRef, { once: true, amount: 0.2 });
 
@@ -37,12 +42,25 @@ const ContactFormSection = ({ form, info }: ContactFormSectionProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // TODO: Implement form submission
-    setTimeout(() => {
+    setSubmitMessage({ type: null, text: '' });
+
+    try {
+      const response = await submitContactForm(formData);
+
+      if (response.success) {
+        setSubmitMessage({ type: 'success', text: response.message });
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        setSubmitMessage({ type: 'error', text: response.message });
+      }
+    } catch (error) {
+      setSubmitMessage({
+        type: 'error',
+        text: 'An unexpected error occurred. Please try again later.',
+      });
+    } finally {
       setIsSubmitting(false);
-      alert('Thank you for your message! We will get back to you soon.');
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 1000);
+    }
   };
 
   return (
@@ -207,6 +225,20 @@ const ContactFormSection = ({ form, info }: ContactFormSectionProps) => {
               className='w-full md:w-auto'>
               {isSubmitting ? form.submittingButton : form.submitButton}
             </Button>
+
+            {/* Submission Message */}
+            {submitMessage.type && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`rounded-lg p-4 ${
+                  submitMessage.type === 'success'
+                    ? 'bg-accent/20 text-accent border-accent/30 border'
+                    : 'border border-red-500/30 bg-red-500/20 text-red-400'
+                }`}>
+                <p className='text-sm font-medium'>{submitMessage.text}</p>
+              </motion.div>
+            )}
           </motion.form>
         </div>
       </div>

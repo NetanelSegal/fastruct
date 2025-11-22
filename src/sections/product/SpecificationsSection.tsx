@@ -21,18 +21,22 @@ const Counter = ({ value, delay = 0 }: CounterProps) => {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const count = useMotionValue(0);
+
+  // Snappier spring for faster, more responsive animation
   const rounded = useSpring(count, {
-    damping: 60,
-    stiffness: 100,
+    damping: 40, // Reduced from 60 for faster response
+    stiffness: 200, // Increased from 100 for snappier animation
   });
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
     if (isInView) {
+      // Fixed duration of 1.8 seconds regardless of number size
+      // Using easeOut for smooth deceleration, making it feel snappy
       const animation = animate(count, value, {
-        duration: 2,
+        duration: 1.8, // Fixed duration: works for both 10 and 1000
         delay,
-        ease: 'easeOut',
+        ease: [0.25, 0.1, 0.25, 1], // Custom cubic-bezier for snappier feel
       });
       return () => animation.stop();
     }
@@ -66,11 +70,11 @@ const SpecItem = ({
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className='flex flex-col gap-2'>
+      className='border-dark/80 flex items-center justify-between gap-2 border-b-2 last:border-b-0'>
       <span className='text-h6 text-dark/70 tracking-wider uppercase'>
         {label}
       </span>
-      <span className='text-h1 font-bebas text-dark md:text-[5rem]'>
+      <span className='text-h1 font-bebas text-dark'>
         <Counter value={value} delay={index * 0.1} />
       </span>
     </motion.div>
@@ -120,7 +124,7 @@ const SpecificationsSection = ({
           </motion.div>
 
           {/* Right: Specifications */}
-          <div className='flex flex-col justify-center gap-8 md:gap-12'>
+          <div className='flex flex-col justify-center gap-4 md:gap-8'>
             {specs.map((spec, index) => (
               <SpecItem
                 key={spec.label}

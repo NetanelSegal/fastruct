@@ -26,22 +26,24 @@ const FeatureRow = ({
   // Desktop: flip on hover, Mobile: flip on scroll activation
   const isFlipped = isMobile ? isActive : isHovered;
   const isCardActive = isMobile ? isActive : isHovered;
+
+  // Conditional transition: delay only on exit (flipping back to 0)
+  // Enter (flip to 180): immediate (delay = 0)
+  // Exit (flip to 0): delayed (delay = 0.3) for smoother feel
   const transition: Transition = {
     duration: 0.6,
     ease: 'easeInOut',
+    delay: isCardActive ? 0 : 0.3,
   };
 
   return (
-    <div
-      ref={rowRef}
-      className='border-dark/20 relative z-0 w-full border-b last:border-b-0'
-      data-row-index={index}>
+    <div ref={rowRef} className='relative z-0 w-full' data-row-index={index}>
       <div
         className='relative w-full overflow-hidden'
         onMouseEnter={() => !isMobile && setIsHovered(true)}
         onMouseLeave={() => !isMobile && setIsHovered(false)}>
         <motion.div
-          className='relative grid size-full grid-cols-1 grid-rows-1 content-center items-center justify-center py-10 text-center'
+          className='border-dark/20 relative grid size-full grid-cols-1 grid-rows-1 content-center items-center justify-center border-b py-10 text-center'
           animate={{
             rotateX: isFlipped ? 180 : 0,
           }}

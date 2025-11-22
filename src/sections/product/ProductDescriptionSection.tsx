@@ -1,61 +1,28 @@
 'use client';
 
-import Image from 'next/image';
-import { motion, useInView } from 'motion/react';
-import { useRef } from 'react';
+import { motion } from 'motion/react';
 import { Section } from '@/components/Section';
 import { IProductDescription } from '@/types/product';
-import Parallax from '@/components/Parallax';
 import FadeInParagraph from '@/components/text-animation/FadeInParagraph';
+import FormattedText from '@/components/FormattedText';
 
-const ProductDescriptionSection = ({
-  image,
-  paragraph,
-}: IProductDescription) => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const isTextInView = useInView(textRef, { once: true, amount: 0.3 });
-
+const ProductDescriptionSection = ({ paragraph }: IProductDescription) => {
   return (
-    <>
-      {/* Image Section */}
-      <Section
-        ref={sectionRef}
-        bgColor='dark'
-        textColor='white'
-        className='relative overflow-hidden p-0'>
-        <Parallax
-          className='relative h-[60vh] w-full md:h-[80vh]'
-          startRange={0}
-          endRange={-20}
-          unitType='%'
-          offset={['start end', 'end start']}>
-          <div className='relative h-full w-full'>
-            <Image
-              src={image}
-              alt='Product description'
-              fill
-              sizes='100vw'
-              className='object-cover object-center'
-            />
-          </div>
-        </Parallax>
-      </Section>
-
-      {/* Text Section */}
-      <Section bgColor='dark' textColor='white' className='py-32'>
-        <motion.div
-          ref={textRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-          className='mx-auto max-w-4xl text-center'>
-          <FadeInParagraph className='text-h6 text-light leading-relaxed'>
-            {paragraph}
-          </FadeInParagraph>
-        </motion.div>
-      </Section>
-    </>
+    <Section bgColor='dark' textColor='white' className='py-32'>
+      <motion.div
+        viewport={{ once: true, amount: 0.3 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className='mx-auto max-w-4xl text-center'>
+        <FadeInParagraph>
+          <FormattedText
+            className='text-h6 text-light [&>strong]:text-accent leading-relaxed'
+            text={paragraph}
+          />
+        </FadeInParagraph>
+      </motion.div>
+    </Section>
   );
 };
 

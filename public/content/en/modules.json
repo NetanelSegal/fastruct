@@ -3,7 +3,7 @@
     "slug": "smart-compact-living",
     "title": "Smart Compact Living",
     "summary": "A compact and elegant unit ideal for guest homes, ADUs, or urban lots.",
-    "marketingDescription": "Smart Compact Living offers a refined minimalist layout with a focus on natural light and space efficiency. Its modern finishes and clean geometry make it perfect for singles, couples, or as a rental unit. Experience the perfect balance of comfort and functionality in a beautifully designed space that maximizes every square foot.",
+    "marketingDescription": "Smart Compact Living offers a **refined minimalist layout** with a focus on **natural light and space efficiency**. Its modern finishes and clean geometry make it perfect for singles, couples, or as a rental unit. Experience the perfect balance of comfort and functionality in a beautifully designed space that **maximizes every square foot**.",
     "specs": {
       "areaSqft": 460,
       "bedrooms": 1,
@@ -23,7 +23,9 @@
       "/assets/modules-images/module-1/in-5.jpg",
       "/assets/modules-images/module-1/in-6.jpg"
     ],
-    "sketchPlans": [],
+    "sketchPlans": [
+      "https://media.istockphoto.com/id/476190573/vector/architecture.jpg?s=612x612&w=0&k=20&c=ZhCh_zpDZxEYbZipufMpCepHD79Vlbs5GGO76dQfTlg="
+    ],
     "tags": ["ADU", "Guest", "Compact"],
     "highlights": [
       "Energy-efficient windows and doors",
@@ -40,7 +42,7 @@
     "slug": "family-smart-unit",
     "title": "Family Smart Unit",
     "summary": "A balanced modular home designed for young families and flexible use.",
-    "marketingDescription": "Designed with growing families in mind, the Family Smart Unit combines thoughtful space planning with modern amenities. Open-plan living areas create a sense of spaciousness, while smart storage solutions keep everything organized. This is where memories are made, where life happens comfortably and efficiently.",
+    "marketingDescription": "Designed with **growing families** in mind, the Family Smart Unit combines thoughtful space planning with modern amenities. **Open-plan living areas** create a sense of spaciousness, while **smart storage solutions** keep everything organized. This is where memories are made, where life happens comfortably and efficiently.",
     "specs": {
       "areaSqft": 520,
       "bedrooms": 1,
@@ -61,8 +63,7 @@
       "/assets/modules-images/module-1/in-6.jpg"
     ],
     "sketchPlans": [
-      "/images/models/family-smart-unit/plans/floorplan.png",
-      "/images/models/family-smart-unit/plans/furniture-layout.png"
+      "https://media.istockphoto.com/id/476190573/vector/architecture.jpg?s=612x612&w=0&k=20&c=ZhCh_zpDZxEYbZipufMpCepHD79Vlbs5GGO76dQfTlg="
     ],
     "tags": ["Family", "2BR", "Flexible"],
     "highlights": [
@@ -80,7 +81,7 @@
     "slug": "live-and-work-hybrid",
     "title": "Live & Work Hybrid",
     "summary": "Blends residential comfort with workspace functionality — perfect for professionals or home-based studios.",
-    "marketingDescription": "The ultimate solution for modern professionals who demand both comfort and productivity. The Live & Work Hybrid seamlessly integrates a dedicated workspace with residential living, featuring acoustic considerations and flexible layouts. Work from home without compromising on style or functionality—this is your sanctuary for both career and life.",
+    "marketingDescription": "The ultimate solution for modern professionals who demand both **comfort and productivity**. The Live & Work Hybrid seamlessly integrates a **dedicated workspace** with residential living, featuring **acoustic considerations** and flexible layouts. Work from home without compromising on style or functionality.",
     "specs": {
       "areaSqft": 1200,
       "bedrooms": 2,
@@ -101,7 +102,7 @@
       "/assets/modules-images/module-1/in-6.jpg"
     ],
     "sketchPlans": [
-      "/images/models/live-and-work-hybrid/plans/floorplan-work-zone.png"
+      "https://media.istockphoto.com/id/476190573/vector/architecture.jpg?s=612x612&w=0&k=20&c=ZhCh_zpDZxEYbZipufMpCepHD79Vlbs5GGO76dQfTlg="
     ],
     "tags": ["Studio", "Hybrid", "Workspace"],
     "highlights": [
@@ -119,7 +120,7 @@
     "slug": "executive-comfort",
     "title": "Executive Comfort",
     "summary": "A luxury modular home designed for premium comfort and entertaining.",
-    "marketingDescription": "Elevate your lifestyle with Executive Comfort, where luxury meets practicality. Premium finishes, spacious open-plan living, and a primary suite with ensuite create an environment designed for both relaxation and entertaining. This is more than a home—it's a statement of refined living, crafted for those who appreciate the finer things in life.",
+    "marketingDescription": "Elevate your lifestyle with Executive Comfort, where **luxury meets practicality**. Premium finishes, spacious open-plan living, and a **primary suite with ensuite** create an environment designed for both **relaxation and entertaining**. This is more than a home—it's a statement of refined living.",
     "specs": {
       "areaSqft": 660,
       "bedrooms": 2,
@@ -140,8 +141,7 @@
       "/assets/modules-images/module-1/in-6.jpg"
     ],
     "sketchPlans": [
-      "/images/models/executive-comfort/plans/floorplan.png",
-      "/images/models/executive-comfort/plans/alt-layout.png"
+      "https://media.istockphoto.com/id/476190573/vector/architecture.jpg?s=612x612&w=0&k=20&c=ZhCh_zpDZxEYbZipufMpCepHD79Vlbs5GGO76dQfTlg="
     ],
     "tags": ["Luxury", "3BR", "Entertaining"],
     "highlights": [
@@ -159,7 +159,7 @@
     "slug": "ultra-compact-retreat",
     "title": "Ultra Compact Retreat",
     "summary": "An ultra-compact single-bedroom unit perfect for minimalists, students, or as a cozy retreat.",
-    "marketingDescription": "Embrace minimalist living without sacrificing comfort. The Ultra Compact Retreat proves that less truly is more, with intelligent design that maximizes every inch of space. Perfect for those seeking an affordable, low-maintenance lifestyle or a peaceful retreat from the hustle. Simple, elegant, and perfectly proportioned for modern living.",
+    "marketingDescription": "Embrace minimalist living without sacrificing comfort. The Ultra Compact Retreat proves that less truly is more, with **intelligent design that maximizes every inch**. Perfect for those seeking an **affordable, low-maintenance lifestyle** or a peaceful retreat. Simple, elegant, and perfectly proportioned.",
     "specs": {
       "areaSqft": 435,
       "bedrooms": 1,
@@ -179,7 +179,9 @@
       "/assets/modules-images/module-1/in-5.jpg",
       "/assets/modules-images/module-1/in-6.jpg"
     ],
-    "sketchPlans": [],
+    "sketchPlans": [
+      "https://media.istockphoto.com/id/476190573/vector/architecture.jpg?s=612x612&w=0&k=20&c=ZhCh_zpDZxEYbZipufMpCepHD79Vlbs5GGO76dQfTlg="
+    ],
     "tags": ["Ultra-Compact", "1BR", "Minimalist"],
     "highlights": [
       "Maximized space efficiency",
