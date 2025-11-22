@@ -36,11 +36,12 @@ export async function generateMetadata({ params }: ModulePageProps) {
 }
 
 const ModulePage = async ({ params }: ModulePageProps) => {
-  if (!isModulePageEnabled()) {
+  const { slug } = await params;
+  const modulePath = `/module/${slug}`;
+
+  if (!isModulePageEnabled(modulePath)) {
     notFound();
   }
-
-  const { slug } = await params;
   const modulesList = await getModules();
   const currentModule = modulesList.find((m) => m.slug === slug);
 
